@@ -10,9 +10,9 @@ String uId_Session = request.getParameter("test");
 		<meta charset="UTF-8">
 		<title>Document</title>
 		<link rel="shortcut icon" href="#">
-		<link rel="stylesheet" href="/style/style.css">
+		<link rel="stylesheet" href="/resources/style/style.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-		<script src="/script/script.js"></script>		
+		<script src="/resources/script/script.js"></script>		
 	</head>
 	<body>
 		<div id="wrap">
