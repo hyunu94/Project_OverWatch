@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+
+<mapper namespace="member">
+	
+	
+	<!-- 회원 가입 시작 -->
+	<insert id="insert" parameterType="hashMap" useGeneratedKeys="true"  keyProperty="no">
+		<![CDATA[
+			insert into memList (uId, uPw, uName, uEmail)
+			values
+			(#{uId}, #{uPw}, #{uName}, #{uEmail})
+		]]>
+	</insert>
+	<!-- 회원 가입 끝 -->
+
+
+	<!-- 회원 정보 상세보기 시작-->
+	<select id="select_detail" parameterType="hashMap" resultType="hashMap">
+		 <![CDATA[
+		 select uId, uPw, uName, uEmail from memList where no = #{no}
+		 ]]>
+	</select>
+	<!-- 회원 정보 상세보기 끝-->
+	
+	
+	<!-- 회원 목록 보기 시작-->
+	<select id="select_list" parameterType="hashMap" resultType="hashMap">
+		 <![CDATA[
+		 select * from memList order by no desc
+		 ]]>
+	</select>
+	<!-- 회원 목록 보기 끝-->
+	
+</mapper>
