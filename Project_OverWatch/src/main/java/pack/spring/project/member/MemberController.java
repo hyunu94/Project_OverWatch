@@ -41,7 +41,6 @@ public class MemberController {
 		return mav;
 		
 	}
-	
 	/////////////// 로그인 처리 끝 //////////////////
 	
 	

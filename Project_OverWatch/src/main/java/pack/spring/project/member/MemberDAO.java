@@ -14,8 +14,10 @@ public class MemberDAO {
 		
 		//로그인 체크
 		public int loginCheck(Map<String, Object> map) {
+			//디버깅용//
 			int cnt = sqlSessionTemplate.selectOne("member.select_idCh", map);
 			System.out.println("cnt"+cnt);
-				return this.sqlSessionTemplate.selectOne("member.select_idCh", map);
+			//
+			return this.sqlSessionTemplate.selectOne("member.select_idCh", map);
 		}
 }
