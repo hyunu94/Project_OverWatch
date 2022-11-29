@@ -8,7 +8,6 @@ String uId = request.getParameter("uId");
 String uPw = request.getParameter("uPw");
 boolean loginRes =mMgr.loginMember(uId, uPw);
 %>
-
 <script>
 <%
 if (loginRes) {

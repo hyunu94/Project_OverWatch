@@ -35,7 +35,7 @@ String uId_Session = (String)session.getAttribute("uId_Session");
 	    		<!--  메인 LNB 템플릿 끝 -->    	
     		</div>
     		
-    		
+    	
 	    	<!-- 실제 작업 영역 시작 -->
     		<div id="contents" class="loginDiv">
 
