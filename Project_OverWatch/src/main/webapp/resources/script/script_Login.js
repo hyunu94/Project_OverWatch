@@ -41,7 +41,7 @@ $(function(){
 			$("#uPw").focus();
 			return;
 		} else {			
-			$("#loginFrm").attr("action", "loginProc.jsp");
+			$("#loginFrm").attr("action", "/login");
 			$("#loginFrm").submit();
 		}
 		
