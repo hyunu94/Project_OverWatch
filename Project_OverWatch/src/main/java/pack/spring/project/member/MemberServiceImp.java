@@ -1,4 +1,4 @@
-package pack.spring.member;
+package pack.spring.project.member;
 
 public class MemberServiceImp {
 

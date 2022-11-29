@@ -18,8 +18,8 @@ String uId_Session_HTmp = (String)session.getAttribute("uId_Session");
 
     	<header id="header" class="dFlex"> 	<!-- 로고, GNB -->
     		<div id="headerLogo">
-    			<a href="/index.jsp">
-    				<img src="/images/headerLogo.png" alt="헤더로고이미지">
+    			<a href="index.jsp">
+    				<img src="/resources/images/headerLogo.png" alt="헤더로고이미지">
     			</a>
     		</div>
     		<nav id="gnb">
@@ -28,13 +28,13 @@ String uId_Session_HTmp = (String)session.getAttribute("uId_Session");
     		
     			<% if (uId_Session_HTmp == null) { 	%>
     			
-    				<li class="mainLi"><a href="/index.jsp">HOME</a></li>
+    				<li class="mainLi"><a href="index.jsp">HOME</a></li>
     				<li>|</li>
-    				<li class="mainLi"><a href="/member/login.jsp">로그인</a></li>
+    				<li class="mainLi"><a href="member/login.jsp">로그인</a></li>
     				<li>|</li>
-    				<li class="mainLi"><a href="/member/joinAgreement.jsp">회원가입</a></li>
+    				<li class="mainLi"><a href="member/joinAgreement.jsp">회원가입</a></li>
     				<li>|</li>
-    				<li class="mainLi"><a href="/bbs/list.jsp">게시판</a></li>
+    				<li class="mainLi"><a href="bbs/list.jsp">게시판</a></li>
     				
     			<% } else { %> 
     			

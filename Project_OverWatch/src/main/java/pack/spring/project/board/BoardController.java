@@ -1,4 +1,4 @@
-package pack.spring.project;
+package pack.spring.project.board;
 
 public class BoardController {
 

@@ -1,4 +1,4 @@
-package pack.spring.board;
+package pack.spring.project.board;
 
 public class BoardDAO {
 
