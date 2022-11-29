@@ -28,14 +28,14 @@ public class MemberController {
 	/////////////// 로그인 처리 시작 //////////////////
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView login_post(@RequestParam Map<String, Object> map, HttpSession session) {
-		Map<String, Object> loginMap =  memberService.login(map);
+		int cnt =  memberService.login(map);
 		
 		ModelAndView mav = new ModelAndView();
-		if(loginMap.get("count").toString().equals("1")) {
+		if(cnt>0) {
 			session.setAttribute("user", map);
-			mav.setViewName("/index");
+			mav.setViewName("redirect:/");
 		}else {
-			mav.setViewName("/login");
+			mav.setViewName("redirect:/login");
 		}
 		
 		return mav;

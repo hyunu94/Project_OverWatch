@@ -7,7 +7,7 @@
 
 <mapper namespace="member">
 	
-	<select id="select_idCh" parameterType="hashMap" resultType="hashMap">
+	<select id="select_idCh" parameterType="hashMap" resultType="int">
 			<![CDATA[
 			 select count(*) from member  where uId = #{uId} and uPw= #{uPw}
 			 ]]>

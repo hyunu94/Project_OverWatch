@@ -13,7 +13,9 @@ public class MemberDAO {
 		SqlSessionTemplate sqlSessionTemplate;
 		
 		//로그인 체크
-		public Map<String, Object> loginCheck(Map<String, Object> map) {
+		public int loginCheck(Map<String, Object> map) {
+			int cnt = sqlSessionTemplate.selectOne("member.select_idCh", map);
+			System.out.println("cnt"+cnt);
 				return this.sqlSessionTemplate.selectOne("member.select_idCh", map);
 		}
 }
