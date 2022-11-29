@@ -26,8 +26,11 @@ public class MemberController {
 	/////////////// 로그인 처리 시작 //////////////////
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView login_post(@RequestParam Map<String, Object> map) {
-		ModelAndView mav = new ModelAndView();
 		
+		
+		
+		
+		ModelAndView mav = new ModelAndView();
 	}
 	
 	/////////////// 로그인 처리 끝 //////////////////
