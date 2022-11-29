@@ -2,6 +2,8 @@ package pack.spring.project.member;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,12 +27,19 @@ public class MemberController {
 	
 	/////////////// 로그인 처리 시작 //////////////////
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public ModelAndView login_post(@RequestParam Map<String, Object> map) {
-		
-		
-		
+	public ModelAndView login_post(@RequestParam Map<String, Object> map, HttpSession session) {
+		Map<String, Object> loginMap =  memberService.login(map);
 		
 		ModelAndView mav = new ModelAndView();
+		if(loginMap.get("count").toString().equals("1")) {
+			session.setAttribute("user", map);
+			mav.setViewName("/index");
+		}else {
+			mav.setViewName("/login");
+		}
+		
+		return mav;
+		
 	}
 	
 	/////////////// 로그인 처리 끝 //////////////////
