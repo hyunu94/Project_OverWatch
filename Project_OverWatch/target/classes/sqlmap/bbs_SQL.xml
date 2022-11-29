@@ -4,6 +4,14 @@
 <mapper namespace="tblBoard">
 
 	<!-- 게시판 글 작성 -->
+	<select id="selectMaxNum" parameterType="hashMap"
+		resultType="hashMap">
+		<![CDATA[
+		select max(num) from tblBoard
+		]]>
+	</select>
+	
+	<!-- 게시판 글 작성 -->
 	<insert id="insert" parameterType="hashMap"
 		useGeneratedKeys="true" keyProperty="num">
 		<![CDATA[
