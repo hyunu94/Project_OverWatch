@@ -24,5 +24,13 @@ public class BoardDAO {
 		public List<Map<String, Object>> selectList(Map<String, Object> map) {
 			return this.sqlSessionTemplate.selectList("tblBoard.select_list", map);
 		}
+		
+		public int update(Map<String, Object> map) {
+			return this.sqlSessionTemplate.update("tblBoard.update", map);
+		}
+		
+		public int delete(Map<String, Object> map) {
+			return this.sqlSessionTemplate.delete("tblBoard.delete", map);
+		}
 	
 }

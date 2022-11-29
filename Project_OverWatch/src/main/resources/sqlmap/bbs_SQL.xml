@@ -4,92 +4,95 @@
 <mapper namespace="tblBoard">
 
 	<!-- 게시판 글 작성 -->
-	<insert id="insert">
+	<insert id="insert" parameterType="hashMap"
+		useGeneratedKeys="true" keyProperty="num">
 		<![CDATA[
 		insert into tblBoard (uId, uName, subject, content, ref, pos, depth,regTM, ip, readCnt, fileName, fileSize)
 		values (#{uId}, #{uName}, #{subject}, #{content}, #{ref}, 0, 0, now(), #{ip}, 0, #{fileName}, #{fileSize})
 		]]>
 	</insert>
-	
-	<!-- 총 게시물 수 1. 검색어가 없을 경우 -->
-	<select id="select_keyword">
+
+	<!-- 총 게시물 수 -->
+	<select id="select_keyword" parameterType="hashMap"
+		resultType="hashMap">
 		<![CDATA[
-		select count(*) from tblBoard
+			select count(*) from tblBoard	
 		]]>
-	</select>
-	<!-- 총 게시물 수 2. 검색어가 있을 경우 -->
-	<select id="select_keyword">
-		<![CDATA[
-		select count(*) from tblBoard
-		where keyField like %#{keyWord}%
-		]]>
-	</select>
-	
-	<!-- 게시판 목록 1. 검색어가 없을 경우 -->
-	<select id="select_list">
-		<![CDATA[
-		select * from tblBoard order by ref desc, pos asc limit #{start}, #{end}
-		]]>
+		<if test="#{keyWord}!=null">
+			<![CDATA[
+			where keyField like #{keyWord}
+			]]>
+		</if>
 	</select>
 
-	<!-- 게시판 목록 2. 검색어가 있을 경우 -->
-	<select id="select_list">
+	<!-- 게시판 목록 -->
+	<select id="select_list" parameterType="hashMap"
+		resultType="hashMap">
 		<![CDATA[
-		select * from tblBoard
-		where keyField like %#{keyWord}%
+		select * from tblBoard 
+		]]>
+		<if test="#{keyWord} != null">
+		<![CDATA[
+		where keyField like #{keyWord}
+		]]>
+		</if>		
+		<![CDATA[
 		order by ref desc, pos asc limit #{start}, #{end}
 		]]>
 	</select>
 
 	<!-- 게시판 상세페이지 출력 -->
-	<select id="select_detail">
+	<select id="select_detail" parameterType="hashMap"
+		resultType="hashMap">
 		<![CDATA[
 		select * from tblBoard where num=#{num}
 		]]>
 	</select>
-	
+
 	<!-- 게시판 뷰페이지 조회수 증가 -->
-	<update id="update_view">
+	<update id="update_view" parameterType="hashMap">
 		<![CDATA[
 		update tblBoard set readCnt = readCnt+1 where num=#{num}
 		]]>
 	</update>
-	
-	<!-- (삭제하기 위해) 파일 찾기-->
-	<select id="delete_file">
+
+	<!-- (삭제하기 위해) 파일 찾기 -->
+	<select id="delete_file" parameterType="hashMap"
+		resultType="hashMap">
 		<![CDATA[
 		select fileName from tblBoard where num=#{num}
 		]]>
 	</select>
-	
-	<!-- 삭제 : 게시글-->
-	<delete id="delete">
+
+	<!-- 삭제 : 게시글 -->
+	<delete id="delete" parameterType="hashMap">
 		<![CDATA[
 		delete from tblBoard where num=#{num}
 		]]>
 	</delete>
-	
+
 	<!-- 게시글 수정 -->
-	<update id="update">
+	<update id="update" parameterType="hashMap">
 		<![CDATA[
 		update tblBoard set subject=#{subject}, content=#{content} where num=#{num}
 		]]>
 	</update>
-	
+
 	<!-- 게시글 답변 작성 -->
-	<insert id="insert_reply">
+	<insert id="insert_reply" parameterType="hashMap"
+		useGeneratedKeys="true" keyProperty="num">
 		<![CDATA[
 		insert into tblBoard (uId, uName, content, subject,ref, pos, depth,regTM, readCnt, ip)
 		values (#{uId}, #{uName}, #{content}, #{subject}, #{ref}, #{pos}, #{depth}, now(), 0, #{ip})
 		]]>
 	</insert>
-	
+
 	<!-- 답변글 끼어들기 -->
-	<update id="update_reply">
+	<update id="update_reply" parameterType="hashMap">
 		<![CDATA[
 			update tblBoard set pos = pos + 1 where ref = #{ref} and pos >#{pos}
 		]]>
 	</update>
-	
-	
+
+
 </mapper>
