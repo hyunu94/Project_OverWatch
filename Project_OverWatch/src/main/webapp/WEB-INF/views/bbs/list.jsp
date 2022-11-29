@@ -5,9 +5,6 @@
 String uId_Session = (String)session.getAttribute("uId_Session"); 
 %> 
 
-<%@ page import="pack_BBS.BoardBean, java.util.Vector" %>
-<jsp:useBean id="bMgr" class="pack_BBS.BoardMgr"  scope="page" />
-
 <%
 request.setCharacterEncoding("UTF-8");
 

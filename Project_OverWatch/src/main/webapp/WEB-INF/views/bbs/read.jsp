@@ -70,7 +70,7 @@ session.setAttribute("bean", bean);
     <div id="wrap">
     	
     	<!--  헤더템플릿 시작 -->
-		<%@ include file="/ind/headerTmp.jsp" %>
+		<%@ include file="../ind/headerTmp.jsp" %>
     	<!--  헤더템플릿 끝 -->    	
     	
     	
@@ -78,7 +78,7 @@ session.setAttribute("bean", bean);
     	
     		<div id="lnb">
 	    		<!--  메인 LNB 템플릿 시작 -->
-				<%@ include file="/ind/mainLnbTmp.jsp" %>
+				<%@ include file="../ind/mainLnbTmp.jsp" %>
 	    		<!--  메인 LNB 템플릿 끝 -->    	
     		</div>
     		
@@ -178,7 +178,7 @@ session.setAttribute("bean", bean);
     
         	   	
     	<!--  푸터템플릿 시작 -->
-		<%@ include file="/ind/footerTmp.jsp" %>
+		<%@ include file="../ind/footerTmp.jsp" %>
     	<!--  푸터템플릿 끝 -->  
         
     </div>

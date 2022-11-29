@@ -1,11 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-    
-<jsp:useBean id="mMgr" class="pack_Member.MemberMgr" scope="page" />
 <%
 String uId = (String)session.getAttribute("uId_Session");
-String uName = mMgr.getMemberName(uId);
 %>
 
 <!DOCTYPE html>
@@ -52,8 +48,8 @@ String uName = mMgr.getMemberName(uId);
 							<tr>
 								<td class="req">성명</td>  <!-- td.req 필수입력 -->
 								<td>
-									<%=uName%>
-									<input type="hidden" name="uName" id="uName" value="<%=uName%>">
+									${data.uName}
+									<input type="hidden" name="uName" id="uName" value="${data.uName}">
 									<input type="hidden" name="uId" value="<%=uId%>">
 								</td>
 							</tr>
