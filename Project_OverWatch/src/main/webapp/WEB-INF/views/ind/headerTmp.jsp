@@ -30,7 +30,7 @@ String uId_Session_HTmp = (String)session.getAttribute("uId_Session");
     			
     				<li class="mainLi"><a href="index.jsp">HOME</a></li>
     				<li>|</li>
-    				<li class="mainLi"><a href="member/login.jsp">로그인</a></li>
+    				<li class="mainLi"><a href="/login">로그인</a></li>
     				<li>|</li>
     				<li class="mainLi"><a href="member/joinAgreement.jsp">회원가입</a></li>
     				<li>|</li>
@@ -40,7 +40,7 @@ String uId_Session_HTmp = (String)session.getAttribute("uId_Session");
     			
     				<li class="mainLi"><a href="/index.jsp">HOME</a></li>
     				<li>|</li>
-    				<li class="mainLi"><a href="/member/logout.jsp">로그아웃</a></li>
+    				<li class="mainLi"><a href="<c:url value='/member/logout.jsp'/>">로그아웃</a></li>
     				<li>|</li>
     				<li class="mainLi"><a href="/member/myPage.jsp?gnbParam=myPage">마이페이지</a></li>
     				<li>|</li>

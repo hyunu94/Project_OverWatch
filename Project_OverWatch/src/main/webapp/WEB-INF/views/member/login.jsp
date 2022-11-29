@@ -39,7 +39,7 @@ String uId_Session = (String)session.getAttribute("uId_Session");
 	    	<!-- 실제 작업 영역 시작 -->
     		<div id="contents" class="loginDiv">
 
-				<form id="loginFrm" name="loginFrm">
+				<form id="loginFrm" name="loginFrm" method="post" action="/login">
 	        
 		        	<div id="loginArea">	        	
 		        		<div id="loginInput">
