@@ -13,6 +13,6 @@ public class MemberDAO {
 		SqlSessionTemplate sqlSessionTemplate;
 		
 		public int loginCheck(Map<String, Object> map) {
-				return this.sqlSessionTemplate
+				return this.sqlSessionTemplate.insert("member.insert", map);
 		}
 }
