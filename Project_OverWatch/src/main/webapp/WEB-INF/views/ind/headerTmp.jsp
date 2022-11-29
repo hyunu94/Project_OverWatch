@@ -25,7 +25,7 @@ String uId_Session_HTmp = (String)session.getAttribute("uId_Session");
     		<nav id="gnb">
     		
     			<ul id="mainMenu" class="dFlex">
-    		
+    		 
     			<% if (uId_Session_HTmp == null) { 	%>
     			
     				<li class="mainLi"><a href="index.jsp">HOME</a></li>

@@ -10,7 +10,7 @@
 request.setCharacterEncoding("UTF-8");
 String uId = request.getParameter("uId");
 %>
-
+ 
 <!DOCTYPE html>
 <html lang="ko">
 <head>
