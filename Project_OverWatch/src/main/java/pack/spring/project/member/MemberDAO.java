@@ -12,7 +12,8 @@ public class MemberDAO {
 		@Autowired
 		SqlSessionTemplate sqlSessionTemplate;
 		
-		public int loginCheck(Map<String, Object> map) {
-				return this.sqlSessionTemplate
+		//로그인 체크
+		public Map<String, Object> loginCheck(Map<String, Object> map) {
+				return this.sqlSessionTemplate.selectOne("member.select_idCh", map);
 		}
 }
