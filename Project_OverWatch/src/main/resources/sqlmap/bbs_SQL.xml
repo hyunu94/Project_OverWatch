@@ -3,9 +3,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="tblBoard">
 
-	<!-- 게시판 글 작성 -->
-	<select id="selectMaxNum" parameterType="hashMap"
-		resultType="hashMap">
+	<!-- 게시판 작성 전 maxNum 찾기 -->
+	<select id="findMaxNum" parameterType="Integer">
 		<![CDATA[
 		select max(num) from tblBoard
 		]]>
@@ -21,8 +20,7 @@
 	</insert>
 
 	<!-- 총 게시물 수 -->
-	<select id="select_keyword" parameterType="hashMap"
-		resultType="hashMap">
+	<select id="countBoardList" parameterType="Integer">
 		<![CDATA[
 			select count(*) from tblBoard	
 		]]>
