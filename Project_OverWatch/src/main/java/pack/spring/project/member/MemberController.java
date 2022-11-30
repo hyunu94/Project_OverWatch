@@ -85,7 +85,7 @@ public class MemberController {
 		map.put("uId", uId);
 		
 		Map<String, Object> userMap = memberService.selectByUId(map);
-			System.out.println("userMap : "+userMap.toString());
+			System.out.println("회원 수정 화면 시작 (/memberMod) : "+userMap.toString());
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("userData", userMap);
 		mav.setViewName("/member/memberMod");
@@ -97,13 +97,21 @@ public class MemberController {
 	
 	///////////////// 회원 수정 처리 시작 //////////////////
 	@RequestMapping(value = "/memberMod", method = RequestMethod.POST)
-	public ModelAndView memEditing(@RequestParam Map<String, Object> map) {
+	public ModelAndView memEditing(@RequestParam Map<String, Object> map, HttpSession session) {
+		String uId = (String)session.getAttribute("uId");
+		
+		map.put("uId", uId);
+		
+		System.out.println(map.toString());
+		String uEmail_01 = (String)map.get("uEmail").toString();
+		System.out.println(uEmail_01);
+//		System.out.println(uEmail_01+"+" + uEmail_02);
 		int cnt =  memberService.updateMem(map); 
 		
 		String msg = "회원정보 수정 실패", url = "/memberMod";
 		if (cnt>0) {
 			msg="회원정보 수정 성공!";
-			url="/myPage";
+			url="/myPage?gnbParam=myPage";
 		}
 		
 		ModelAndView mav = new ModelAndView();
