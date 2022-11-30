@@ -7,11 +7,20 @@
 
 <mapper namespace="member">
 	
-	<select id="select_idCh" parameterType="hashMap" resultType="int">
+	<!-- 로그인 -->
+	<select id="login" parameterType="hashMap" resultType="hashmap">
 			<![CDATA[
-			 select count(*) from member  where uId = #{uId} and uPw= #{uPw}
+			 select * from member  where uId = #{uId} and uPw= #{uPw}
 			 ]]>
 			<!--  String sql = "select count(*) from member where uId = ? and uPw = ?"; -->
+	</select>
+	
+	<!-- 아이디 유뮤 체크 -->
+	<select id="id_Check" parameterType="hashMap" resultType="int">
+			<![CDATA[
+			 select count(*) from member  where uId = #{uId}
+			 ]]>
+			<!--  String sql = "select count(*) from member where uId = ?"; -->
 	</select>
 
 	
