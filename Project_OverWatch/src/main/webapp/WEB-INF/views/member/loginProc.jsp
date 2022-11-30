@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%-- <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <jsp:useBean id="mMgr" class="pack_Member.MemberMgr" />
      
@@ -22,4 +22,4 @@ if (loginRes) {
 <%
 }
 %>
-</script>
+</script> --%>

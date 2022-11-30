@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%-- <%
 String uId_Session = (String)session.getAttribute("uId_Session"); 
-%>    
+%>     --%>
 
 <!DOCTYPE html> 
 <html lang="ko">
@@ -41,14 +42,21 @@ String uId_Session = (String)session.getAttribute("uId_Session");
     
     		
     			<h2 id="indexGuideMsg">
-    			<% if (uId_Session == null) { 	%>
-    				작업 중(회원인증, BBS 등)<br> 
-    				메인에 노출하고 싶은 결과를 출력
-    			<% } else { 
+    			<%-- <% if (uId_Session == null) { 	%> --%>
+    			<c:choose>
+    				<c:when test="${sessionScope.uId == null }">
+	    				작업 중(회원인증, BBS 등)<br> 
+    					메인에 노출하고 싶은 결과를 출력
+    				</c:when>
+    				<c:otherwise>
+    					${sessionScope.uId } 님 환영합니다.
+    				</c:otherwise>
+    			</c:choose>
+    	<%-- 		<% } else { 
     				
     				out.print(uId_Session + "님이 로그인했습니다.");
     				
-    			} %>
+    			} %> --%>
     			</h2>
     		
     		</div>
