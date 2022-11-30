@@ -13,7 +13,6 @@ public class BoardDAO {
 		@Autowired
 		SqlSessionTemplate sqlSessionTemplate; // 필드
 		
-		
 		public int findMaxNum() {//게시판 작성 전 maxNum 찾기
 			return this.sqlSessionTemplate.selectOne("tblBoard.findMaxNum");
 		}

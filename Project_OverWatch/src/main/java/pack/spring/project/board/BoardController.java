@@ -48,4 +48,6 @@ public class BoardController {
 		mav.setViewName("tblBoard/list");
 		return mav;
 	}
+	
+	//게시글 
 }

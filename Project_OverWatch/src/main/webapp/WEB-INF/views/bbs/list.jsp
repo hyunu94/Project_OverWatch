@@ -4,7 +4,10 @@
 <%
 String uId_Session = (String)session.getAttribute("uId_Session"); 
 %> 
-<%-- 
+
+<%@ page import="pack_BBS.BoardBean, java.util.Vector" %>
+<jsp:useBean id="bMgr" class="pack_BBS.BoardMgr"  scope="page" />
+
 <%
 request.setCharacterEncoding("UTF-8");
 
@@ -76,7 +79,7 @@ totalBlock = (int)Math.ceil((double)totalPage/pagePerBlock);
 
 Vector<BoardBean> vList = null;
 %>   
- --%>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -109,7 +112,7 @@ Vector<BoardBean> vList = null;
     		
 	    	<!-- 실제 작업 영역 시작 -->
     		<div id="contents" class="bbsList">
-    		<%-- 
+    		
     		<%
 				String prnType = "";
 				if (keyWord.equals("null") || keyWord.equals("")) {
@@ -123,7 +126,7 @@ Vector<BoardBean> vList = null;
 					<span><%=prnType %> :  <%=totalRecord%> 개</span>
 					<span>페이지 :  <%=nowPage + " / " + totalPage%></span>  
 				</div>	
-					 --%>
+					
 			<table id="boardList">
 				<thead>
 					<tr>

@@ -11,8 +11,7 @@
 	</select>
 	
 	<!-- 게시판 글 작성 -->
-	<insert id="insert" parameterType="hashMap"
-		useGeneratedKeys="true" keyProperty="num">
+	<insert id="insert" parameterType="hashMap">
 		<![CDATA[
 		insert into tblBoard (uId, uName, subject, content, ref, pos, depth,regTM, ip, readCnt, fileName, fileSize)
 		values (#{uId}, #{uName}, #{subject}, #{content}, #{ref}, 0, 0, now(), #{ip}, 0, #{fileName}, #{fileSize})
