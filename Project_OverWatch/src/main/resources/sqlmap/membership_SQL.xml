@@ -30,4 +30,14 @@
 			 ]]>
 	</select>
 	
+	<update id="updateMem" parameterType="hashMap" >
+		<![CDATA[
+		update member
+		set uPw=#{uPw}, uName=#{uName}, uEmail=#{uEmail},gender=#{gender},
+		uBirthday=#{uBirthday}, uZipcode=#{uZipcode},uAddr=#{uAddr}, uHobby=#{uHobby},
+		uJob=#{uJob}
+		where uId=#{uId}
+		]]>
+	</update>
+	
 </mapper>

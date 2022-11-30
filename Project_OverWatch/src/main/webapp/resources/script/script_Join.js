@@ -283,7 +283,7 @@ $(function(){
 
 	function fnJoinSbm() {
 		
-		let uId = $("#uId").val().trim();
+		let uId = $("#uId").val();
 		$("#uId").val(uId);
 		let uPw = $("#uPw").val().trim();		
 		$("#uPw").val(uPw);		

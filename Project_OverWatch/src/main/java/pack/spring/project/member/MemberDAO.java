@@ -21,4 +21,11 @@ public class MemberDAO {
 		public Map<String, Object> selectByUId(Map<String, Object> map){
 			return this.sqlSessionTemplate.selectOne("member.selectBy_uId", map);
 		}
+		
+		//회원정보 수정
+		public int updateMem(Map<String, Object> map) {
+			return this.sqlSessionTemplate.update("member.updateMem", map);
+		}
+		
+		
 }

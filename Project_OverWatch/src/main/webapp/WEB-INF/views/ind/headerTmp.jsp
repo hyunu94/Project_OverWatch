@@ -26,7 +26,6 @@ String uId_Session_HTmp = (String)session.getAttribute("uId");
     	
     			<ul id="mainMenu" class="dFlex">
     		 
-    			<%-- <% if (uId_Session_HTmp == null) { 	%> --%>
     			<c:choose>
     				<c:when test="${sessionScope.uId == null }">
 	    				<li class="mainLi"><a href="<c:url value='/'/>">HOME</a></li>
@@ -35,21 +34,19 @@ String uId_Session_HTmp = (String)session.getAttribute("uId");
 	    				<li>|</li>
 	    				<li class="mainLi"><a href="member/joinAgreement.jsp">회원가입</a></li>
 	    				<li>|</li>
-	    				<li class="mainLi"><a href="bbs/list.jsp">게시판</a></li>
+	    				<li class="mainLi"><a href="<c:url value='/list'/>">게시판</a></li>
     				</c:when>
- <%--    			<% } else { %>  --%>
     				<c:otherwise>
 	    				<li class="mainLi"><a href="<c:url value='/'/>">HOME</a></li>
 	    				<li>|</li>
 	    				<li class="mainLi"><a href="<c:url value='/logout'/>">로그아웃</a></li>
 	    				<li>|</li>
-	    				<li class="mainLi"><a href="<c:url value='/myPage'/>">마이페이지</a></li>
+	    				<li class="mainLi"><a href="<c:url value='/myPage?gnbParam=myPage'/>">마이페이지</a></li>
 	    				<li>|</li>
-	    				<li class="mainLi"><a href="/bbs/list.jsp">게시판</a></li>
+	    				<li class="mainLi"><a href="<c:url value='/list'/>">게시판</a></li>
     				</c:otherwise>
     				
     			</c:choose>
-    		<%-- 	<% } %> --%>
     		
     			</ul>
     			

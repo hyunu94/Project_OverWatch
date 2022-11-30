@@ -66,22 +66,60 @@ public class MemberController {
 	
 	///////////////// 마이 페이지 시작 //////////////////
 	@RequestMapping(value = "/myPage", method = RequestMethod.GET)
-	public ModelAndView myPage(HttpSession session) {
-		String uId = (String) session.getAttribute("uId");
-		System.out.println("memberController - mtPage() : "+uId);
-		
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("uId", uId);
-		
-		Map<String, Object> myPageMap = memberService.selectByUId(map);
+	public ModelAndView myPage(@RequestParam String gnbParam) {
 		
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("userdata", myPageMap);
-		
+		mav.addObject("gnbParam", gnbParam);
 		mav.setViewName("/member/myPage");
 		return mav;
 	}
-	
 	///////////////// 마이 페이지 끝 //////////////////
+	
+	
+	///////////////// 회원 수정 화면 시작 //////////////////
+	@RequestMapping(value = "/memberMod", method = RequestMethod.GET)
+	public ModelAndView memEdit(HttpSession session) {
+		String uId = (String)session.getAttribute("uId");
+	
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("uId", uId);
+		
+		Map<String, Object> userMap = memberService.selectByUId(map);
+			System.out.println("userMap : "+userMap.toString());
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("userData", userMap);
+		mav.setViewName("/member/memberMod");
+		
+		return mav;
+	}
+	///////////////// 회원 수정 화면 끝 //////////////////
+	
+	
+	///////////////// 회원 수정 처리 시작 //////////////////
+	@RequestMapping(value = "/memberMod", method = RequestMethod.POST)
+	public ModelAndView memEditing(@RequestParam Map<String, Object> map) {
+		int cnt =  memberService.updateMem(map); 
+		
+		String msg = "회원정보 수정 실패", url = "/memberMod";
+		if (cnt>0) {
+			msg="회원정보 수정 성공!";
+			url="/myPage";
+		}
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("msg", msg);
+		mav.addObject("url", url);
+		mav.setViewName("/common/message");
+		
+		return mav;
+	}
+	///////////////// 회원 수정 처리 끝 //////////////////
+	
+	
+	
+	
+	
+	
+	
 	
 }
