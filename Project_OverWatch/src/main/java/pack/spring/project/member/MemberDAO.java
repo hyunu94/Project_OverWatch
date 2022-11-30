@@ -16,4 +16,9 @@ public class MemberDAO {
 		public Map<String, Object> loginCheck(Map<String, Object> map) {
 			return this.sqlSessionTemplate.selectOne("member.login", map);
 		}
+		
+		//세션 아이디로 정보 가져오기
+		public Map<String, Object> selectByUId(Map<String, Object> map){
+			return this.sqlSessionTemplate.selectOne("member.selectBy_uId", map);
+		}
 }

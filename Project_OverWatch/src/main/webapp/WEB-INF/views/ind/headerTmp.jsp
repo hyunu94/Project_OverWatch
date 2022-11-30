@@ -18,7 +18,7 @@ String uId_Session_HTmp = (String)session.getAttribute("uId");
 
     	<header id="header" class="dFlex"> 	<!-- 로고, GNB -->
     		<div id="headerLogo">
-    			<a href="index.jsp">
+    			<a href="<c:url value='/'/>">
     				<img src="/resources/images/headerLogo.png" alt="헤더로고이미지">
     			</a>
     		</div>
@@ -27,25 +27,28 @@ String uId_Session_HTmp = (String)session.getAttribute("uId");
     			<ul id="mainMenu" class="dFlex">
     		 
     			<%-- <% if (uId_Session_HTmp == null) { 	%> --%>
-    			<c:if test="${sessionScope.uId ==null}">
-    				<li class="mainLi"><a href="index.jsp">HOME</a></li>
-    				<li>|</li>
-    				<li class="mainLi"><a href="/login">로그인</a></li>
-    				<li>|</li>
-    				<li class="mainLi"><a href="member/joinAgreement.jsp">회원가입</a></li>
-    				<li>|</li>
-    				<li class="mainLi"><a href="bbs/list.jsp">게시판</a></li>
-    				</c:if>
+    			<c:choose>
+    				<c:when test="${sessionScope.uId == null }">
+	    				<li class="mainLi"><a href="<c:url value='/'/>">HOME</a></li>
+	    				<li>|</li>
+	    				<li class="mainLi"><a href="<c:url value='/login'/>">로그인</a></li>
+	    				<li>|</li>
+	    				<li class="mainLi"><a href="member/joinAgreement.jsp">회원가입</a></li>
+	    				<li>|</li>
+	    				<li class="mainLi"><a href="bbs/list.jsp">게시판</a></li>
+    				</c:when>
  <%--    			<% } else { %>  --%>
-    			
-    				<li class="mainLi"><a href="/index.jsp">HOME</a></li>
-    				<li>|</li>
-    				<li class="mainLi"><a href="<c:url value='/logout'/>">로그아웃</a></li>
-    				<li>|</li>
-    				<li class="mainLi"><a href="/member/myPage.jsp?gnbParam=myPage">마이페이지</a></li>
-    				<li>|</li>
-    				<li class="mainLi"><a href="/bbs/list.jsp">게시판</a></li>
+    				<c:otherwise>
+	    				<li class="mainLi"><a href="<c:url value='/'/>">HOME</a></li>
+	    				<li>|</li>
+	    				<li class="mainLi"><a href="<c:url value='/logout'/>">로그아웃</a></li>
+	    				<li>|</li>
+	    				<li class="mainLi"><a href="<c:url value='/myPage'/>">마이페이지</a></li>
+	    				<li>|</li>
+	    				<li class="mainLi"><a href="/bbs/list.jsp">게시판</a></li>
+    				</c:otherwise>
     				
+    			</c:choose>
     		<%-- 	<% } %> --%>
     		
     			</ul>

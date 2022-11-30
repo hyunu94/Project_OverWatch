@@ -22,6 +22,12 @@
 			 ]]>
 			<!--  String sql = "select count(*) from member where uId = ?"; -->
 	</select>
-
+	
+	<!-- 세션 ID로 정보 가져오기 -->
+	<select id="selectBy_uId" parameterType="hashMap" resultType="hashmap">
+			<![CDATA[
+			 select * from member  where uId = #{uId}
+			 ]]>
+	</select>
 	
 </mapper>

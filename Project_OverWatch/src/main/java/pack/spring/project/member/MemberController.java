@@ -1,5 +1,6 @@
 package pack.spring.project.member;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -61,9 +62,26 @@ public class MemberController {
 		mav.setViewName("/member/logout");
 		return mav;
 	}
-
-	
-	
 	/////////////// 로그아웃  끝 //////////////////
+	
+	///////////////// 마이 페이지 시작 //////////////////
+	@RequestMapping(value = "/myPage", method = RequestMethod.GET)
+	public ModelAndView myPage(HttpSession session) {
+		String uId = (String) session.getAttribute("uId");
+		System.out.println("memberController - mtPage() : "+uId);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("uId", uId);
+		
+		Map<String, Object> myPageMap = memberService.selectByUId(map);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("userdata", myPageMap);
+		
+		mav.setViewName("/member/myPage");
+		return mav;
+	}
+	
+	///////////////// 마이 페이지 끝 //////////////////
 	
 }
