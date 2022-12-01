@@ -25,4 +25,17 @@ public class MemberServiceImp implements MemberService{
 	public int updateMem(Map<String, Object> map) {
 		return this.memberDao.updateMem(map);
 	} 
+	
+	/*
+	 * @Autowired MemberDAO memberDao;
+	 * 
+	 * @Override public String insert(Map<String, Object> map) {
+	 * 
+	 * int affectRowCnt = this.memberDao.insert(map);
+	 * 
+	 * if(affectRowCnt == 1) { System.out.println("MemberServiceImp - no : " +
+	 * map.get("num")); return map.get("num").toString(); }
+	 * 
+	 * return null; }
+	 */
 }

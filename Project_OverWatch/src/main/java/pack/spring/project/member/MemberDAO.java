@@ -27,5 +27,18 @@ public class MemberDAO {
 			return this.sqlSessionTemplate.update("member.updateMem", map);
 		}
 		
+		/*
+		 * @Autowired SqlSessionTemplate sqlSessionTemplate; //회원 가입 public int
+		 * insert(Map<String, Object> map) { return
+		 * this.sqlSessionTemplate.insert("member.insert", map); }
+		 */
+		
+		
+		//아이디 중복 검사
+		/*
+		 * public int selectByuId(Map<String, Object> map) { return
+		 * this.sqlSessionTemplate.select("member.selectByuId", map); }
+		 */
+		
 		
 }

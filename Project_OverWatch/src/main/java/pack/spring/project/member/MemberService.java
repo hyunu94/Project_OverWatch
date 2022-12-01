@@ -10,4 +10,8 @@ public interface MemberService {
 	Map<String, Object> selectByUId(Map<String, Object> map);
 	//회원정보 수정
 	int updateMem(Map<String, Object> map);
+	
+	/*
+	 * //회원가입 Service String insert(Map<String,Object> map);
+	 */
 }

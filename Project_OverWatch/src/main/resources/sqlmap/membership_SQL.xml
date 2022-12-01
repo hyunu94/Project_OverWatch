@@ -40,4 +40,19 @@
 		]]>
 	</update>
 	
+	<!-- 우편번호 찾기 -->
+	<select id="selectByArea" parameterType="hashMap" resultType="hashMap">
+		<![CDATA[
+			select zipcode, area1, area2, area3, area4 from tblZipcode where area3 like #{area3}";
+		]]>
+	</select>
+	
+	<!--  회원가입 실행 -->
+	<insert id="insert" parameterType="hashMap" useGeneratedKeys="true" keyProperty="num">
+		<![CDATA[
+			insert into member (uId, uPw, uName, uEmail, gender, uBirthday, uZipcode, uAddr, uHobby, uJob, joinTM) 
+			values ( #{uId}, #{uPw}, #{uName}, #{uEmail}, #{gender}, #{uBirthday}, #{uZipcode}, #{uAddr}, #{uHobby}, #{uJob}, now())
+		]]>
+	</insert>
+	
 </mapper>
