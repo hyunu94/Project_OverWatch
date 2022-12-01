@@ -1,12 +1,10 @@
-<%@page import="pack_Member.MemberBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%
+<%-- <%
 String uId_Session = (String)session.getAttribute("uId_Session"); 
 %>    
-<jsp:useBean id="mMgr" class="pack_Member.MemberMgr" />
-
+ --%>
 <!--
 MemberMgr에서 세션을 사용하여 해당 회원의 정보를 반환하는 메서드를 생성하고 
 memberMod.jsp 페이지에서 출력 항목에 맞도록 출력합니다.
@@ -15,11 +13,11 @@ JavaScript파일을 기존 회원가입소스를 활용할 것인지 새롭게 �
 회원정보수정이 정상적으로 처리될 수 있도록 작업합니다.
  -->    
 
-<%
+<%-- <%
 //String uId = "임시아이디출력";
 MemberBean mBean = mMgr.modifyMember(uId_Session);
 %>
-
+ --%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -27,10 +25,10 @@ MemberBean mBean = mMgr.modifyMember(uId_Session);
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>회원정보수정</title>
-	<link rel="stylesheet" href="/style/style_Common.css">
-	<link rel="stylesheet" href="/style/style_Template.css">
-	<script src="/source/jquery-3.6.0.min.js"></script>
-	<script src="/script/script_Join.js"></script>
+	<link rel="stylesheet" href="/resources/style/style_Common.css">
+	<link rel="stylesheet" href="/resources/style/style_Template.css">
+	<script src="/resources/source/jquery-3.6.0.min.js"></script>
+	<script src="/resources/script/script_Join.js"></script>
 </head>
 
 <body>
@@ -46,14 +44,14 @@ MemberBean mBean = mMgr.modifyMember(uId_Session);
 	    	<!-- 실제 작업 영역 시작 -->
     		<div id="contents" class="joinInsert">
     		
-    			<form name="regFrm" id="regFrm">
+    			<form name="regFrm" id="regFrm" method="post">
     			
     				<table id="regFrmTbl">
     					<caption>회원 정보 수정</caption>
     					<tbody>
     						<tr>
     							<td class="req">아이디</td>
-    							<td><%=mBean.getuId()%></td>
+    							<td>${userData.uId }</td>
     							<td>&nbsp;</td>
     						</tr>
     						<tr>
@@ -81,7 +79,7 @@ MemberBean mBean = mMgr.modifyMember(uId_Session);
     							<td class="req">이름</td>
     							<td>
     								<input type="text" name="uName" id="uName"
-    								maxlength="20">
+    								maxlength="20" value="${userData.uName }">
     							</td>
     							<td>&nbsp;</td>
     						</tr>
@@ -131,7 +129,7 @@ MemberBean mBean = mMgr.modifyMember(uId_Session);
     							<td>생년월일</td>
     							<td>
     								<input type="text" name="uBirthday" id="uBirthday"
-    								maxlength="6" size="8">&nbsp;&nbsp;&nbsp;&nbsp;
+    								maxlength="6" size="8" value="${userData.uBirthday }">&nbsp;&nbsp;&nbsp;&nbsp;
     								<span>ex. 830815</span>
     							</td>
     							<td>&nbsp;</td>
@@ -151,7 +149,7 @@ MemberBean mBean = mMgr.modifyMember(uId_Session);
     							<td>주소</td>
     							<td>    								
     								<input type="text" name="uAddr" id="uAddr"
-    								maxlength="100" size="50">
+    								maxlength="100" size="50" value="${userData.uAddr }">
     							</td>
     							<td>&nbsp;</td>
     						</tr>
@@ -195,14 +193,14 @@ MemberBean mBean = mMgr.modifyMember(uId_Session);
     						</tr>
     						<tr>
     							<td colspan="3">
-    								<button type="button" id="joinSbmBtn" class="frmBtn">회원가입</button>
+    								<button type="button" id="joinSbmBtn" class="frmBtn">회원 수정</button>
     								<button type="reset" class="frmBtn">다시쓰기</button>
-    								<button id="loginBtn" class="frmBtn">로그인</button>
+    							<!-- 	<button id="loginBtn" class="frmBtn">로그인</button> -->
     							</td>
     						</tr>
     					</tbody>
     				</table>
-    			
+    					<input type="hidden" id="memEdit" value="수정">
     			</form>
     			<!-- form[name=regFrm] -->
     			

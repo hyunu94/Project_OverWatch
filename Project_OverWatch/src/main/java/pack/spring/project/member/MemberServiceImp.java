@@ -19,5 +19,10 @@ public class MemberServiceImp implements MemberService{
 	@Override
 	public Map<String, Object> selectByUId(Map<String, Object> map) {
 		return this.memberDao.selectByUId(map);
+	}
+
+	@Override
+	public int updateMem(Map<String, Object> map) {
+		return this.memberDao.updateMem(map);
 	} 
 }
