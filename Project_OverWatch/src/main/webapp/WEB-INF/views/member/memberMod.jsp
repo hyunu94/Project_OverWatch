@@ -44,7 +44,7 @@ MemberBean mBean = mMgr.modifyMember(uId_Session);
 	    	<!-- 실제 작업 영역 시작 -->
     		<div id="contents" class="joinInsert">
     		
-    			<form name="regFrm" id="regFrm">
+    			<form name="regFrm" id="regFrm" method="post">
     			
     				<table id="regFrmTbl">
     					<caption>회원 정보 수정</caption>
@@ -195,12 +195,12 @@ MemberBean mBean = mMgr.modifyMember(uId_Session);
     							<td colspan="3">
     								<button type="button" id="joinSbmBtn" class="frmBtn">회원 수정</button>
     								<button type="reset" class="frmBtn">다시쓰기</button>
-    								<button id="loginBtn" class="frmBtn">로그인</button>
+    							<!-- 	<button id="loginBtn" class="frmBtn">로그인</button> -->
     							</td>
     						</tr>
     					</tbody>
     				</table>
-    			
+    					<input type="hidden" id="memEdit" value="수정">
     			</form>
     			<!-- form[name=regFrm] -->
     			
