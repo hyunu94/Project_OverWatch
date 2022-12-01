@@ -16,8 +16,8 @@ String uId_Session = (String)session.getAttribute("uId_Session");
 	<title>로그인</title>
 	<link rel="stylesheet" href="/resources/style/style_Common.css">
 	<link rel="stylesheet" href="/resources/style/style_Template.css">
-	<script src="/source/jquery-3.6.0.min.js"></script>
-	<script src="/script/script_Login.js"></script>
+	<script src="../../../resources/source/jquery-3.6.0.min.js"></script>
+	<script src="../../../resources/script/script_Login.js"></script>
 </head>
 
 <body>
