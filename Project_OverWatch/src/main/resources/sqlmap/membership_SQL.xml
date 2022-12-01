@@ -16,7 +16,7 @@
 	</select>
 	
 	<!-- 아이디 유뮤 체크 -->
-	<select id="id_Check" parameterType="hashMap" resultType="int">
+	<select id="idCheck" parameterType="hashMap" resultType="int">
 			<![CDATA[
 			 select count(*) from member  where uId = #{uId}
 			 ]]>
@@ -30,6 +30,7 @@
 			 ]]>
 	</select>
 	
+	<!-- 회원정보 수정 -->
 	<update id="updateMem" parameterType="hashMap" >
 		<![CDATA[
 		update member
