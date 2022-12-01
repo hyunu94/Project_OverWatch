@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%-- <%
-String uId_Session_HTmp = (String)session.getAttribute("uId"); 
-
-%>     --%>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -32,7 +28,7 @@ String uId_Session_HTmp = (String)session.getAttribute("uId");
 	    				<li>|</li>
 	    				<li class="mainLi"><a href="<c:url value='/login'/>">로그인</a></li>
 	    				<li>|</li>
-	    				<li class="mainLi"><a href="member/joinAgreement.jsp">회원가입</a></li>
+	    				<li class="mainLi"><a href=" /joinAgreement">회원가입</a></li>
 	    				<li>|</li>
 	    				<li class="mainLi"><a href="<c:url value='/list'/>">게시판</a></li>
     				</c:when>

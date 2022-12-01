@@ -14,9 +14,67 @@ import org.springframework.web.servlet.ModelAndView;
  
 @Controller
 public class MemberController {
+	
+	//include
+		@RequestMapping(value="/usingAgree")
+		public ModelAndView usingAgree() {
+			return new ModelAndView("ind/usingAgree");
+		}
+		
+		@RequestMapping(value="/personalInfoAgree")
+		public ModelAndView personalInfoAgree() {
+			return new ModelAndView("ind/personalInfoAgree");
+		}
+		
+		@RequestMapping(value="/shopInfoAgree")
+		public ModelAndView shopInfoAgree() {
+			return new ModelAndView("ind/shopInfoAgree");
+		}
+		
+		//회원가입 시 약관 선택화면 보기 페이지
+		@RequestMapping(value="/joinAgreement" , method = RequestMethod.GET)
+		public ModelAndView joinAgreement() {
+			return new ModelAndView("member/joinAgreement");
+		}
 
 	@Autowired
 	MemberService memberService;
+	
+	@RequestMapping(value="/joinAgreement" , method = RequestMethod.POST)
+	  public  ModelAndView joinAgreementPost(@RequestParam String vCode) {
+		  ModelAndView mav= new ModelAndView();
+	      String check = vCode;
+	 
+	      if(check == null) { mav.setViewName("redirect:/joinAgreement"); }else {
+	    	  mav.setViewName("redirect:/member"); }
+	  
+	      return mav; 
+	  }
+	
+	//회원가입 페이지
+	@RequestMapping(value="/member" , method = RequestMethod.GET)
+	public ModelAndView Member() {
+		return new ModelAndView("member/member");
+	}
+	
+	
+	/*
+	 * @RequestMapping(value="/member" , method = RequestMethod.POST) public
+	 * ModelAndView MemberPost(@RequestParam Map<String, Object> map) { ModelAndView
+	 * mav = new ModelAndView(); String num = this.memberService.insert(map);
+	 * 
+	 * if(num == null) { mav.setViewName("redirect:/member"); }else {
+	 * mav.setViewName("redirect:/index"); } return mav; }
+	 */
+	 
+	  //아이디 중복 페이지
+	@RequestMapping(value="/idCheck", method = RequestMethod.GET)
+	public ModelAndView idCheck(@RequestParam String uId) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("uId", uId);
+		mav.setViewName("/member/idCheck");
+		return mav;
+	}
 	
 	/////////////// 로그인 페이지 시작 //////////////////
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
