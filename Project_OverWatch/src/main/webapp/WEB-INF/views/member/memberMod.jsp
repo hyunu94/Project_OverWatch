@@ -87,10 +87,10 @@ MemberBean mBean = mMgr.modifyMember(uId_Session);
     							<td class="req">Email</td>
     							<td>
 	    							<input type="text" id="uEmail_01"
-    									maxlength="20" size="7">
+    									maxlength="20" size="7" value="${userData.uEmail_01 }">
     								<span>@</span>
     								<input type="text" id="uEmail_02"
-    									maxlength="40" size="10">
+    									maxlength="40" size="10"  value="${userData.uEmail_02 }">
     									
     								<select id="emailDomain" class="frmDropMenu">
     									<option value="">직접입력</option>
@@ -149,7 +149,7 @@ MemberBean mBean = mMgr.modifyMember(uId_Session);
     							<td>주소</td>
     							<td>    								
     								<input type="text" name="uAddr" id="uAddr"
-    								maxlength="100" size="50" value="${userData.uAddr }">
+    								maxlength="100" size="50">
     							</td>
     							<td>&nbsp;</td>
     						</tr>

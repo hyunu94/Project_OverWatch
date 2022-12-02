@@ -1,16 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-<%
-request.setCharacterEncoding("UTF-8");
-String chkVCode = request.getParameter("vCode");                        
-
-if (!(chkVCode != null && chkVCode.equals("chkOK1234"))) {
-	response.sendRedirect("/member/joinAgreement.jsp");
-}
-//check Validation Code  정상 접속 검증 코드 
-%>    
-
+      
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -18,10 +8,10 @@ if (!(chkVCode != null && chkVCode.equals("chkOK1234"))) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원가입</title>
-    <link rel="stylesheet" href="/style/style_Common.css">
-    <link rel="stylesheet" href="/style/style_Template.css">
-    <script src="/source/jquery-3.6.0.min.js"></script>
-    <script src="/script/script_Join.js"></script>
+    <link rel="stylesheet" href="/resources/style/style_Common.css">
+    <link rel="stylesheet" href="/resources/style/style_Template.css">
+    <script src="/resources/source/jquery-3.6.0.min.js"></script>
+    <script src="/resources/script/script_Join.js"></script>
 </head>
 
 <body>
@@ -37,7 +27,7 @@ if (!(chkVCode != null && chkVCode.equals("chkOK1234"))) {
 	    	<!-- 실제 작업 영역 시작 -->
     		<div id="contents" class="joinInsert">
     		
-    			<form name="regFrm" id="regFrm">
+    			<form name="regFrm" id="regFrm" method="post">
     			
     				<table id="regFrmTbl">
     					<caption>회원 가입</caption>
@@ -210,7 +200,7 @@ if (!(chkVCode != null && chkVCode.equals("chkOK1234"))) {
     
         	   	
     	<!--  푸터템플릿 시작 -->
-		<%@ include file="/ind/footerTmp.jsp" %>
+		<%@ include file="../ind/footerTmp.jsp" %>
     	<!--  푸터템플릿 끝 -->  
         
     </div>
