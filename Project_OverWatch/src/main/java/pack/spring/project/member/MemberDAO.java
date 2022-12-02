@@ -27,16 +27,12 @@ public class MemberDAO {
 			return this.sqlSessionTemplate.update("member.updateMem", map);
 		}
 		
-		
 		// 회원가입
 		public int  insert(Map<String, Object> map) {
 			return this.sqlSessionTemplate.insert("member.insert", map);
 		}
-		 
-		
-		
+
 		//아이디 중복 검사
-		
 		 public int idCheck(Map<String, Object> map) {
 			 return  this.sqlSessionTemplate.selectOne("member.idCheck", map); 
 		 }
