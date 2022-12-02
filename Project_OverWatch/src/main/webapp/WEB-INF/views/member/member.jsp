@@ -27,7 +27,7 @@
 	    	<!-- 실제 작업 영역 시작 -->
     		<div id="contents" class="joinInsert">
     		
-    			<form name="regFrm" id="regFrm">
+    			<form name="regFrm" id="regFrm" method="post">
     			
     				<table id="regFrmTbl">
     					<caption>회원 가입</caption>

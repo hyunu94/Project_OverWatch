@@ -1,11 +1,9 @@
-<%@page import="pack_Member.ZipcodeBean"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<jsp:useBean id="mMgr" class="pack_Member.MemberMgr"  />   
-
-<%
+<%-- <%
 request.setCharacterEncoding("UTF-8");
 
 String area3 = request.getParameter("area3");
@@ -19,6 +17,7 @@ if (area3 == null) {
 
 
 %>
+ --%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -26,15 +25,15 @@ if (area3 == null) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>우편번호 찾기</title>
-    <link rel="stylesheet" href="/style/style_Common.css">
-    <script src="/source/jquery-3.6.0.min.js"></script>
-    <script src="/script/script_Join.js"></script>
+    <link rel="stylesheet" href="/resources/style/style_Common.css">
+    <script src="/resources/source/jquery-3.6.0.min.js"></script>
+    <script src="/resources/script/script_Join.js"></script>
 </head>
 
 <body>
     <div id="wrap_zipcodePopup">    	
     	<h1>우편번호 찾기</h1>    	
-    	<form name="zipFrm" id="zipFrm">
+    	<form name="zipFrm" id="zipFrm" method="post">
     		<table id="zipFrmTbl">
     			<tbody>
     				<tr>
@@ -50,32 +49,44 @@ if (area3 == null) {
     				
     				<tr>
     					<td id="zipResArea">
-<% if (area3.equals("")) { %>
-							<span>검색어를 입력해주세요</span>
-<% } else { %>
-							<span><b>[ <%=area3%> ]</b></span> 에 대한 검색결과입니다.
+<%-- <% if (area3.equals("")) { %> --%>
+							
+							<c:choose>
+								<c:when test="${area3 ==null }">
+									<span>검색어를 입력해주세요</span>
+								</c:when>
+								<c:otherwise>
+								
+						
+<%-- <% } else { %> --%>
+							<span><b>[ ${area3 } ]</b></span> 에 대한 검색결과입니다.
 							
 							
 							
 							
 							<table id="zipResTbl">
 								<tbody>
-								<% for (int i=0; i<objList.size(); i++) {
+						<%-- 		<% for (int i=0; i<objList.size(); i++) {
 											ZipcodeBean bean = objList.get(i);
 											String addr = bean.getZipcode() + " ";
 											addr += bean.getArea1() + " ";
 											addr += bean.getArea2() + " ";
 											addr += bean.getArea3() + " ";
 											addr += bean.getArea4();
-									%>
-									<tr>
-										<td><span><%=addr %></span></td>
-									</tr>
-								<% } %>
+									%> --%>
+									<c:forEach var="list" items="${data }">
+										<tr>
+											<td><span>${list.area }</span></td>
+										</tr>
+									</c:forEach>
+									
+					<%-- 			<% } %> --%>
 								</tbody>							
 							</table>
-							 
-<% } %>    			
+<%-- 							 
+<% } %>    	 --%>		
+								</c:otherwise>
+							</c:choose>
     					</td>
     				</tr>
     				

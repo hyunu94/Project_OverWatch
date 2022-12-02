@@ -129,7 +129,7 @@ $(function(){
 			
 		} else {			
 			
-			let url = "/member/idCheck.jsp?uId=" + uId;
+			let url = "/idCheck?uId=" + uId;
 			let nickName = "idChkPop";
 	
 			let w = screen.width;     // 1920
@@ -220,7 +220,7 @@ $(function(){
 	// 우편번호 찾기 팝업 
 	$("#regFrm button#findZipBtn").click(function(){
 		
-		let url = "/member/zipCheck.jsp";
+		let url = "/zipCheck";
 		let nickName = "zipChkPop";
 
 		let w = screen.width;     // 1920
@@ -337,7 +337,7 @@ $(function(){
 				let chkSbmTF = confirm("회원가입하시겠습니까?");
 			
 				if (chkSbmTF) {
-					$("#regFrm").attr("action", "memberProc.jsp");
+					$("#regFrm").attr("action", "/member");
 					$("#regFrm").submit();
 				}
 			}
