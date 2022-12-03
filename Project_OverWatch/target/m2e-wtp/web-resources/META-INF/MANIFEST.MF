@@ -1,9 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
 Built-By: User
-=======
-Built-By: bong
->>>>>>> 8714f7d9ea64046e8c246aa797deb963f5a6038f
 Build-Jdk: 15
 Created-By: Maven Integration for Eclipse
 
