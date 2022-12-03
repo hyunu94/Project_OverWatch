@@ -10,65 +10,27 @@ import org.springframework.stereotype.Service;
 public class BoardServiceImp implements BoardService{
 
 	@Autowired
-	BoardDAO dao;
-	
-	//게시판 maxNum 찾기
+	BoardDAO boardDAO;
+
 	@Override
-	public int countBoardListTotal() {
-		return this.dao.findMaxNum();
-	}
-	
-	//게시판 작성
-	@Override
-	public String write(Map<String, Object> map) {
-		int affectFowCnt = this.dao.insert(map);
-		
-		if (affectFowCnt == 1) {
-			return map.get("num").toString();
-		}
-	return null;
+	public List<Map<String, Object>> select_All(Map<String, Object> map) {
+		return this.boardDAO.select_All(map) ;
 	}
 
-	//총 게시물 수
 	@Override
-	public int countBoardListAll() {
-		return this.dao.countBoardList();
-	}
-	
-	//게시판 목록
-	@Override
-	public List<Map<String, Object>> list(Map<String, Object> map) {
-		return this.dao.selectList(map);
-	}
-	
-	//게시판 상세
-	@Override
-	public Map<String, Object> detail(Map<String, Object> map) {
-		return this.dao.selectDetail(map);
+	public List<Map<String, Object>> select_keyWord(Map<String, Object> map) {
+		return this.boardDAO.select_keyWord(map);
 	}
 
-	//조회수
 	@Override
-	public int updateView(int bno) {
-		return this.dao.updateView(bno);
+	public int select_countAll(Map<String, Object> map) {
+		return this.boardDAO.select_countAll(map);
 	}
 
-	//삭제할 게시판 찾기
 	@Override
-	public Map<String, Object> detailDel(Map<String, Object> map) {
-		return this.dao.selectDel(map);
+	public int select_countKey(Map<String, Object> map) {
+		return this.boardDAO.select_countKey(map);
 	}
 
-	//게시판 삭제
-	@Override
-	public int delete(Map<String, Object> map) {
-		return this.dao.delete(map);
-	}
-	
-	//게시판 수정
-	@Override
-	public int update(Map<String, Object> map) {
-		return this.dao.update(map);
-	}
 
 }

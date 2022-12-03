@@ -8,10 +8,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원가입동의</title>
-    <link rel="stylesheet" href="/style/style_Common.css">    
-    <link rel="stylesheet" href="/style/style_Template.css">
-    <script src="/source/jquery-3.6.0.min.js"></script>
-    <script src="/script/script_Join.js"></script>
+    <link rel="stylesheet" href="/resources/style/style_Common.css">    
+    <link rel="stylesheet" href="/resources/style/style_Template.css">
+    <script src="/resources/source/jquery-3.6.0.min.js"></script>
+    <script src="/resources/script/script_Join.js"></script>
 </head>
 
 <body>
@@ -38,7 +38,7 @@
 		    			<div class="termArea">
 			    			<h3>[필수] 이용약관 동의</h3>
 			    			<!--  iframe, textarea, div 중 선택하여 제작한다. -->
-			    			<iframe src="/ind/usingAgree.jsp" class="usingAgree"></iframe>
+			    			<iframe src="/usingAgree" class="usingAgree"></iframe>
 			    			<label>
 				    			이용약관에 동의하십니까?
 				    			<input type="checkbox" class="usingAgreeChk chkRequired"
@@ -48,7 +48,7 @@
 		    			    			    			    		
 		    			<div class="termArea">	    			
 			    			<h3>[필수] 개인정보 수집 및 이용 동의</h3>
-			    			<iframe src="/ind/personalInfoAgree.jsp" class="usingAgree"></iframe>
+			    			<iframe src="/personalInfoAgree" class="usingAgree"></iframe>
 			    			<label>
 				    			개인정보 수집 및 이용에 동의하십니까?
 				    			<input type="checkbox" class="usingAgreeChk chkRequired"
@@ -58,7 +58,7 @@
 		    			    		
 		    			<div class="termArea">    			
 			    			<h3>[선택] 쇼핑정보 수신 동의</h3>
-			    			<iframe src="/ind/shopInfoAgree.jsp" class="usingAgree"></iframe>
+			    			<iframe src="/shopInfoAgree" class="usingAgree"></iframe>
 			    			<label>
 				    			쇼핑정보 수신에 동의하십니까?
 				    			<input type="checkbox" class="usingAgreeChk"
@@ -75,7 +75,7 @@
 	    	</main>
 	    	<!--  main#main  -->
 		
-	   	<form id="joinFrm" method="post" action="/member/member.jsp">	    	
+	   	<form id="joinFrm" action="/member">	    	
 	   		<input type="hidden" name="vCode" value="chkOK1234">
 	    	<div id="formArea">
 	    		<button type="button">회원가입</button>

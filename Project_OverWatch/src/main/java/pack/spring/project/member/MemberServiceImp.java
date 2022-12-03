@@ -7,10 +7,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MemberServiceImp implements MemberService{
-	
+
 	@Autowired
 	MemberDAO memberDao;
-	
+
 	@Override
 	public Map<String, Object> login(Map<String, Object> map){
 		return  this.memberDao.loginCheck(map);
@@ -24,5 +24,25 @@ public class MemberServiceImp implements MemberService{
 	@Override
 	public int updateMem(Map<String, Object> map) {
 		return this.memberDao.updateMem(map);
+	}
+
+	@Override
+	public int idCheck(Map<String, Object> map) {
+		return this.memberDao.idCheck(map);
 	} 
+
+
+	@Override 
+	public String insert(Map<String, Object> map) {
+
+		int affectRowCnt = this.memberDao.insert(map);
+
+		if(affectRowCnt == 1) { 
+			System.out.println("MemberServiceImp - num : " + map.get("num")); 
+			return map.get("num").toString();
+		}
+
+		return null; 
+	}
+
 }

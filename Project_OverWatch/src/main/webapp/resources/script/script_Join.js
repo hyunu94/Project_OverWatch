@@ -129,7 +129,7 @@ $(function(){
 			
 		} else {			
 			
-			let url = "/member/idCheck.jsp?uId=" + uId;
+			let url = "/idCheck?uId=" + uId;
 			let nickName = "idChkPop";
 	
 			let w = screen.width;     // 1920
@@ -220,7 +220,7 @@ $(function(){
 	// 우편번호 찾기 팝업 
 	$("#regFrm button#findZipBtn").click(function(){
 		
-		let url = "/member/zipCheck.jsp";
+		let url = "/zipCheck";
 		let nickName = "zipChkPop";
 
 		let w = screen.width;     // 1920
@@ -263,7 +263,7 @@ $(function(){
 				
 					
 	
-	/* 회원가입 버튼 전송 실행 */	
+	/* 회원가입 및 회원수정 버튼 전송 실행 */	
 	$("#joinSbmBtn").click(function(){		
 		fnJoinSbm();		
 	});
@@ -325,10 +325,21 @@ $(function(){
 			$("#uBirthday").val("").focus();
 			return;
 		} else {
-			let chkSbmTF = confirm("회원가입하시겠습니까?");
-			if (chkSbmTF) {
-				$("#regFrm").attr("action", "memberProc.jsp");
-				$("#regFrm").submit();
+		
+			if($("#memEdit").val() == '수정'){
+				let chkSbmTF = confirm("회원수정하시겠습니까?");
+				
+				if (chkSbmTF) {
+					$("#regFrm").attr("action", "/memberMod");
+					$("#regFrm").submit();
+				}
+			}else{
+				let chkSbmTF = confirm("회원가입하시겠습니까?");
+			
+				if (chkSbmTF) {
+					$("#regFrm").attr("action", "/member");
+					$("#regFrm").submit();
+				}
 			}
 		}
 		 

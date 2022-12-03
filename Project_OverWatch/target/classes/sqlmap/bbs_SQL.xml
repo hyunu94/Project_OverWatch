@@ -3,101 +3,30 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="tblBoard">
 	
-	<!-- include sql구문 -->
-	<sql id="searchWhere">
-		<if test="searchKeyword !=null and searchKeyword !=''">
-        	where ${searchCondition} 
-        		like '%' || #{searchKeyword} || '%'
-        </if>
-	</sql>
-	
-	<!-- 게시판 글 작성 -->
-	<insert id="insert" parameterType="hashMap">
-	<selectKey resultType="int" keyProperty="num" order="BEFORE">
-		select max(num) from tblBoard
-	</selectKey>
-		<![CDATA[
-		insert into tblBoard (uId, uName, subject, content, ref, pos, depth,regTM, ip, readCnt, fileName, fileSize)
-		values (#{uId}, #{uName}, #{subject}, #{content}, #{ref}, 0, 0, now(), #{ip}, 0, #{fileName}, #{fileSize})
-		]]>
-	</insert>
+<select id="select_keyword" parameterType="hashMap" resultMap="hashMap">
+	<![CDATA[
+			 select * from tblBoard where keyword  like #{keyword} order by #{ref} desc, #{pos} asc limit #{start}, #{end};
+	 ]]>
+</select>
 
-	<!-- 총 게시물 수 -->
-	<select id="countBoardList" parameterType="Integer">
-		<![CDATA[
-			select count(*) from tblBoard
-		]]>
-		<include refid="searchWhere"></include>
-	</select>
+<select id="select_All" parameterType="hashMap" resultMap="hashMap">
+	<![CDATA[
+			 select * from tblBoard order by #{ref}desc, #{pos}asc limit  #{start}, #{end};
+	 ]]>
+</select>
 
-	<!-- 게시판 목록 -->
-	<select id="select_list" parameterType="hashMap"
-		resultType="hashMap">
-		<![CDATA[
-		select * from tblBoard 
-		]]>
-		<if test="#{keyWord} != null">
-		<![CDATA[
-		where keyField like #{keyWord}
-		]]>
-		</if>		
-		<![CDATA[
-		order by ref desc, pos asc limit #{start}, #{end}
-		]]>
-	</select>
+<select id="select_countAll" parameterType="hashMap" resultMap="int">
+	<![CDATA[
+			select count(*) from tblBoard;
+	 ]]>
+</select>
 
-	<!-- 게시판 상세페이지 출력 -->
-	<select id="select_detail" parameterType="hashMap"
-		resultType="hashMap">
-		<![CDATA[
-		select * from tblBoard where num=#{num}
-		]]>
-	</select>
+<select id="select_countKey" parameterType="hashMap" resultMap="int">
+	<![CDATA[
+			select count(*) from tblBoard where #{keyField} like #{keyWord};
+	 ]]>
+</select>
 
-	<!-- 게시판 뷰페이지 조회수 증가 -->
-	<update id="update_view" parameterType="hashMap">
-		<![CDATA[
-		update tblBoard set readCnt = readCnt+1 where num=#{num}
-		]]>
-	</update>
-
-	<!-- (삭제하기 위해) 파일 찾기 -->
-	<select id="delete_file" parameterType="hashMap"
-		resultType="hashMap">
-		<![CDATA[
-		select fileName from tblBoard where num=#{num}
-		]]>
-	</select>
-
-	<!-- 삭제 : 게시글 -->
-	<delete id="delete" parameterType="hashMap">
-		<![CDATA[
-		delete from tblBoard where num=#{num}
-		]]>
-	</delete>
-
-	<!-- 게시글 수정 -->
-	<update id="update" parameterType="hashMap">
-		<![CDATA[
-		update tblBoard set subject=#{subject}, content=#{content} where num=#{num}
-		]]>
-	</update>
-
-	<!-- 게시글 답변 작성 -->
-	<insert id="insert_reply" parameterType="hashMap"
-		useGeneratedKeys="true" keyProperty="num">
-		<![CDATA[
-		insert into tblBoard (uId, uName, content, subject,ref, pos, depth,regTM, readCnt, ip)
-		values (#{uId}, #{uName}, #{content}, #{subject}, #{ref}, #{pos}, #{depth}, now(), 0, #{ip})
-		]]>
-	</insert>
-
-	<!-- 답변글 끼어들기 -->
-	<update id="update_reply" parameterType="hashMap">
-		<![CDATA[
-			update tblBoard set pos = pos + 1 where ref = #{ref} and pos >#{pos}
-		]]>
-	</update>
 
 
 </mapper>

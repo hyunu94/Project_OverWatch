@@ -44,7 +44,7 @@ MemberBean mBean = mMgr.modifyMember(uId_Session);
 	    	<!-- 실제 작업 영역 시작 -->
     		<div id="contents" class="joinInsert">
     		
-    			<form name="regFrm" id="regFrm">
+    			<form name="regFrm" id="regFrm" method="post">
     			
     				<table id="regFrmTbl">
     					<caption>회원 정보 수정</caption>
@@ -87,10 +87,10 @@ MemberBean mBean = mMgr.modifyMember(uId_Session);
     							<td class="req">Email</td>
     							<td>
 	    							<input type="text" id="uEmail_01"
-    									maxlength="20" size="7">
+    									maxlength="20" size="7" value="${userData.uEmail_01 }">
     								<span>@</span>
     								<input type="text" id="uEmail_02"
-    									maxlength="40" size="10">
+    									maxlength="40" size="10"  value="${userData.uEmail_02 }">
     									
     								<select id="emailDomain" class="frmDropMenu">
     									<option value="">직접입력</option>
@@ -149,7 +149,7 @@ MemberBean mBean = mMgr.modifyMember(uId_Session);
     							<td>주소</td>
     							<td>    								
     								<input type="text" name="uAddr" id="uAddr"
-    								maxlength="100" size="50" value="${userData.uAddr }">
+    								maxlength="100" size="50">
     							</td>
     							<td>&nbsp;</td>
     						</tr>
@@ -195,12 +195,12 @@ MemberBean mBean = mMgr.modifyMember(uId_Session);
     							<td colspan="3">
     								<button type="button" id="joinSbmBtn" class="frmBtn">회원 수정</button>
     								<button type="reset" class="frmBtn">다시쓰기</button>
-    								<button id="loginBtn" class="frmBtn">로그인</button>
+    							<!-- 	<button id="loginBtn" class="frmBtn">로그인</button> -->
     							</td>
     						</tr>
     					</tbody>
     				</table>
-    			
+    					<input type="hidden" id="memEdit" value="수정">
     			</form>
     			<!-- form[name=regFrm] -->
     			

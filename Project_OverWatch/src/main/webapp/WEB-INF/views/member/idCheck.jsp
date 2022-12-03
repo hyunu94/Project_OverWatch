@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<jsp:useBean id="mMgr" class="pack_Member.MemberMgr"  />   
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- 액션태그는 Java 클래스를 객체로 생성하고
        JSP에서 참조할 수 있도록 만든다.
        mMgr : 객체의 인스턴스 변수
@@ -18,19 +18,19 @@ String uId = request.getParameter("uId");
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>아이디 중복 체크</title>
-    <link rel="stylesheet" href="/style/style_Common.css">    
-    <script src="/source/jquery-3.6.0.min.js"></script>
-    <script src="/script/script_Join.js"></script>
+    <link rel="stylesheet" href="/resources/style/style_Common.css">    
+    <script src="/resources/source/jquery-3.6.0.min.js"></script>
+    <script src="/resources/script/script_Join.js"></script>
 </head>
 
 <body>
     <div id="wrap_Popup">
     	
     	<div>
-    		<h1><%=uId %></h1>
+    		<h1>${idData.uId }</h1>
     	
     		<span>	
-    	<%
+<%--     	<%
     	boolean result = mMgr.checkId(uId);
     	// result => true라면 입력한 아이디 사용불가(=이미 가입한 ID)
     	String btnCap = null; 
@@ -42,13 +42,17 @@ String uId = request.getParameter("uId");
     		out.print(" 는 사용가능합니다.");
     		btnCap = "사용하기";
     	}
-    	%>
+    	%> --%>
+    	
+    	${idData.msg }
+    	
+    	
 	    	</span>
     	
     	</div>
     	<hr>
     	<div id="closeBtnArea">
-    		<button type="button"><%=btnCap %></button>
+    		<button type="button">${idData.btnCap }</button>
     	</div>
     	
     	        
