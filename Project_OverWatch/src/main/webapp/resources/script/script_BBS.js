@@ -43,7 +43,7 @@ $(function(){
 			let p3 = $("#pKeyField").val().trim();  // p3 : keyField
 		    let p4 = $("#pKeyWord").val().trim();  // p4 : keyWord
 		    
-			let url = "/bbs/deleteProc.jsp?";
+			let url = "/delete?";
 				url += "num="+num+"&nowPage="+nowPage;
 				url += "&keyField="+p3;
 				url += "&keyWord="+p4;
@@ -66,7 +66,7 @@ $(function(){
 		let p3 = $("#pKeyField").val().trim();  // p3 : keyField
 	    let p4 = $("#pKeyWord").val().trim();  // p4 : keyWord
 	
-		let url = "/bbs/modify.jsp?";
+		let url = "/modify?";
 			url += "num="+num;
 			url += "&nowPage="+nowPage;
 			url += "&keyField="+p3;
@@ -108,7 +108,7 @@ $(function(){
 		let p3 = $("#pKeyField").val().trim();  // p3 : keyField
 	    let p4 = $("#pKeyWord").val().trim();  // p4 : keyWord
 	
-		let url = "/bbs/reply.jsp?";
+		let url = "/reply?";
 			url += "num="+num;
 			url += "&nowPage="+nowPage;
 			url += "&keyField="+p3;
@@ -158,7 +158,7 @@ $(function(){
 		let p3 = $("#pKeyField").val().trim();  // p3 : keyField
 	    let p4 = $("#pKeyWord").val().trim();  // p4 : keyWord
 	     
-		let url = "/bbs/list.jsp?nowPage=" + param;		    
+		let url = "/list?nowPage=" + param;		    
 		    url += "&keyField="+p3;
 	     	url += "&keyWord="+p4 ; 
 		location.href=url;
@@ -175,7 +175,7 @@ function read(p1, p2) {
 	// p2 : nowPage (현재페이지)
     let p3 = $("#pKeyField").val().trim();  // p3 : keyField
     let p4 = $("#pKeyWord").val().trim();  // p4 : keyWord
-	let param = "read.jsp?num="+p1;
+	let param = "/read?num="+p1;
 	     param += "&nowPage="+p2;
 	     param += "&keyField="+p3;
 	     param += "&keyWord="+p4 ; 
@@ -191,7 +191,7 @@ function movePage(p1) {    // 페이지 이동
     let p3 = $("#pKeyField").val().trim();  // p3 : keyField
     let p4 = $("#pKeyWord").val().trim();  // p4 : keyWord
 
-	let param = "/bbs/list.jsp?nowPage="+p1;	    
+	let param = "/list?nowPage="+p1;	    
 	     param += "&keyField="+p3;
 	     param += "&keyWord="+p4 ; 
 	location.href= param;
@@ -212,12 +212,12 @@ function moveBlock(p1, p2, param3) {
     let p4 = $("#pKeyWord").val().trim();  // p4 : keyWord
 	
 	if (param3 == 'pb') {
-		 param = "/bbs/list.jsp?nowPage="+(moveBlock*pagePerBlock);
+		 param = "/list?nowPage="+(moveBlock*pagePerBlock);
 	                                                          // moveBlock : nowBlock - 1 
 	     param += "&keyField="+p3;
 	     param += "&keyWord="+p4 ;
 	} else if (param3 == 'nb' ) {		
-		 param = "/bbs/list.jsp?nowPage="+(pagePerBlock*(moveBlock-1)+1);   
+		 param = "/list?nowPage="+(pagePerBlock*(moveBlock-1)+1);   
 	                                                          // moveBlock : nowBlock + 1 
 	     param += "&keyField="+p3;
 	     param += "&keyWord="+p4 ;

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="pack_BBS.*"%>
+    pageEncoding="UTF-8" %>
 
-<%
+<%-- <%
 request.setCharacterEncoding("UTF-8");
 
 int num = Integer.parseInt(request.getParameter("num"));
@@ -16,7 +16,7 @@ BoardBean bean = (BoardBean)session.getAttribute("bean");
 String subject = bean.getSubject();
 String uName = bean.getuName();
 String content = bean.getContent();
-%>   
+%>    --%>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -25,11 +25,11 @@ String content = bean.getContent();
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>게시글 수정</title>
-	<link rel="stylesheet" href="/style/style_Common.css">
-	<link rel="stylesheet" href="/style/style_Template.css">
-	<link rel="stylesheet" href="/style/style_BBS.css">
-	<script src="/source/jquery-3.6.0.min.js"></script>
-	<script src="/script/script_BBS.js"></script>
+	<link rel="stylesheet" href="/resources/style/style_Common.css">
+	<link rel="stylesheet" href="/resources/style/style_Template.css">
+	<link rel="stylesheet" href="/resources/style/style_BBS.css">
+	<script src="/resources/source/jquery-3.6.0.min.js"></script>
+	<script src="/resources/script/script_BBS.js"></script>
 </head>
 
 <body>
@@ -58,25 +58,25 @@ String content = bean.getContent();
 				<form name="modifyFrm" action="modifyProc.jsp"
 						method="get" id="modifyFrm">
 			
-					<h2><%=subject %></h2>
+					<h2>${data.subject }</h2>
 						
 					<table id="modTbl">
 						<tbody id="modTblBody">
 							<tr>
 								<td class="req">작성자</td>
-								<td><%=uName %></td>
+								<td>${data.uName }</td>
 							</tr>
 							<tr>
 								<td class="req">제목</td>
 								<td>
-									<input type="text" name="subject" value="<%=subject %>"
+									<input type="text" name="subject" value="${data.subject }"
 										size="50" id="subject">
 								</td>
 							</tr>
 							<tr>
 								<td style="vertical-align: top;">내용</td>
 								<td>
-									<textarea name="content" id="txtArea"  cols="89" wrap="hard"><%=content %></textarea>
+									<textarea name="content" id="txtArea"  cols="89" wrap="hard">${data.content }</textarea>
 								</td>
 							</tr>			
 						</tbody>
@@ -98,12 +98,12 @@ String content = bean.getContent();
 						</tfoot>
 						 
 					</table>
-					<input type="hidden" name="nowPage" value="<%=nowPage%>" id="nowPage">
-					<input type="hidden" name="num" value="<%=num%>" id="num">
+					<input type="text" name="nowPage" value="${map.nowPage }" id="nowPage">
+					<input type="text" name="num" value="${data.num }" id="num">
 					
 					<!-- 검색어전송 시작 -->
-					<input type="hidden" name="keyField" id="keyField" value="<%=keyField%>">
-					<input type="hidden" name="keyWord" id="keyWord" value="<%=keyWord%>">
+					<input type="text" name="keyField" id="keyField" value="${map.keyField }">
+					<input type="text" name="keyWord" id="keyWord" value="${map.keyWord }">
 					<!-- 검색어전송 끝 -->
 			
 				</form>

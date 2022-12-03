@@ -42,5 +42,10 @@ public class BoardServiceImp implements BoardService{
 		return this.boardDAO.select_maxNum();
 	}
 
+	@Override
+	public Map<String, Object> selectByNum(Map<String, Object> map) {
+		return this.boardDAO.selectByNum(map);
+	}
+
 
 }

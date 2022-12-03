@@ -43,4 +43,9 @@ public class BoardDAO {
 		return this.sqlSessionTemplate.selectOne("tblBoard.select_maxNum");
 	}
 	
+	// num 로 게시판 상세내용 구하기
+	public Map<String, Object> selectByNum(Map<String, Object> map){
+		return this.sqlSessionTemplate.selectOne("tblBoard.selectByNum", map);
+	}
+	
 }

@@ -175,5 +175,59 @@ public class BoardController {
 		mav.addObject("url", url);
 		mav.setViewName("/common/message");
 		return mav;
+	}//글 쓰기 처리 끝
+	
+	// 글 목록 상세보기
+	@RequestMapping(value = "/read", method = RequestMethod.GET)
+	public ModelAndView read(@RequestParam Map<String, Object> map, HttpSession session) {
+		String sessionuId = (String)session.getAttribute("uId");
+		
+		Map<String, Object> userMap =  boardService.selectByNum(map);
+		userMap.put("sessionuId", sessionuId);
+		
+		int fileSize =0;
+		String mapFileSize =(String) map.get("fileSize");
+		
+		if(mapFileSize != null) {
+			fileSize = Integer.parseInt(mapFileSize);
+		}
+		
+		map.put("fileSize", fileSize);
+		
+		String fUnit = "Bytes";
+		if(fileSize > 1024) {
+		    fileSize /= 1024;
+		    fUnit = "KBytes";
+		} 
+		map.put("fUnit", fUnit);
+		
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("map", map);
+		mav.addObject("data", userMap);
+		mav.setViewName("/bbs/read");
+		
+		return mav;
+		
+	}// 글 목록 상세보기 끝
+	
+	@RequestMapping(value = "/modify", method = RequestMethod.GET)
+	public ModelAndView modify(@RequestParam Map<String, Object> map) {
+		
+		Map<String, Object> userMap =  boardService.selectByNum(map);
+		
+		System.out.println("modify : " + map.toString());
+		System.out.println("modify : " + userMap.toString());
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("data", userMap);
+		mav.addObject("map", map);
+		
+		mav.setViewName("/bbs/modify");
+		
+		return mav;
+		
 	}
+	
+	
+	
 }
