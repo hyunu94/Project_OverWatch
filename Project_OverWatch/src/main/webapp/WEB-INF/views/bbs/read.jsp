@@ -113,12 +113,12 @@
 					</tfoot>
 					 
 				</table>
-				<input type="text" name="nowPage" value="${map.nowPage }" id="nowPage">
-				<input type="text" name="num" value="${data.num }" id="num">
+				<input type="hidden" name="nowPage" value="${map.nowPage }" id="nowPage">
+				<input type="hidden" name="num" value="${data.num }" id="num">
 				
 				<!-- 검색어전송 시작 -->
-				<input type="text" id="pKeyField" value="${map.keyField }">
-				<input type="text" id="pKeyWord" value="${map.keyWord }">
+				<input type="hidden" id="pKeyField" value="${map.keyField }">
+				<input type="hidden" id="pKeyWord" value="${map.keyWord }">
 				<!-- 검색어전송 끝 -->
 			  
 				<!--  게시글 상세보기 페이지 내용 출력 끝 -->

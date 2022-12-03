@@ -48,4 +48,23 @@ public class BoardDAO {
 		return this.sqlSessionTemplate.selectOne("tblBoard.selectByNum", map);
 	}
 	
+	// 게시판 업데이트
+	public int update_bbs(Map<String, Object> map) {
+		return this.sqlSessionTemplate.update("tblBoard.update_bbs", map);
+	}
+	
+	//게시판 삭제
+	public int delete_bbs(Map<String, Object> map) {
+		return this.sqlSessionTemplate.delete("tblBoard.delete_bbs", map);
+	}
+	
+	//답변글 끼어들기
+	public int replyUpBoard(Map<String, Object> map) {
+		return this.sqlSessionTemplate.update("tblBoard.replyUpBoard", map);
+	}
+	
+	//게시글 답변 페이지 시작
+	public int replyBoard(Map<String, Object> map){
+		return this.sqlSessionTemplate.insert("tblBoard.replyBoard",map);
+	}
 }

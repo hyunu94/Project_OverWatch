@@ -45,4 +45,11 @@ public class MemberServiceImp implements MemberService{
 		return null; 
 	}
 
+	@Override
+	public Map<String, Object> getMemberName(Map<String, Object> map) {
+		return this.memberDao.getMemberName(map);
+	}
+
+	
+
 }

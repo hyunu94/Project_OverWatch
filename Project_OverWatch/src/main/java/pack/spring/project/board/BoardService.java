@@ -21,4 +21,12 @@ public interface BoardService {
 	Map<String, Object> select_maxNum();
 	
 	Map<String, Object> selectByNum(Map<String, Object> map);
+	
+	int update_bbs(Map<String, Object> map);
+	
+	int delete_bbs(Map<String, Object> map);
+	
+	int replyUpBoard(Map<String, Object> map);
+	
+	int replyBoard(Map<String, Object> map);
 }

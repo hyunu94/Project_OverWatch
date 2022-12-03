@@ -56,4 +56,11 @@
 		]]>
 	</insert>
 	
+	<!--  로그인 사용자 이름 반환 -->
+	<select id="select_uName" parameterType="hashMap" resultType="hashMap">
+		<![CDATA[
+			select uName from member where uId=#{uId}
+		]]>
+	</select>
+	
 </mapper>

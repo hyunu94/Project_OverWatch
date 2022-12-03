@@ -48,4 +48,29 @@
 		 ]]>
 	</select>
 	
+	<update id="update_bbs" parameterType="hashMap">
+		<![CDATA[
+			update tblBoard set subject=#{subject}, content=#{content} where num=#{num}
+		 ]]>
+	</update>
+	
+	<delete id="delete_bbs" parameterType="hashMap">
+		<![CDATA[
+			delete from tblBoard where num=${num}
+		 ]]>
+	</delete>
+	
+	<update id="replyUpBoard" parameterType="hashMap">
+		<![CDATA[
+			update tblBoard set pos = pos + 1 where ref = #{ref} and pos > #{pos}
+		 ]]>
+	</update>
+	
+	<insert id="replyBoard" parameterType="hashMap" useGeneratedKeys="true" keyProperty="num">
+		<![CDATA[
+			insert into tblBoard (uId, uName, content, subject, ref, pos, depth, regTM, readCnt, ip) 
+			values (#{uId}, #{uName}, #{content}, #{subject}, #{ref}, #{pos}, #{depth}, now(), 0, #{ip})
+		 ]]>
+	</insert>
+	
 </mapper>

@@ -228,6 +228,106 @@ public class BoardController {
 		
 	}
 	
+	@RequestMapping(value = "/modifyProc" , method = RequestMethod.GET)
+	public ModelAndView modifyProc(@RequestParam Map<String, Object> map) {
+		
+		int board_num = boardService.update_bbs(map);
+		
+		ModelAndView mav = new ModelAndView();
+
+		if(board_num > 0) {
+			Map<String, Object> userMap = boardService.selectByNum(map);
+			
+			mav.addObject("data",userMap);
+			mav.addObject("map",map);
+			mav.setViewName("/bbs/read");
+		}else {
+			Map<String, Object> userMap = boardService.selectByNum(map);
+			
+			mav.addObject("data",userMap);
+			mav.addObject("map",map);
+			mav.setViewName("/bbs/modify");
+		}
+		
+		System.out.println("board_num = " +board_num);
+		
+		return mav;
+	}
+	
+	@RequestMapping(value = "/deleteProc", method = RequestMethod.GET)
+	public ModelAndView deleteProc(@RequestParam Map<String, Object> map) {
+
+		int exeCnt = boardService.delete_bbs(map);
+
+		ModelAndView mav = new ModelAndView();
+		System.out.println("deleteProc = " + map.toString());
+
+		if (exeCnt > 0) {
+			mav.addObject("map", map);
+			mav.setViewName("redirect:/list");
+		}else {
+			mav.addObject("map", map);
+			mav.setViewName("redirect:/read");			
+		}
+
+
+		return mav;
+	}
+	
+	@RequestMapping(value = "/reply" , method = RequestMethod.GET )
+	public ModelAndView reply(@RequestParam Map<String, Object> map,HttpSession session) {
+		String uId = (String)session.getAttribute("uId"); // 로그인 사용자 아이디
+		map.put("uId",uId );
+		
+		Map<String, Object> temp = memberService.getMemberName(map); //로그인 사용자 이름반환
+		String replyName = (String)temp.get("uName");
+		
+		
+		Map<String, Object> newMap = boardService.selectByNum(map);  // 게시판 정보조회
+		newMap.put("replyName", replyName);
+		
+		System.out.println("reply map = " + map.toString());
+		System.out.println("reply new map = " + newMap.toString());
+		
+		ModelAndView mav =new ModelAndView();
+		mav.addObject("data", newMap);
+		mav.setViewName("/bbs/reply");
+		
+		return mav;
+	}
+	
+	@RequestMapping(value = "/replyProc" , method = RequestMethod.GET)
+	public ModelAndView replyProc(@RequestParam Map<String, Object> map) {
+
+		int repUpCnt = 0;
+				
+		if(boardService.replyUpBoard(map) != 0) {
+			repUpCnt = boardService.replyUpBoard(map);
+		}; // 끼어들기
+		
+		int repInsCnt = boardService.replyBoard(map); // 실제 답변글 insert
+		
+		map.put("repUpCnt", repUpCnt );
+		map.put("repInsCnt", repInsCnt );
+		
+		String url = "/list";
+		String msg = "";
+		
+		msg = "답변글 등록중 오류가 발생했습니다.\n";
+	     msg += "다시 시도해주세요\n";
+	     msg += "오류가 지속되면 관리자에게 연락바랍니다.";
+	    
+
+	    System.out.println("replyProc map = " +map.toString());
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("url" , url);
+		mav.addObject("msg" , msg);		
+		mav.addObject("data", map);
+		mav.setViewName("/bbs/replyProc");
+		
+		return mav;
+		
+	}
 	
 	
 }

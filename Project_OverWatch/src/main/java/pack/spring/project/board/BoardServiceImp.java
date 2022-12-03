@@ -47,5 +47,25 @@ public class BoardServiceImp implements BoardService{
 		return this.boardDAO.selectByNum(map);
 	}
 
+	@Override
+	public int update_bbs(Map<String, Object> map) {
+		return this.boardDAO.update_bbs(map);
+	}
+
+	@Override
+	public int delete_bbs(Map<String, Object> map) {
+		return this.boardDAO.delete_bbs(map);
+	}
+
+	@Override
+	public int replyUpBoard(Map<String, Object> map) {
+		return this.boardDAO.replyUpBoard(map);
+	}
+
+	@Override
+	public int replyBoard(Map<String, Object> map) {
+		return this.boardDAO.replyBoard(map);
+	}
+
 
 }

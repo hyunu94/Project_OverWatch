@@ -37,6 +37,10 @@ public class MemberDAO {
 			 return  this.sqlSessionTemplate.selectOne("member.idCheck", map); 
 		 }
 		 
+		 //로그인 사용자 이름 반환
+		 public Map<String, Object> getMemberName(Map<String, Object> map){
+			 return this.sqlSessionTemplate.selectOne("member.select_uName",map);
+		 }
 		
 		
 }

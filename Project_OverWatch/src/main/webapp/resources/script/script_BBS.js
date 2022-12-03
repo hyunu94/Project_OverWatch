@@ -43,7 +43,7 @@ $(function(){
 			let p3 = $("#pKeyField").val().trim();  // p3 : keyField
 		    let p4 = $("#pKeyWord").val().trim();  // p4 : keyWord
 		    
-			let url = "/delete?";
+			let url = "/deleteProc?";
 				url += "num="+num+"&nowPage="+nowPage;
 				url += "&keyField="+p3;
 				url += "&keyWord="+p4;

@@ -55,7 +55,7 @@ String content = bean.getContent();
 				
 				<!--  뷰페이지 내용 출력 시작 -->			
 				
-				<form name="modifyFrm" action="modifyProc.jsp"
+				<form name="modifyFrm" action="/modifyProc"
 						method="get" id="modifyFrm">
 			
 					<h2>${data.subject }</h2>

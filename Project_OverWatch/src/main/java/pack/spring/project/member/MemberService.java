@@ -16,8 +16,10 @@ public interface MemberService {
 	//아이디 중복 체크
 	int idCheck(Map<String, Object> map);
 	
-	
 	 //회원가입 Service
 	String insert(Map<String,Object> map);
-	 
+	
+	//로그인 사용자 이름 반환
+	Map<String, Object> getMemberName(Map<String, Object> map);
+	
 }
