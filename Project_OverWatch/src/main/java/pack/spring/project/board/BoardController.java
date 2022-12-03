@@ -1,20 +1,27 @@
 package pack.spring.project.board;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import pack.spring.project.common.PageVO;
+import pack.spring.project.member.MemberService;
 
 @Controller
 public class BoardController {
+	private static final String SAVEFOLER = "D:/infoProc_1119/zzupd/silsp/p07_JSP/Community/WebContent/fileUpload";
+	private static String encType = "UTF-8";
+	private static int maxSize = 5 * 1024 * 1024;
 	
 	@Autowired
 	BoardService boardService;
@@ -63,15 +70,18 @@ public class BoardController {
 		map.put("start", start);
 		map.put("end", end);
 		
-		if (map.get("keyWord") != null) {
+		System.out.println("map : "+map.toString());
+		
+		
+		if (map.get("keyWord") != null) { // 검색 keyWord가 있을 경우
 			keyField = map.get("keyField").toString();
 			keyWord = map.get("keyWord").toString();
 			map.put("keyField", keyField);
 			map.put("keyWord", keyWord);
-			list = boardService.select_keyWord(map);
+			list = boardService.select_keyWord(map); 
 			totalRecord = boardService.select_countKey(map);
 			
-		}else {
+		}else { // 검색 keyWord가 없음 경우
 			list = boardService.select_All(map);
 			totalRecord = boardService.select_countAll(map);
 		}
@@ -93,13 +103,131 @@ public class BoardController {
 		
 		PageVO pageVo = new PageVO(totalRecord, nowPage, totalPage, numPerPage, nowBlock, pagePerBlock, totalBlock);
 		
+		System.out.println(list.toString());
+		System.out.println(map.toString());
+		System.out.println(pageVo.toString());
+		
+		for(int i=0; i< list.size();i++) {
+			Map<String, Object> um =  list.get(i);
+			System.out.println(um.toString());
+		}
+		
+		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("pageVo", pageVo);
 		mav.addObject("list", list);
 		mav.addObject("map", map);
-		mav.setViewName("tblBoard/list");
+		mav.setViewName("bbs/list");
 		return mav;
+	} // 게시글 목록 보기 끝
+	
+	
+	@Autowired
+	MemberService memberService;
+	// 글쓰기 페이지 보여주기
+	@RequestMapping(value = "/bbsWrite", method = RequestMethod.GET)
+	public ModelAndView bbsWrite(HttpServletRequest request, HttpSession session) {
+		String uId = (String)session.getAttribute("uId");
+		String ip = request.getRemoteAddr();
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("uId", uId);
+		
+		Map<String, Object> userMap =  memberService.selectByUId(map);
+		userMap.put("ip", ip);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("data", userMap);
+		mav.setViewName("/bbs/write");
+		
+		return mav;
+		
+	} // 글쓰기 페이지 보여주기 끝
+	
+	
+	//글 쓰기 처리
+	@RequestMapping(value = "/bbsWrite", method = RequestMethod.POST)
+	public ModelAndView bbsWrite_post(@RequestParam Map<String, Object> map, HttpSession session) {
+		
+		String uId = (String)session.getAttribute("uId");
+		map.put("uId", uId);
+		
+		  int ref = 1;
+		  
+			/*
+			 * Map<String, Object> maxMap = boardService.select_maxNum();
+			 * System.out.println(maxMap.toString()); if(!maxMap.isEmpty()) { int num =
+			 * (int) maxMap.get("num"); ref = num +1; }
+			 */
+		  
+		  map.put("ref", ref);
+		 
+		int bbsNum =boardService.insert_bbs(map);
+		System.out.println(bbsNum);
+		
+		String msg="글 쓰기 실패", url="/bbsWrite";
+		if(bbsNum > 0) {
+			msg="쓰기 성공";
+			url="/list";
+		}
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("msg", msg);
+		mav.addObject("url", url);
+		mav.setViewName("/common/message");
+		return mav;
+	}//글 쓰기 처리 끝
+	
+	// 글 목록 상세보기
+	@RequestMapping(value = "/read", method = RequestMethod.GET)
+	public ModelAndView read(@RequestParam Map<String, Object> map, HttpSession session) {
+		String sessionuId = (String)session.getAttribute("uId");
+		
+		Map<String, Object> userMap =  boardService.selectByNum(map);
+		userMap.put("sessionuId", sessionuId);
+		
+		int fileSize =0;
+		String mapFileSize =(String) map.get("fileSize");
+		
+		if(mapFileSize != null) {
+			fileSize = Integer.parseInt(mapFileSize);
+		}
+		
+		map.put("fileSize", fileSize);
+		
+		String fUnit = "Bytes";
+		if(fileSize > 1024) {
+		    fileSize /= 1024;
+		    fUnit = "KBytes";
+		} 
+		map.put("fUnit", fUnit);
+		
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("map", map);
+		mav.addObject("data", userMap);
+		mav.setViewName("/bbs/read");
+		
+		return mav;
+		
+	}// 글 목록 상세보기 끝
+	
+	@RequestMapping(value = "/modify", method = RequestMethod.GET)
+	public ModelAndView modify(@RequestParam Map<String, Object> map) {
+		
+		Map<String, Object> userMap =  boardService.selectByNum(map);
+		
+		System.out.println("modify : " + map.toString());
+		System.out.println("modify : " + userMap.toString());
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("data", userMap);
+		mav.addObject("map", map);
+		
+		mav.setViewName("/bbs/modify");
+		
+		return mav;
+		
 	}
-
-	// 게시글
+	
+	
+	
 }

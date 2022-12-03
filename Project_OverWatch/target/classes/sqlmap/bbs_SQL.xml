@@ -3,30 +3,49 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="tblBoard">
 	
-<select id="select_keyword" parameterType="hashMap" resultMap="hashMap">
+  <select id="select_keyWord" parameterType="hashMap" resultType="hashMap">
 	<![CDATA[
-			 select * from tblBoard where keyword  like #{keyword} order by #{ref} desc, #{pos} asc limit #{start}, #{end};
+			 select * from tblBoard where #{keyField }  like #{keyWord} order by ref desc, pos asc limit #{start}, #{end};
 	 ]]>
-</select>
+	</select>  
 
-<select id="select_All" parameterType="hashMap" resultMap="hashMap">
-	<![CDATA[
-			 select * from tblBoard order by #{ref}desc, #{pos}asc limit  #{start}, #{end};
-	 ]]>
-</select>
-
-<select id="select_countAll" parameterType="hashMap" resultMap="int">
-	<![CDATA[
-			select count(*) from tblBoard;
-	 ]]>
-</select>
-
-<select id="select_countKey" parameterType="hashMap" resultMap="int">
-	<![CDATA[
-			select count(*) from tblBoard where #{keyField} like #{keyWord};
-	 ]]>
-</select>
-
-
-
+	<select id="select_All" parameterType="hashMap" resultType="hashMap">
+		<![CDATA[
+				 select * from tblBoard order by ref desc, num desc, pos asc limit  #{start}, #{end};
+		 ]]>
+	</select> 
+	
+	<select id="select_countAll" parameterType="hashMap" resultType="int">
+		<![CDATA[
+				select count(*) from tblBoard;
+		 ]]>
+	</select>
+	
+	<select id="select_countKey" parameterType="hashMap" resultType="int">
+		<![CDATA[
+				select count(*) from tblBoard where #{keyField} like #{keyWord};
+		 ]]>
+	</select>
+	 
+	<!--  글쓰기 -->
+	<insert id="insert_bbs" parameterType="hashMap" useGeneratedKeys="true" keyProperty="num">
+		<![CDATA[
+				insert into tblboard (uId, uName, subject, content, ref, pos, depth,regTM, ip, readCnt, fileName, fileSize)
+				values(#{uId}, #{uName}, #{subject}, #{content}, #{ref}, 0, 0,
+				now(), #{ip}, 0, #{fileName}, #{fileSize});
+		 ]]>
+	</insert>
+	
+	<select id="select_maxNum" resultType="hashMap">
+		<![CDATA[
+			select max(num) from tblBoard
+		 ]]>
+	</select>
+	
+	<select id="selectByNum" parameterType="hashMap" resultType="hashMap">
+		<![CDATA[
+			select * from tblBoard where num=#{num}
+		 ]]>
+	</select>
+	
 </mapper>

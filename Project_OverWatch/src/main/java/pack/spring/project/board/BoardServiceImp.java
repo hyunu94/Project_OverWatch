@@ -32,5 +32,20 @@ public class BoardServiceImp implements BoardService{
 		return this.boardDAO.select_countKey(map);
 	}
 
+	@Override
+	public int insert_bbs(Map<String, Object> map) {
+		return this.boardDAO.insert_bbs(map);
+	}
+
+	@Override
+	public Map<String, Object> select_maxNum() {
+		return this.boardDAO.select_maxNum();
+	}
+
+	@Override
+	public Map<String, Object> selectByNum(Map<String, Object> map) {
+		return this.boardDAO.selectByNum(map);
+	}
+
 
 }

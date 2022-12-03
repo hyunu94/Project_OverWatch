@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
   
 <!DOCTYPE html>
 <html lang="ko">
@@ -72,7 +73,7 @@
 					<c:when test="${empty list }">
 						<tr>
 							<td colspan="5">
-							<%="게시물이 없습니다." %>
+									"게시물이 없습니다."
 							</td>
 						</tr>	
 					</c:when>
@@ -107,7 +108,7 @@
 									
 									</td>
 									<td>${list.uName }</td>
-									<td>${list.regTM }</td>
+									<td>${list.regTM}</td>
 									<td>${list.readCnt }</td>
 								</tr>
 						</c:otherwise>
@@ -165,92 +166,71 @@
 															
 							</form>
 							
-							<!-- 검색결과 유지용 매개변수 데이터시작 -->
 							<input type="hidden" id="pKeyField" value="${map.keyField }">
 							<input type="hidden" id="pKeyWord" value="${map.keyWord }">
-							<!-- 검색결과 유지용 매개변수 데이터끝 -->
 						
 						</td>
-					</tr>  <!-- tr#listBtnArea -->
+					</tr> 
 					
 					<tr id="listPagingArea">
 						
-					<!-- 페이징(= 페이지 나누기) 시작 -->
 						<td colspan="5" id="pagingTd">
-				<%
-				int pageStart = (nowBlock - 1 ) * pagePerBlock + 1;
-							// 26개 자료기준
-							// 현재 기준 numPerPage : 5;    // 페이지당 출력 데이터 수
-							//            pagePerBlock : 5;  //  블럭당 페이지 수
-							//            nowBlock : 현재블럭
-							//            totalBlock : 전체블럭
-							//  -------------------------------------------------
-							//            totalRecord : 26    totalPage : 6
-							// 적용결과  nowBlock : 1  =>   pageStart : 1   pageEnd : 5
-							//            nowBlock : 2  =>   pageStart : 6   pageEnd : 6( = totalPage)
-							//
-				int pageEnd = (nowBlock < totalBlock) ? pageStart + pagePerBlock - 1 :  totalPage;
-				//  마지막 블럭이 아니면 pageEnd 값은 pageStart + pagePerBlock - 1 의 값
-				//  여기서 pageEnd는 해당 블럭의 마지막 페이지를 의미
-				//   즉, 1블럭에서는  pageStart 1  pagePerBlock 10  이므로  pageEnd  는 10
-				//   2블럭에서는  pageStart 11  pagePerBlock 10  이므로  pageEnd  는 20
-			    //   마지막 블럭(5)에서는 pageStart 41  pagePerBlock 10 을 따지지 않고 totalPage 41이 pageEnd 에 적용됨
-			    //   ----------------------------------------------------
-				// 3항 연산자(= 조건 연산자) =>    (조건식) ?  true 일 때 결과(A)  :  false 일 때 결과(B);
-				// 블럭당 5페이지 출력 =>        pageStart    pageEnd
-				//                          1블럭        1                 5
-				//                          2블럭        6                 10    		
-				// 블럭마다 시작되는 첫 페이지와 마지막 페이지 관련 작업				
-				if (totalPage != 0) {   //   전체 페이지가 0이 아니라면 = 게시글이 1개라도 있다면
-					// #if01_totalPage   
-				%>
-				<c:set var="pageStart" value="${(pageVo.nowBlock -1) * pageVo.pagePerBlock + 1 }"/>
-				<c:set var="pageEnd" value="${(pageVo.nowBlock -1) * pageVo.pagePerBlock + 1 }"/>
-					
-					<% if (nowBlock>1) { 	   // 페이지 블럭이 2이상이면 => 2개이상의 블럭이 있어야 가능 %>
-								<span class="moveBlockArea" onclick="moveBlock('<%=nowBlock-1%>', '<%=pagePerBlock%>', 'pb')">
-								&lt;
-								</span>
-					<% } else { %>
-					            <span class="moveBlockArea" ></span>
-					<% } %>
-				
-					<!-- 페이지 나누기용 페이지 번호 출력 시작  -->
-					<% 
-										             // 2        <     6                     
-					             // for (초기식;  조건식;  증감식) {    }
-					             // for (     ;  조건식;  증감식) {    }   => 초기식은 조건식의 변수가
-					             //      for구문 사용이전에 명시되어 있으므로 그 변수를 활용한다.
-						for (int i=pageStart   ; i<=pageEnd; i++) { %>
 						
-							<% if (i == nowPage) {   // 현재 사용자가 보고 있는 페이지 %>
-								<span class="nowPageNum"><%=i %></span>
-							<% } else {                              // 현재 사용자가 보고 있지 않은 페이지 %>
-							 	<span class="pageNum" onclick="movePage('<%=i %>')">
-									<%=i %>
-							 	</span>					
-							<% } // End If%>
-									 	
-					<% }  // End For%>
-					<!-- 페이지 나누기용 페이지 번호 출력 끝  -->	
+						
+				<c:set var="pageStart" value="${(pageVo.nowBlock -1) * pageVo.pagePerBlock + 1 }"/>
+				<c:set var="pageEnd" value="${pageVo.nowBlock < pageVo.totalBlock ?  pageStart + pageVo.pagePerBlock -1 : pageVo.totalPage}"/>
 					
-				
-				<% if (totalBlock>nowBlock) { // 다음 블럭이 남아 있다면  %>
-							<span  class="moveBlockArea" onclick="moveBlock('<%=nowBlock+1%>', '<%=pagePerBlock%>', 'nb')">
-							&gt;
+					<c:choose>
+						<c:when test="${pageVo.totalPage > 0 }"> 
+						
+					<c:choose>
+						<c:when test="${pageVo.nowBlock > 1 }">
+							<span class="moveBlockArea" onclick="moveBlock('${pageVo.nowBlock -1 }', '${pageVo.pagePerBlock }', 'pb')">
+								&lt;
 							</span>
-			
-				<% } else { %>
-				            <span class="moveBlockArea"></span>
-				<% } %>
+						</c:when>
+						<c:otherwise>
+							 <span class="moveBlockArea" ></span>
+						</c:otherwise>
+					</c:choose>
+					
+				
+				
 				
 					
+					<c:forEach begin="${pageStart }" end="${pageEnd }">
+						
+						<c:choose>
+							<c:when test="${pageStart == pageVo.nowPage }">
+								<span class="nowPageNum">${pageStart}</span>
+							</c:when>
+							<c:otherwise>
+								<span class="pageNum" onclick="movePage('${pageStart}')">
+									${pageStart}
+							 	</span>		
+							</c:otherwise>
+						</c:choose>
+						
+					</c:forEach>
 					
-				<%
-				} else {
-					out.print("<b>[ Paging Area ]</b>"); // End if
-				}
-				%>						
+				
+				<c:choose>
+					<c:when test="${pageVo.totalBlock > pageVo.nowBlock }">
+						<span  class="moveBlockArea" onclick="moveBlock('${pageVo.nowBlock +1 }', '${pageVo.pagePerBlock }', 'nb')">
+						&gt;
+						</span>
+					</c:when>
+					<c:otherwise>
+						  <span class="moveBlockArea"></span>
+					</c:otherwise>
+				</c:choose>
+				
+				
+					</c:when> 
+						<c:otherwise>
+						</c:otherwise>
+					</c:choose>
+					
 						
 <%
 /*

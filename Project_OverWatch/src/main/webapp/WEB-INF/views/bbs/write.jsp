@@ -8,11 +8,11 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>글쓰기</title>
-	<link rel="stylesheet" href="/style/style_Common.css">
-	<link rel="stylesheet" href="/style/style_Template.css">
-	<link rel="stylesheet" href="/style/style_BBS.css">
-	<script src="/source/jquery-3.6.0.min.js"></script>
-	<script src="/script/script_BBS.js"></script>
+	<link rel="stylesheet" href="/resources/style/style_Common.css">
+	<link rel="stylesheet" href="/resources/style/style_Template.css">
+	<link rel="stylesheet" href="/resources/style/style_BBS.css">
+	<script src="/resources/source/jquery-3.6.0.min.js"></script>
+	<script src="/resources/script/script_BBS.js"></script>
 </head>
 
 <body>
@@ -37,7 +37,7 @@
 
 				<h2>글쓰기</h2>
 				
-				<form name="writeFrm" enctype="multipart/form-data" 
+				<form name="writeFrm" 
 						  method="post" id="writeFrm">
 				
 					<table>
@@ -67,7 +67,7 @@
 								<td>파일첨부</td>
 								<td>
 									<span class="spanFile">
-										<input type="file" name="fileName" id="fileName">
+										<input type="text" name="fileName" id="fileName">
 									</span>	
 								</td>
 							</tr>
@@ -75,11 +75,11 @@
 								<td>내용타입</td>
 								<td>
 									<label>
-										<input type="radio" name="contentType" value="HTML">									
+										<input type="text" name="contentType" value="HTML">									
 										<span>HTML</span>	
 									</label>
 									<label>
-										<input type="radio" name="contentType" value="TEXT" checked>
+										<input type="text" name="contentType" value="TEXT" checked>
 										<span>TEXT</span>
 									</label>
 								</td>
@@ -98,7 +98,7 @@
 							</tr>
 						</tfoot>
 					</table>
-					<input type="hidden" name="ip" value="<%=request.getRemoteAddr()%>">
+					<input type="hidden" name="ip" value="${data.ip } ">
 				    <!--  
 				    IP주소를 IPv4 형식으로 설정함.(IPv6 형식이 기본으로 설정되어 있음)
 				    프로젝트 => Run Configuration => Tomcat 클릭
