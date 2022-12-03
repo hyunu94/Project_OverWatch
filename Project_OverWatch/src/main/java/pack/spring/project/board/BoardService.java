@@ -16,4 +16,7 @@ public interface BoardService {
 	
 	int select_countKey(Map<String, Object> map);
 
+	int insert_bbs(Map<String, Object> map);
+	
+	Map<String, Object> select_maxNum();
 }
