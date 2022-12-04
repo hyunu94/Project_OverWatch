@@ -18,7 +18,7 @@ public class BoardDAO {
 		return this.sqlSessionTemplate.selectList("tblBoard.select_All",map );
 	}
 	
-	// 게시판 리스트 전체 조회
+	// 게시판 리스트 검색 조회
 	public List<Map<String, Object>> select_keyWord(Map<String, Object> map) {
 		return this.sqlSessionTemplate.selectList("tblBoard.select_keyWord", map);
 	}

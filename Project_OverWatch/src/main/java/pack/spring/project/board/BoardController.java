@@ -19,7 +19,7 @@ import pack.spring.project.member.MemberService;
 
 @Controller
 public class BoardController {
-	private static final String SAVEFOLER = "D:/infoProc_1119/zzupd/silsp/p07_JSP/Community/WebContent/fileUpload";
+	private static final String SAVEFOLER = "C:/Users/User/git/Project_OverWatch/Project_OverWatch/src/main/webapp/resources/fileUpload";
 	private static String encType = "UTF-8";
 	private static int maxSize = 5 * 1024 * 1024;
 	
@@ -31,6 +31,7 @@ public class BoardController {
 	public ModelAndView list(@RequestParam Map<String, Object> map, HttpSession session) {
 		String uId=(String)session.getAttribute("uId");
 		map.put("uId", uId);
+		System.out.println("list 초기 map = " + map.toString());
 		///////////////////////페이징 관련 속성 값 시작///////////////////////////
 		//페이징(Paging) = 페이지 나누기를 의미함
 		int totalRecord = 0; // 전체 데이터 수(DB에 저장된 row 개수)
@@ -56,37 +57,31 @@ public class BoardController {
 		int listSize = 0; // 1페이지에서 보여주는 데이터 수
 		// 출력할 데이터의 개수 = 데이터 1개는 가로줄 1개
 
+		List<Map<String, Object>> list = null;
 		//게시판 검색 관련소스
 		String keyField = ""; // DB의 컬럼명
 		String keyWord = ""; // DB의 검색어
-		List<Map<String, Object>> list = null;
+		
+		System.out.println("map : "+map.toString());
 		
 		if (map.get("nowPage") != null) {
 			nowPage = Integer.parseInt((String) map.get("nowPage"));
 			start = (nowPage * numPerPage) - numPerPage; // 2 페이지라면 start 5
 			end = numPerPage; // 2 페이지라고 하더라도 end 5
 		}
-		
 		map.put("start", start);
 		map.put("end", end);
 		
-		System.out.println("map : "+map.toString());
-		
-		
-		if (map.get("keyWord") != null) { // 검색 keyWord가 있을 경우
-			keyField = map.get("keyField").toString();
-			keyWord = map.get("keyWord").toString();
-			map.put("keyField", keyField);
-			map.put("keyWord", keyWord);
+		if (map.get("keyWord") != null ) { // 검색 keyWord가 있을 경우
 			list = boardService.select_keyWord(map); 
 			totalRecord = boardService.select_countKey(map);
-			
 		}else { // 검색 keyWord가 없음 경우
 			list = boardService.select_All(map);
 			totalRecord = boardService.select_countAll(map);
 		}
 
 
+		
 		/*
 		 * select * from tblBoard order by num desc limit 10, 10; 데이터가 100개 => num : 100
 		 * 99 98 97 ... 91 | 90 .... 2 1 start, end : 0 1 2 3.... 9 10 페이지당 출력할 데이터 수
@@ -114,10 +109,10 @@ public class BoardController {
 		
 		
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("pageVo", pageVo);
-		mav.addObject("list", list);
-		mav.addObject("map", map);
-		mav.setViewName("bbs/list");
+		mav.addObject("pageVo", pageVo); //페이징처리
+		mav.addObject("list", list); //게시물 list들 => vList
+		mav.addObject("map", map); //파라미터들(nowPage , keyword , keyField , uId)
+		mav.setViewName("/bbs/list");
 		return mav;
 	} // 게시글 목록 보기 끝
 	

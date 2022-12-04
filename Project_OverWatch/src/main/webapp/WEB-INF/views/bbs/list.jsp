@@ -79,9 +79,9 @@
 					</c:when>
 					<c:otherwise>
 						<c:set var = "doneLoop" value="false"/>
-						<c:forEach items="${list }" var="list" begin="0" end="${pageVo.numPerPage }" >
+						<c:forEach items="${list }" var="list" begin="0" end="${pageVo.numPerPage-1 }" >
 							<c:choose>
-								<c:when test="${fn:length(list) == pageVo.numPerPage }">
+								<c:when test="${fn:length(list) == pageVo.numPerPage}">
 									<c:set var="doneLoop" value="true"></c:set>
 								</c:when>
 								<c:otherwise>
@@ -96,10 +96,10 @@
 									
 									<c:choose>
 											<c:when test="${list.depth >0 }">
-												<c:forEach begin="0" end="${list.depth }">
+												<c:forEach begin="0" end="${list.depth-1 }">
 														<c:out value="&nbsp;&nbsp;"/>
 												</c:forEach>
-														<c:out value="<img src='/images/replyImg.png' alt='reply'>&nbsp;"/>
+														<c:out value="<img src='/resources/images/replyImg.png' alt='reply'>&nbsp;"/>
 											</c:when>
 											<c:otherwise>
 														<c:out value="${list.subject }"/>
