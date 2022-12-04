@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%
-String uId_Session = (String)session.getAttribute("uId_Session"); 
-%>   
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -12,17 +8,17 @@ String uId_Session = (String)session.getAttribute("uId_Session");
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>회원탈퇴</title>
-	<link rel="stylesheet" href="/style/style_Common.css">
-	<link rel="stylesheet" href="/style/style_Template.css">
-	<script src="/source/jquery-3.6.0.min.js"></script>
-	<script src="/script/script.js"></script>
+	<link rel="stylesheet" href="/resources/style/style_Common.css">
+	<link rel="stylesheet" href="/resources/style/style_Template.css">
+	<script src="/resources/source/jquery-3.6.0.min.js"></script>
+	<script src="/resources/script/script_Join.js"></script>
 </head>
 
 <body>
     <div id="wrap">
     	
     	<!--  헤더템플릿 시작 -->
-		<%@ include file="/ind/headerTmp.jsp" %>
+		<%@ include file="../ind/headerTmp.jsp" %>
     	<!--  헤더템플릿 끝 -->    	
     	
     	
@@ -45,7 +41,7 @@ String uId_Session = (String)session.getAttribute("uId_Session");
     
         	   	
     	<!--  푸터템플릿 시작 -->
-		<%@ include file="/ind/footerTmp.jsp" %>
+		<%@ include file="../ind/footerTmp.jsp" %>
     	<!--  푸터템플릿 끝 -->  
         
     </div>

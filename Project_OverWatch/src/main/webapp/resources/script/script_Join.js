@@ -353,6 +353,20 @@ $(function(){
 	/*//////////   회원가입 입력(/member/member.jsp)  끝   /////////*/
 	///////////////////////////////////////////////////////////////////////////
 	
+	/* 회원탈퇴 버튼 전송 실행 */	
+	$("#memQuitBtn").click(function(){		
+		fnQuitSbm();		
+	});
+	
+	function fnQuitSbm(){
+		let chkSbmQu = confirm("회원 탈퇴하시겠습니까?");
+		
+		if(chkSbmQu){
+			$("#memQuitFrm").attr("action","/memberQuitProc");
+			$("#memQuitFrm").submit();
+		}
+	
+	};
 	
 });
 

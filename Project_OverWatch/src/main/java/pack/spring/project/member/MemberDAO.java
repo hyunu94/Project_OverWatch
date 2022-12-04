@@ -41,6 +41,11 @@ public class MemberDAO {
 		 public Map<String, Object> getMemberName(Map<String, Object> map){
 			 return this.sqlSessionTemplate.selectOne("member.select_uName",map);
 		 }
+		 
+		 //회원 탈퇴
+		 public int delete_uId(String uId) {
+			 return this.sqlSessionTemplate.delete("member.delete_uId", uId);
+		 }
 		
 		
 }

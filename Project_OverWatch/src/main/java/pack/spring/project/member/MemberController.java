@@ -244,6 +244,33 @@ public class MemberController {
 	}
 	///////////////// 회원 수정 처리 끝 //////////////////
 
+	@RequestMapping(value="/memberQuit" , method = RequestMethod.GET )
+	public ModelAndView delete_uId() {
+		return new ModelAndView("/member/memberQuit");
+	}
+	
+	@RequestMapping(value="/memberQuitProc" , method = RequestMethod.GET)
+	public ModelAndView delete_Ok(HttpSession httpSession) {
+		
+		String uId = (String)httpSession.getAttribute("uId");
+		
+		int cnt = memberService.delete_uId(uId);
+		
+		String msg = "회원탈퇴 실패" , url = "/";
+		if(cnt>0) {
+			msg = "회원탈퇴 성공";
+			url ="/";
+			httpSession.invalidate();
+		}
+		
+		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("msg",msg);
+		mav.addObject("url",url);
+		mav.setViewName("/common/message");
+		return mav;
+
+	}
 
 
 

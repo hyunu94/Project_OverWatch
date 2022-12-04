@@ -22,4 +22,6 @@ public interface MemberService {
 	//로그인 사용자 이름 반환
 	Map<String, Object> getMemberName(Map<String, Object> map);
 	
+	//회원 탈퇴
+	int delete_uId(String uId);
 }

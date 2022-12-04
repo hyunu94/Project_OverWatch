@@ -50,6 +50,11 @@ public class MemberServiceImp implements MemberService{
 		return this.memberDao.getMemberName(map);
 	}
 
+	@Override
+	public int delete_uId(String uId) {
+		return this.memberDao.delete_uId(uId);
+	}
+
 	
 
 }

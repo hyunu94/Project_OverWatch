@@ -63,4 +63,11 @@
 		]]>
 	</select>
 	
+	<!--  회원 탈퇴 -->
+	<delete id="delete_uId" parameterType="hashMap" >
+		<![CDATA[
+			delete from member where uId = #{uId};
+		]]>
+	</delete>
+	
 </mapper>
