@@ -37,15 +37,15 @@
 	    	<!-- 실제 작업 영역 시작 -->
     		<div id="contents" class="bbsList">
 			
-			<c:set var="prnType" value=""/>
-			<c:choose>
-				<c:when test="${empty map.keyWord }">
-					<c:set var="prnType" value="전체 게시글"/>
-				</c:when>
-				<c:otherwise>
-					<c:set var="prnType" value="검색 결과"/>
-				</c:otherwise>
-			</c:choose>
+				<c:set var="prnType" value=""/>
+				<c:choose>
+					<c:when test="${empty map.keyWord }">
+						<c:set var="prnType" value="전체 게시글"/>
+					</c:when>
+					<c:otherwise>
+						<c:set var="prnType" value="검색 결과"/>
+					</c:otherwise>
+				</c:choose>
 			
 		
     		
@@ -172,86 +172,51 @@
 						</td>
 					</tr> 
 					
-					<tr id="listPagingArea">
-						
-						<td colspan="5" id="pagingTd">
-						
-						
-				<c:set var="pageStart" value="${(pageVo.nowBlock -1) * pageVo.pagePerBlock + 1 }"/>
-				<c:set var="pageEnd" value="${pageVo.nowBlock < pageVo.totalBlock ?  pageStart + pageVo.pagePerBlock -1 : pageVo.totalPage}"/>
-					
-					<c:choose>
-						<c:when test="${pageVo.totalPage > 0 }"> 
-						
-					<c:choose>
-						<c:when test="${pageVo.nowBlock > 1 }">
-							<span class="moveBlockArea" onclick="moveBlock('${pageVo.nowBlock -1 }', '${pageVo.pagePerBlock }', 'pb')">
-								&lt;
-							</span>
-						</c:when>
-						<c:otherwise>
-							 <span class="moveBlockArea" ></span>
-						</c:otherwise>
-					</c:choose>
-					
-				
-				
-				
-					
-					<c:forEach begin="${pageStart }" end="${pageEnd }">
-						
-						<c:choose>
-							<c:when test="${pageStart == pageVo.nowPage }">
-								<span class="nowPageNum">${pageStart}</span>
-							</c:when>
-							<c:otherwise>
-								<span class="pageNum" onclick="movePage('${pageStart}')">
-									${pageStart}
-							 	</span>		
-							</c:otherwise>
-						</c:choose>
-						
-					</c:forEach>
-					
-				
-				<c:choose>
-					<c:when test="${pageVo.totalBlock > pageVo.nowBlock }">
-						<span  class="moveBlockArea" onclick="moveBlock('${pageVo.nowBlock +1 }', '${pageVo.pagePerBlock }', 'nb')">
-						&gt;
-						</span>
-					</c:when>
-					<c:otherwise>
-						  <span class="moveBlockArea"></span>
-					</c:otherwise>
-				</c:choose>
-				
-				
-					</c:when> 
-						<c:otherwise>
-						</c:otherwise>
-					</c:choose>
-					
-						
-<%
-/*
-out.print("<br>");
-out.print("totalRecord : " + totalRecord + "<br>");
-out.print("pagePerBlock : " + pagePerBlock + "<br>");
-out.print("numPerPage : " + numPerPage + "<br>");
-out.print("totalPage : " + totalPage + "<br>");
-out.print("start : " + start + "<br>");
-out.print("end : " + end + "<br>");
-out.print("pageStart : " + pageStart + "<br>");
-out.print("pageEnd : " + pageEnd + "<br>");
-out.print("nowPage : " + nowPage + "<br>");
-out.print("nowBlock : " + nowBlock + "<br>");
-out.print("totalBlock : " + totalBlock + "<br>");
-out.print("listSize : " + listSize + "<br>");
-*/
-%>						
-						</td>
-					</tr>
-					
+						<tr id="listPagingArea">
+
+							<td colspan="5" id="pagingTd">
+									 <c:choose>
+									<c:when test="${pageVO.totalPage != 0 }">
+										<c:choose> 
+											<c:when test="${pageVO.nowBlock > 1 }">
+												<span class="moveBlockArea"
+													onclick="moveBlock('${pageVO.nowBlock-1}', '${pageVO.pagePerBlock}', 'pb')">&lt; 
+												</span>
+											</c:when>
+											<c:otherwise>
+												<span class="moveBlockArea"></span>
+											</c:otherwise>
+										</c:choose> 
+										<c:forEach begin="${pageVO.pageStart }" end="${pageVO.pageEnd }">
+											<c:choose>
+												<c:when test="${pageVO.pageStart == pageVO.nowPage}">
+													<span class="nowPageNum">${pageVO.pageStart} </span>
+												</c:when>
+												<c:otherwise>
+													<span class="pageNum"
+														onclick="movePage('${pageVO.pageStart}')">
+														${pageVO.pageStart} 
+													</span>
+												</c:otherwise>
+											</c:choose>
+										</c:forEach>
+										<c:choose>
+											<c:when test="${pageVO.totalBlock > pageVO.nowBlock }">
+												<span class="moveBlockArea" onclick="moveBlock('${pageVO.nowBlock+1}', '${pageVO.pagePerBlock}', 'nb')">
+												&gt; 
+												</span>
+											</c:when>
+											<c:otherwise>
+												<span class="moveBlockArea"></span>
+											</c:otherwise>
+										</c:choose>
+									</c:when>
+									<c:otherwise>
+										<b>[ Paging Area ]</b>
+									</c:otherwise>
+								</c:choose>
+							</td>
+						</tr>
 				</tbody>
 			</table>
 		

@@ -8,13 +8,16 @@ public class PageVO {
 	private int nowBlock;
 	private int pagePerBlock;
 	private int totalBlock;
-
+	private int listSize;
+	private int pageStart;
+	private int pageEnd;
+	
 	public PageVO() {
 		super();
 	}
-
+	
 	public PageVO(int totalRecord, int nowPage, int totalPage, int numPerPage, int nowBlock, int pagePerBlock,
-			int totalBlock) {
+			int totalBlock, int listSize, int pageStart, int pageEnd) {
 		super();
 		this.totalRecord = totalRecord;
 		this.nowPage = nowPage;
@@ -23,8 +26,11 @@ public class PageVO {
 		this.nowBlock = nowBlock;
 		this.pagePerBlock = pagePerBlock;
 		this.totalBlock = totalBlock;
+		this.listSize = listSize;
+		this.pageStart = pageStart;
+		this.pageEnd = pageEnd;
 	}
-
+	
 	public int getTotalRecord() {
 		return totalRecord;
 	}
@@ -79,6 +85,30 @@ public class PageVO {
 
 	public void setTotalBlock(int totalBlock) {
 		this.totalBlock = totalBlock;
+	}
+
+	public int getListSize() {
+		return listSize;
+	}
+
+	public void setListSize(int listSize) {
+		this.listSize = listSize;
+	}
+
+	public int getPageStart() {
+		return pageStart;
+	}
+
+	public void setPageStart(int pageStart) {
+		this.pageStart = pageStart;
+	}
+
+	public int getPageEnd() {
+		return pageEnd;
+	}
+
+	public void setPageEnd(int pageEnd) {
+		this.pageEnd = pageEnd;
 	}
 
 	@Override

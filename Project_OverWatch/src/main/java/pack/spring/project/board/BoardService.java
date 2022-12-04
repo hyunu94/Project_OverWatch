@@ -3,9 +3,6 @@ package pack.spring.project.board;
 import java.util.List;
 import java.util.Map;
 
-import org.mybatis.spring.SqlSessionTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
-
 public interface BoardService {
 	
 	List<Map<String, Object>> select_All(Map<String, Object> map);
