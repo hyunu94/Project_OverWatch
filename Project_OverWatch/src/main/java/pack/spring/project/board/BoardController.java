@@ -72,7 +72,7 @@ public class BoardController {
 
 		System.out.println("map : " + map.toString());
 
-		if (map.get("keyWord") != null) { // 검색 keyWord가 있을 경우
+		if (map.get("keyWord") != null && !map.get("keyWord").toString().equals("")) { // 검색 keyWord가 있을 경우
 			keyField = map.get("keyField").toString();
 			keyWord = map.get("keyWord").toString();
 			map.put("keyField", keyField);

@@ -172,7 +172,7 @@
 						</td>
 					</tr> 
 					
-						<tr id="listPagingArea">
+					<tr id="listPagingArea">
 
 							<td colspan="5" id="pagingTd">
 									 <c:choose>
@@ -217,6 +217,7 @@
 								</c:choose>
 							</td>
 						</tr>
+						
 				</tbody>
 			</table>
 		
