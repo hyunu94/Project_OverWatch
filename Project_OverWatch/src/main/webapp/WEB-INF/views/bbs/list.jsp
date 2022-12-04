@@ -33,7 +33,6 @@
 	    		<!--  메인 LNB 템플릿 끝 -->    	
     		</div>
     		
-    		
 	    	<!-- 실제 작업 영역 시작 -->
     		<div id="contents" class="bbsList">
 			
@@ -47,25 +46,23 @@
 					</c:otherwise>
 				</c:choose>
 			
-		
-    		
 	    		<div id="pageInfo" class="dFlex">
 					<span>${prnType } :  ${pageVo.totalRecord } 개</span>
 					<span>페이지 :  ${pageVo.nowPage }  /  ${pageVo.totalPage } </span>  
 				</div>	
 					
-			<table id="boardList">
-				<thead>
-					<tr>
-						<th>번호</th>
-						<th>제목</th>
-						<th>이름</th>
-						<th>날짜</th>
-						<th>조회수</th>
-					</tr>		
-					<tr>
-						<td colspan="5" class="spaceTd"></td>
-					</tr>		
+				<table id="boardList">
+					<thead>
+						<tr>
+							<th>번호</th>
+							<th>제목</th>
+							<th>이름</th>
+							<th>날짜</th>
+							<th>조회수</th>
+						</tr>		
+						<tr>
+							<td colspan="5" class="spaceTd"></td>
+						</tr>		
 				</thead>
 				<tbody>
 			
@@ -73,7 +70,7 @@
 					<c:when test="${empty list }">
 						<tr>
 							<td colspan="5">
-									"게시물이 없습니다."
+									게시물이 없습니다.
 							</td>
 						</tr>	
 					</c:when>

@@ -115,7 +115,10 @@ public class PageVO {
 	public String toString() {
 		return "PageVO [totalRecord=" + totalRecord + ", nowPage=" + nowPage + ", totalPage=" + totalPage
 				+ ", numPerPage=" + numPerPage + ", nowBlock=" + nowBlock + ", pagePerBlock=" + pagePerBlock
-				+ ", totalBlock=" + totalBlock + "]";
+				+ ", totalBlock=" + totalBlock + ", listSize=" + listSize + ", pageStart=" + pageStart + ", pageEnd="
+				+ pageEnd + "]";
 	}
+
+
 
 }
