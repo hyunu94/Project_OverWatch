@@ -29,8 +29,7 @@ public class BoardController {
 	// 게시글 목록 보기
 	@RequestMapping(value = "/list") // session 유지 ,
 	public ModelAndView list(@RequestParam Map<String, Object> map, HttpSession session) {
-		String uId = (String) session.getAttribute("uId");
-		map.put("uId", uId);
+		String sessionuId = (String) session.getAttribute("uId");
 		/////////////////////// 페이징 관련 속성 값 시작///////////////////////////
 		// 페이징(Paging) = 페이지 나누기를 의미함
 		int totalRecord = 0; // 전체 데이터 수(DB에 저장된 row 개수)
@@ -61,10 +60,11 @@ public class BoardController {
 		String keyWord = ""; // DB의 검색어
 		List<Map<String, Object>> list = null;
 
-		if (map.get("nowPage") != null) {
-			nowPage = Integer.parseInt((String) map.get("nowPage"));
-			start = (nowPage * numPerPage) - numPerPage; // 2 페이지라면 start 5
-			end = numPerPage; // 2 페이지라고 하더라도 end 5
+		String nowPage2 = (String)map.get("nowPage");
+		if(nowPage2 != null ) {
+			nowPage = Integer.parseInt(nowPage2);
+			start = (nowPage * numPerPage ) - numPerPage;
+			end = numPerPage;
 		}
 
 		map.put("start", start);
@@ -107,14 +107,9 @@ public class BoardController {
 		System.out.println(list.toString());
 		System.out.println(map.toString());
 		System.out.println(pageVo.toString());
-
-		for (int i = 0; i < list.size(); i++) {
-			Map<String, Object> um = list.get(i);
-			System.out.println(um.toString());
-		}
 	
-
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("sessionuId" , sessionuId);
 		mav.addObject("pageVo", pageVo);
 		mav.addObject("list", list);
 		mav.addObject("map", map);

@@ -173,33 +173,33 @@
 
 							<td colspan="5" id="pagingTd">
 									 <c:choose>
-									<c:when test="${pageVO.totalPage != 0 }">
+									<c:when test="${pageVo.totalPage != 0 }">
 										<c:choose> 
-											<c:when test="${pageVO.nowBlock > 1 }">
+											<c:when test="${pageVo.nowBlock > 1 }">
 												<span class="moveBlockArea"
-													onclick="moveBlock('${pageVO.nowBlock-1}', '${pageVO.pagePerBlock}', 'pb')">&lt; 
+													onclick="moveBlock('${pageVo.nowBlock-1}', '${pageVo.pagePerBlock}', 'pb')">&lt; 
 												</span>
 											</c:when>
 											<c:otherwise>
 												<span class="moveBlockArea"></span>
 											</c:otherwise>
 										</c:choose> 
-										<c:forEach begin="${pageVO.pageStart }" end="${pageVO.pageEnd }">
+										<c:forEach var="count" varStatus="status" begin="${pageVo.pageStart }" end="${pageVo.pageEnd }">
 											<c:choose>
-												<c:when test="${pageVO.pageStart == pageVO.nowPage}">
-													<span class="nowPageNum">${pageVO.pageStart} </span>
+												<c:when test="${status.count == pageVo.nowPage}">
+													<span class="nowPageNum">${status.count} </span>
 												</c:when>
 												<c:otherwise>
 													<span class="pageNum"
-														onclick="movePage('${pageVO.pageStart}')">
-														${pageVO.pageStart} 
+														onclick="movePage('${status.count+pageVo.pageStart-1}')">
+														${status.count+pageVo.pageStart-1}
 													</span>
 												</c:otherwise>
 											</c:choose>
 										</c:forEach>
 										<c:choose>
-											<c:when test="${pageVO.totalBlock > pageVO.nowBlock }">
-												<span class="moveBlockArea" onclick="moveBlock('${pageVO.nowBlock+1}', '${pageVO.pagePerBlock}', 'nb')">
+											<c:when test="${pageVo.totalBlock > pageVo.nowBlock }">
+												<span class="moveBlockArea" onclick="moveBlock('${pageVo.nowBlock+1}', '${pageVO.pagePerBlock}', 'nb')">
 												&gt; 
 												</span>
 											</c:when>
