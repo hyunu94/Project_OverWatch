@@ -143,13 +143,24 @@ public class BoardController {
 	// 글 쓰기 처리
 	@RequestMapping(value = "/bbsWrite", method = RequestMethod.POST)
 	public ModelAndView bbsWrite_post(@RequestParam Map<String, Object> map, HttpSession session) {
-
+		
+		//write.jsp 에서 uId 넘어와서 없애도 될듯?
 		String uId = (String) session.getAttribute("uId");
 		map.put("uId", uId);
 		
-		System.out.println("/bbsWrite map : " + map.toString());
-		int ref = 1;
+		System.out.println("/bbsWrite map : " + map.toString()); 
+		//{uName=오오오, uId=ohoh, subject=asdf, content=adsf, fileName=sql.txt, contentType=TEXT, ip=127.0.0.1 }
 
+		Map<String, Object> maxMap =  boardService.select_maxNum();
+		
+		
+		System.out.println(maxMap.toString());
+		int ref = 1;
+		int maxNum = Integer.parseInt(maxMap.get("max(num)").toString()) ;
+		if(maxNum > 0) {
+			ref = maxNum +1;
+		}
+		System.out.println("ref = " + ref);
 		/*
 		 * Map<String, Object> maxMap = boardService.select_maxNum();
 		 * System.out.println(maxMap.toString()); if(!maxMap.isEmpty()) { int num =

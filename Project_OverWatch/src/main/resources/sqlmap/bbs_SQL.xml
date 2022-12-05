@@ -11,7 +11,7 @@
 
 	<select id="select_All" parameterType="hashMap" resultType="hashMap">
 		<![CDATA[
-				 select * from tblBoard order by num desc, ref desc, pos asc limit  #{start}, #{end};
+				 select * from tblBoard order by ref desc, pos asc limit  #{start}, #{end};
 		 ]]>
 	</select> 
 	
