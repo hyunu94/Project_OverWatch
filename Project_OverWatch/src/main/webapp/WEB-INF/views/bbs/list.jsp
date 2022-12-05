@@ -94,12 +94,13 @@
 									<c:choose>
 											<c:when test="${list.depth >0 }">
 												<c:forEach begin="0" end="${list.depth-1 }">
-														<c:out value="&nbsp;&nbsp;"/>
+														&nbsp;&nbsp;
 												</c:forEach>
-														<c:out value="<img src='/resources/images/replyImg.png' alt='reply'>&nbsp;"/>
+														<img src='/resources/images/replyImg.png' alt='reply'>&nbsp;
+														${list.subject }
 											</c:when>
 											<c:otherwise>
-														<c:out value="${list.subject }"/>
+														${list.subject }
 											</c:otherwise>																				
 									</c:choose>
 									
@@ -118,7 +119,7 @@
 					<tr id="listBtnArea">
 						<td colspan="2">
 							<c:choose>
-								<c:when test="${empty map.uId }">
+								<c:when test="${empty sessionuId }">
 									<button type="button" id="loginAlertBtn" class="listBtnStyle">글쓰기</button>
 								</c:when>
 								<c:otherwise>

@@ -11,7 +11,7 @@
 
 	<select id="select_All" parameterType="hashMap" resultType="hashMap">
 		<![CDATA[
-				 select * from tblBoard order by ref desc, num desc, pos asc limit  #{start}, #{end};
+				 select * from tblBoard order by num desc, ref desc, pos asc limit  #{start}, #{end};
 		 ]]>
 	</select> 
 	
@@ -69,8 +69,15 @@
 	<insert id="replyBoard" parameterType="hashMap" useGeneratedKeys="true" keyProperty="num">
 		<![CDATA[
 			insert into tblBoard (uId, uName, content, subject, ref, pos, depth, regTM, readCnt, ip) 
-			values (#{uId}, #{uName}, #{content}, #{subject}, #{ref}, #{pos}, #{depth}, now(), 0, #{ip})
+			values (#{uId}, #{uName}, #{content}, #{subject}, #{ref}, #{pos} +1  , #{depth} +1 , now(), 0, #{ip})
 		 ]]>
 	</insert>
+	
+	<!-- 조회수 -->
+	<update id="upCount" parameterType="hashMap">
+		<![CDATA[
+			update tblBoard set readCnt = readCnt + 1  where num = #{num}
+		 ]]>
+	</update>
 	
 </mapper>

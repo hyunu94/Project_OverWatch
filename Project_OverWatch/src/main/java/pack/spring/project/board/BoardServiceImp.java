@@ -67,5 +67,10 @@ public class BoardServiceImp implements BoardService{
 		return this.boardDAO.replyBoard(map);
 	}
 
+	@Override
+	public int upCount(Map<String, Object> map) {
+		return this.boardDAO.upCount(map);
+	}
+
 
 }

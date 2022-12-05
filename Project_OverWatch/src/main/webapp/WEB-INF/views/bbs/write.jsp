@@ -67,7 +67,7 @@
 								<td>파일첨부</td>
 								<td>
 									<span class="spanFile">
-										<input type="text" name="fileName" id="fileName">
+										<input type="file" name="fileName" id="fileName">
 									</span>	
 								</td>
 							</tr>
@@ -75,11 +75,11 @@
 								<td>내용타입</td>
 								<td>
 									<label>
-										<input type="text" name="contentType" value="HTML">									
+										<input type="radio" name="contentType" value="HTML">									
 										<span>HTML</span>	
 									</label>
 									<label>
-										<input type="text" name="contentType" value="TEXT" checked>
+										<input type="radio" name="contentType" value="TEXT" checked>
 										<span>TEXT</span>
 									</label>
 								</td>

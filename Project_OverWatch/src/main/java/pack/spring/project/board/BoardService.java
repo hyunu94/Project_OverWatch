@@ -26,4 +26,6 @@ public interface BoardService {
 	int replyUpBoard(Map<String, Object> map);
 	
 	int replyBoard(Map<String, Object> map);
+	
+	int upCount(Map<String, Object> map);
 }

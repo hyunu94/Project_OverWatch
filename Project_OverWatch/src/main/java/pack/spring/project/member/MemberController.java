@@ -65,12 +65,16 @@ public class MemberController {
 
 		String[] hobbyName = {"인터넷", "여행", "게임", "영화", "운동"};
 		char[] hobbyCode = {'0', '0', '0', '0', '0'};
-		for (int i=0;i<hobby.length; i++) { 
-			for(int j=0; j<hobbyName.length; j++) { 
-				if (hobby[i].equals(hobbyName[j])) {
-					hobbyCode[j] = '1'; } 
-			} 
+		
+		if(hobby != null) {
+			for (int i=0;i<hobby.length; i++) { 
+				for(int j=0; j<hobbyName.length; j++) { 
+					if (hobby[i].equals(hobbyName[j])) {
+						hobbyCode[j] = '1'; } 
+				} 
+			}
 		}
+			
 
 		String hobbyNum = new String(hobbyCode);
 		map.put("uHobby", hobbyNum);
@@ -217,12 +221,19 @@ public class MemberController {
 
 		String[] hobbyName = {"인터넷", "여행", "게임", "영화", "운동"};
 		char[] hobbyCode = {'0', '0', '0', '0', '0'};
-		for (int i=0;i<hobby.length; i++) { 
-			for(int j=0; j<hobbyName.length; j++) { 
-				if (hobby[i].equals(hobbyName[j])) {
-					hobbyCode[j] = '1'; } 
-			} 
+		
+		
+		
+		if(hobby != null ) {
+			for (int i=0;i<hobby.length; i++) { 
+				for(int j=0; j<hobbyName.length; j++) { 
+					if (hobby[i].equals(hobbyName[j])) {
+						hobbyCode[j] = '1'; } 
+				} 
+			}
+			
 		}
+		
 
 		String hobbyNum = new String(hobbyCode);
 		map.put("uHobby", hobbyNum);

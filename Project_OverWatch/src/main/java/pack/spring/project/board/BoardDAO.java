@@ -67,4 +67,9 @@ public class BoardDAO {
 	public int replyBoard(Map<String, Object> map){
 		return this.sqlSessionTemplate.insert("tblBoard.replyBoard",map);
 	}
+	
+	//조회수
+	public int upCount(Map<String, Object> map) {
+		return this.sqlSessionTemplate.update("tblBoard.upCount", map);
+	}
 }

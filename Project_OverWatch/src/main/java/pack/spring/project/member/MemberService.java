@@ -24,4 +24,6 @@ public interface MemberService {
 	
 	//회원 탈퇴
 	int delete_uId(String uId);
+	
+	
 }

@@ -19,7 +19,8 @@ import pack.spring.project.member.MemberService;
 
 @Controller
 public class BoardController {
-	private static final String SAVEFOLER = "C:/Users/User/git/Project_OverWatch/Project_OverWatch/src/main/webapp/resources/fileUpload";
+	private static final String SAVEFOLER = "C:/Users/EZEN202/git/Project_OverWatch/Project_OverWatch/src/main/webapp/resources/fileUpload";
+//	private static final String SAVEFOLER = "C:/Users/User/git/Project_OverWatch/Project_OverWatch/src/main/webapp/resources/fileUpload";
 	private static String encType = "UTF-8";
 	private static int maxSize = 5 * 1024 * 1024;
 
@@ -145,7 +146,8 @@ public class BoardController {
 
 		String uId = (String) session.getAttribute("uId");
 		map.put("uId", uId);
-
+		
+		System.out.println("/bbsWrite map : " + map.toString());
 		int ref = 1;
 
 		/*
@@ -176,10 +178,16 @@ public class BoardController {
 	@RequestMapping(value = "/read", method = RequestMethod.GET)
 	public ModelAndView read(@RequestParam Map<String, Object> map, HttpSession session) {
 		String sessionuId = (String) session.getAttribute("uId");
-
+		
+		//조회수 증가
+		boardService.upCount(map);
+		
 		Map<String, Object> userMap = boardService.selectByNum(map);
 		userMap.put("sessionuId", sessionuId);
-
+		
+		System.out.println("/read 유저 맵 : "+userMap.toString());
+		System.out.println("/read  맵 : "+map.toString());
+		
 		int fileSize = 0;
 		String mapFileSize = (String) map.get("fileSize");
 
