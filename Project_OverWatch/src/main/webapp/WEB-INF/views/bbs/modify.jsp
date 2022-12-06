@@ -98,12 +98,12 @@ String content = bean.getContent();
 						</tfoot>
 						 
 					</table>
-					<input type="text" name="nowPage" value="${map.nowPage }" id="nowPage">
-					<input type="text" name="num" value="${data.num }" id="num">
+					<input type="hidden" name="nowPage" value="${map.nowPage }" id="nowPage">
+					<input type="hidden" name="num" value="${data.num }" id="num">
 					
 					<!-- 검색어전송 시작 -->
-					<input type="text" name="keyField" id="keyField" value="${map.keyField }">
-					<input type="text" name="keyWord" id="keyWord" value="${map.keyWord }">
+					<input type="hidden" name="keyField" id="keyField" value="${map.keyField }">
+					<input type="hidden" name="keyWord" id="keyWord" value="${map.keyWord }">
 					<!-- 검색어전송 끝 -->
 			
 				</form>

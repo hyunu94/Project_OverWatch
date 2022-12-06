@@ -103,6 +103,7 @@ $(function(){
 		let uId = $("#uId").val().trim();    // <input id="uId">의 값 반환
 		//alert("uId.length : " + uId.length);
 		$("#uId").val(uId);
+		$("#checkuId").val(uId);
 		
 		// 정규표현식 시작
 		let regExp = /[^a-z|A-Z|0-9]/g;
@@ -294,9 +295,14 @@ $(function(){
 		let uEmail_02 = $("#uEmail_02").val().trim();
 		$("#uEmail").val(uEmail_01+"@"+uEmail_02);
 		let uBirthday = $("#uBirthday").val().trim();
+		let checkuId = $("#checkuId").val().trim();
 		
 		if (uId == "") {
 			alert("아이디를 입력해주세요.");
+			$("#uId").focus();
+			return;
+		}else if(uId != checkuId ){ 
+			alert("아이디 중복체크를 해주세요.");
 			$("#uId").focus();
 			return;
 		} else if (uPw == "") {
