@@ -137,19 +137,19 @@
 									<select name="keyField" id="keyField">
 										<option value="subject" 
 											<c:if test="${map.keyField == 'subject' }"> 
-											select="selected" 
+											selected="selected" 
 											</c:if>>제  목
 										</option>
 											
 										<option value="uName"
 											<c:if test="${map.keyField == 'uName' }"> 
-											select="selected" 
+											selected="selected" 
 											</c:if>>이 름
 										</option>
 										
 										<option value="content" 
 											<c:if test="${map.keyField == 'content' }"> 
-											select="selected" 
+											selected="selected" 
 											</c:if>>내  용
 										</option>
 									</select>

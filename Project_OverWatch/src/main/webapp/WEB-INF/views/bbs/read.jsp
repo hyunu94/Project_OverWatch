@@ -59,7 +59,7 @@
 								</c:when>
 								<c:otherwise>
 									<span id="downloadFile">${data.fileName }</span>							
-									(<span>${data.fileSize } + " " + ${data.fUnit }</span>)
+									(<span>${data.fileSize } ${fUnit }</span>)
 								</c:otherwise>
 							</c:choose>
 							

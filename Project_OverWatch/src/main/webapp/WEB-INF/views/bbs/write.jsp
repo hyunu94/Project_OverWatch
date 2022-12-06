@@ -38,7 +38,7 @@
 				<h2>글쓰기</h2>
 				
 				<form name="writeFrm" 
-						  method="post" id="writeFrm">
+						  method="post" id="writeFrm" enctype="multipart/form-data">
 				
 					<table>
 						<tbody>
@@ -98,7 +98,7 @@
 							</tr>
 						</tfoot>
 					</table>
-					<input type="hidden" name="ip" value="${data.ip } ">
+					<input type="text" name="ip" value="${data.ip } ">
 				    <!--  
 				    IP주소를 IPv4 형식으로 설정함.(IPv6 형식이 기본으로 설정되어 있음)
 				    프로젝트 => Run Configuration => Tomcat 클릭

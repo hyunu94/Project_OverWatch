@@ -60,12 +60,14 @@
 		 ]]>
 	</delete>
 	
+	<!-- 끼어들기 -->
 	<update id="replyUpBoard" parameterType="hashMap">
 		<![CDATA[
 			update tblBoard set pos = pos + 1 where ref = #{ref} and pos > #{pos}
 		 ]]>
 	</update>
 	
+	<!-- 답변 등록 -->
 	<insert id="replyBoard" parameterType="hashMap" useGeneratedKeys="true" keyProperty="num">
 		<![CDATA[
 			insert into tblBoard (uId, uName, content, subject, ref, pos, depth, regTM, readCnt, ip) 

@@ -1,18 +1,29 @@
 package pack.spring.project.board;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import pack.spring.project.common.PageVO;
 import pack.spring.project.member.MemberService;
@@ -23,7 +34,9 @@ public class BoardController {
 //	private static final String SAVEFOLER = "C:/Users/User/git/Project_OverWatch/Project_OverWatch/src/main/webapp/resources/fileUpload";
 	private static String encType = "UTF-8";
 	private static int maxSize = 5 * 1024 * 1024;
-
+	
+	
+	
 	@Autowired
 	BoardService boardService;
 
@@ -142,14 +155,16 @@ public class BoardController {
 
 	// 글 쓰기 처리
 	@RequestMapping(value = "/bbsWrite", method = RequestMethod.POST)
-	public ModelAndView bbsWrite_post(@RequestParam Map<String, Object> map, HttpSession session) {
+	public ModelAndView bbsWrite_post(@RequestParam Map<String, Object> map, HttpSession session, HttpServletRequest request) throws IOException {
 		
-		//write.jsp 에서 uId 넘어와서 없애도 될듯?
-		String uId = (String) session.getAttribute("uId");
-		map.put("uId", uId);
+//		System.out.println("request : "+request.getParameterNames());
+//		String ip = (String)request.getParameter("ip");
+		MultipartRequest multi = null;
+		int fileSize = 0;
+		String fileName =null;
 		
 		System.out.println("/bbsWrite map : " + map.toString()); 
-		//{uName=오오오, uId=ohoh, subject=asdf, content=adsf, fileName=sql.txt, contentType=TEXT, ip=127.0.0.1 }
+		// 사용자 입력 값은 request 가 다 받아서 현재 map에는 아무것도 없음
 
 		Map<String, Object> maxMap =  boardService.select_maxNum();
 		
@@ -161,14 +176,50 @@ public class BoardController {
 			ref = maxNum +1;
 		}
 		System.out.println("ref = " + ref);
+		
+		File file = new File(SAVEFOLER);
+		
+		System.out.println("/bbsWrite file : "+file.toString());
+		
+		if(!file.exists()) {
+			file.mkdir();
+		}
+		
+			multi = new MultipartRequest(request, SAVEFOLER, maxSize, encType, new DefaultFileRenamePolicy());
+			
+			if (multi.getFilesystemName("fileName") != null) {
+				fileName = multi.getFilesystemName("fileName");
+				fileSize = (int) multi.getFile("fileName").length();
+			}
+			
+			String uId = multi.getParameter("uId");
+			String uName = multi.getParameter("uName");
+			String subject= multi.getParameter("subject");
+			String content = multi.getParameter("content");
+			String ip = multi.getParameter("ip");
+			
+			if (multi.getParameter("contentType").equalsIgnoreCase("TEXT")) {
+				content = UtilMgr.replace(content, "<", "&lt;");
+			}
+			
+			map.put("uId", uId);
+			map.put("uName", uName);
+			map.put("subject", subject);
+			map.put("content", content);
+			map.put("fileName", fileName);
+			map.put("fileSize", fileSize);
+			map.put("ref", ref);
+			map.put("ip", ip);
+			
+			
+		
 		/*
 		 * Map<String, Object> maxMap = boardService.select_maxNum();
 		 * System.out.println(maxMap.toString()); if(!maxMap.isEmpty()) { int num =
 		 * (int) maxMap.get("num"); ref = num +1; }
 		 */
 
-		map.put("ref", ref);
-
+		System.out.println("인서트 전 map : "+map.toString());
 		int bbsNum = boardService.insert_bbs(map);
 		System.out.println(bbsNum);
 
@@ -193,11 +244,11 @@ public class BoardController {
 		//조회수 증가
 		boardService.upCount(map);
 		
+		System.out.println("/read  맵 : "+map.toString());
 		Map<String, Object> userMap = boardService.selectByNum(map);
 		userMap.put("sessionuId", sessionuId);
 		
 		System.out.println("/read 유저 맵 : "+userMap.toString());
-		System.out.println("/read  맵 : "+map.toString());
 		
 		int fileSize = 0;
 		String mapFileSize = (String) map.get("fileSize");
@@ -213,9 +264,9 @@ public class BoardController {
 			fileSize /= 1024;
 			fUnit = "KBytes";
 		}
-		map.put("fUnit", fUnit);
 
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("fUnit", fUnit);
 		mav.addObject("map", map);
 		mav.addObject("data", userMap);
 		mav.setViewName("/bbs/read");
@@ -243,26 +294,33 @@ public class BoardController {
 
 	@RequestMapping(value = "/modifyProc", method = RequestMethod.GET)
 	public ModelAndView modifyProc(@RequestParam Map<String, Object> map) {
-
-		int board_num = boardService.update_bbs(map);
-
-		ModelAndView mav = new ModelAndView();
-
-		if (board_num > 0) {
-			Map<String, Object> userMap = boardService.selectByNum(map);
-
-			mav.addObject("data", userMap);
-			mav.addObject("map", map);
-			mav.setViewName("/bbs/read");
-		} else {
-			Map<String, Object> userMap = boardService.selectByNum(map);
-
-			mav.addObject("data", userMap);
-			mav.addObject("map", map);
-			mav.setViewName("/bbs/modify");
+		
+		System.out.println("/modifyProc = map : "+map.toString());
+		int num = Integer.parseInt(map.get("num").toString());
+		
+		String nowPage = map.get("nowPage").toString();
+		String keyField = map.get("keyField").toString();
+		String keyWord = map.get("keyWord").toString();
+		
+		try {
+			keyWord = URLEncoder.encode(keyWord, "utf-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
 		}
+		int board_num = boardService.update_bbs(map);
+		System.out.println("board_num : "+board_num);
+		ModelAndView mav = new ModelAndView();
+		if (board_num > 0) {
+			System.out.println("수정 성공");
+			System.out.println(map.get("num").toString());
+			
+			mav.setViewName("redirect:/read?num="+num+"&nowPage="+nowPage+"&keyField="+keyField+"&keyWord="+keyWord);
+		} else {
+			System.out.println(map.get("num").toString());
+			System.out.println("수정 실패");
 
-		System.out.println("board_num = " + board_num);
+			mav.setViewName("redirect:/modify?num="+num+"&nowPage="+nowPage+"&keyField="+keyField+"&keyWord="+keyWord);
+		}
 
 		return mav;
 	}
@@ -316,7 +374,13 @@ public class BoardController {
 			repUpCnt = boardService.replyUpBoard(map);
 		}
 		; // 끼어들기
-
+		
+		int cnt  = boardService.replyUpBoard(map);
+		
+		if(cnt>0) {
+			repUpCnt = cnt;
+		}
+		
 		int repInsCnt = boardService.replyBoard(map); // 실제 답변글 insert
 
 		map.put("repUpCnt", repUpCnt);
@@ -339,5 +403,32 @@ public class BoardController {
 		return mav;
 
 	}
+	
+	//파일 다운로드 시작
+	@RequestMapping(value = "/download", method = RequestMethod.GET)
+	public ModelAndView download(@RequestParam Map<String, Object> map, HttpServletResponse response) throws IOException {
+		System.out.println("/dowmload 매핑 ="+map.toString());
+		String fileName =(String) map.get("fileName");
+		
+		File file = new File(SAVEFOLER, fileName);
+		
+		response.setContentType("application/octet-stream");
+		response.setHeader("Content-disposition", "attachment;filename="
+				+fileName);
+		
+		OutputStream os =  response.getOutputStream();
+		FileInputStream fis = null;
+		
+		fis = new FileInputStream(file);
+		FileCopyUtils.copy(fis, os);
+		
+		if(fis!=null) {
+			fis.close();
+		}
+		
+		return new ModelAndView("");
+	}
+	
+	//파일 다운로드 끝
 
 }

@@ -3,6 +3,18 @@
  */
 $(function(){
 	
+	/* 파일 다운로드 */
+	$('#downloadFile').click(function(){
+		
+		let p1 = $("#num").val(); 
+		let p2 = $("#hiddenFname").val();
+		
+		param = "/download?num="+p1;
+		param += "&fileName="+p2;
+	
+		location.href=param;
+	});
+	
 	
 	/* 리스트 페이지 글쓰기 버튼 시작 /bbs/list.jsp */	
 	$("#loginAlertBtn").click(function(){		
@@ -226,4 +238,7 @@ function moveBlock(p1, p2, param3) {
 	location.href=param;
 }
 /* 리스트페이지 페이징 블럭이동 끝 /bbs/list.jsp */
+
+
+
 
