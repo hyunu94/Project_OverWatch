@@ -54,7 +54,7 @@ String uId = request.getParameter("uId");
     	<div id="closeBtnArea">
     		<button type="button">${idData.btnCap }</button>
     	</div>
-    	
+    	<input type="hidden" id="yn" value="${idData.yn }">
     	        
     </div>
     <!-- div#wrap -->

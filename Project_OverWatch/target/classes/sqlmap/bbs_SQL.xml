@@ -54,11 +54,11 @@
 		 ]]>
 	</update>
 	
-	<delete id="delete_bbs" parameterType="hashMap">
+	<update id="delete_bbs" parameterType="hashMap">
 		<![CDATA[
-			delete from tblBoard where num=${num}
+			update , delCheck = 'Y' from tblBoard where num=${num} and delCheck= 'N'
 		 ]]>
-	</delete>
+	</update>
 	
 	<!-- 끼어들기 -->
 	<update id="replyUpBoard" parameterType="hashMap">
@@ -81,5 +81,6 @@
 			update tblBoard set readCnt = readCnt + 1  where num = #{num}
 		 ]]>
 	</update>
+	
 	
 </mapper>

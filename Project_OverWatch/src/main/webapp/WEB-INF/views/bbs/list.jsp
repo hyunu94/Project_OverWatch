@@ -106,7 +106,7 @@
 									
 									</td>
 									<td>${list.uName }</td>
-									<td>${list.regTM}</td>
+									<td>${map.regTM}</td>
 									<td>${list.readCnt }</td>
 								</tr>
 						</c:otherwise>

@@ -37,6 +37,7 @@
     							<td>
     								<input type="text" name="uId" id="uId" maxlength="20" autofocus>
     								<input type="hidden" name="checkuId" id="checkuId" maxlength="20">
+    								<input type="hidden" name="yn" id="yn" maxlength="20">
     								<button type="button" id="idChkBtn" class="frmBtn">ID중복확인</button>    								
     							</td>
     							<td>

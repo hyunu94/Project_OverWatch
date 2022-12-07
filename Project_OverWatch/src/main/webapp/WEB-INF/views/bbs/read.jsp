@@ -104,6 +104,7 @@
 									<c:if test="${data.sessionuId.equals(data.uId) }">
 										<button type="button" id="delBtn">삭 제</button>
 										<button type="button" id="modBtn">수 정</button>
+										<input type="text" id="sessionuId" value="${data.sessionuId }"/>
 									</c:if>
 								</c:if>
 								

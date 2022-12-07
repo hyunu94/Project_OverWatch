@@ -158,7 +158,10 @@ $(function(){
 	// 아이디 중복체크 팝업창 닫기
 	$("div#closeBtnArea>button").click(function(){
 		window.close();
-		opener.regFrm.uId.focus();    
+		opener.regFrm.uId.focus();
+		
+		$("#yn", opener.document).val($("#yn").val());
+		
 		// DOM으로 접근
 		// opener객체는 팝업창을 실행한 부모페이지를 지칭함.
 	});
@@ -296,13 +299,10 @@ $(function(){
 		$("#uEmail").val(uEmail_01+"@"+uEmail_02);
 		let uBirthday = $("#uBirthday").val().trim();
 		let checkuId = $("#checkuId").val().trim();
+		let yn = $("#yn").val().trim();
 		
 		if (uId == "") {
 			alert("아이디를 입력해주세요.");
-			$("#uId").focus();
-			return;
-		}else if(uId != checkuId ){ 
-			alert("아이디 중복체크를 해주세요.");
 			$("#uId").focus();
 			return;
 		} else if (uPw == "") {
@@ -336,20 +336,35 @@ $(function(){
 				let chkSbmTF = confirm("회원수정하시겠습니까?");
 				
 				if (chkSbmTF) {
+					if(uId != checkuId){
+						checkuId = uId;
+					}
+					
 					$("#regFrm").attr("action", "/memberMod");
 					$("#regFrm").submit();
 				}
 			}else{
 				let chkSbmTF = confirm("회원가입하시겠습니까?");
-			
+				
 				if (chkSbmTF) {
-					$("#regFrm").attr("action", "/member");
-					$("#regFrm").submit();
-				}
-			}
-		}
+					 if(uId != checkuId ){ 
+						alert("아이디 중복체크를 해주세요.");
+						$("#uId").focus();
+						return;
+					}else if(yn == 'N'){
+						alert("이미 가입된 아이디입니다.");
+						$("#uId").focus();
+						return;
+					}else{
+						$("#regFrm").attr("action", "/member");
+						$("#regFrm").submit();
+					}
+				}//if	
+			}//else
+			
+		}//else
 		 
-	}
+	}//function
     
 	
 	

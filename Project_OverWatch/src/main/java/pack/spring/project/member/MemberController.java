@@ -109,11 +109,14 @@ public class MemberController {
 
 		String msg = " 는 사용가능합니다." ;
 		String btnCap = "사용하기";
+		String yn="Y";
 		if(cnt > 0) {
 			msg = "는 존재하는 ID 입니다.";
 			btnCap = "ID 재입력";
+			yn="N";
 		}
-
+		
+		map.put("yn", yn);
 		map.put("msg", msg);
 		map.put("btnCap", btnCap);
 
@@ -199,11 +202,54 @@ public class MemberController {
 		String uEmail_01 = emailArr[0];
 		String uEmail_02 = emailArr[1];
 		
+		String hobby = userMap.get("uHobby").toString(); //10010
+		System.out.println("uHobby : "+userMap.get("uHobby"));
+		String hobby_1 = "";
+		String hobby_2 = "";
+		String hobby_3 = "";
+		String hobby_4 = "";
+		String hobby_5 = "";
+		char[] hobbyArr = new char[5];
+		if(hobby != null ) {
+			for (int i=0;i<hobby.length(); i++) { 
+					hobbyArr[i] = hobby.charAt(i);
+					System.out.println(hobbyArr[i]);
+			}
+		}
+		
+		
+		ModelAndView mav = new ModelAndView();
+		
+		if(hobbyArr[0] == '1') {
+			hobby_1 = "인터넷";
+			mav.addObject("hobby_1",hobby_1);
+		}
+		
+		if(hobbyArr[1] == '1') {
+			hobby_2 = "여행";
+			mav.addObject("hobby_2",hobby_2);
+		}
+		
+		if(hobbyArr[2] == '1') {
+			hobby_3 = "게임";
+			mav.addObject("hobby_3",hobby_3);
+		}
+		
+		if(hobbyArr[3] == '1') {
+			hobby_4 = "영화";
+			mav.addObject("hobby_4",hobby_4);
+		}
+		
+		if(hobbyArr[4] == '1') {
+			hobby_5 = "운동";
+			mav.addObject("hobby_5",hobby_5);
+		}
+		
 		userMap.put("uEmail_01", uEmail_01);
 		userMap.put("uEmail_02", uEmail_02);
 		
-		ModelAndView mav = new ModelAndView();
 		mav.addObject("userData", userMap);
+		mav.addObject("hobbyArr", hobbyArr);
 		mav.setViewName("/member/memberMod");
 
 		return mav;
@@ -221,8 +267,6 @@ public class MemberController {
 
 		String[] hobbyName = {"인터넷", "여행", "게임", "영화", "운동"};
 		char[] hobbyCode = {'0', '0', '0', '0', '0'};
-		
-		
 		
 		if(hobby != null ) {
 			for (int i=0;i<hobby.length; i++) { 
