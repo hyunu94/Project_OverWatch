@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%-- <%
 String uId_Session = (String)session.getAttribute("uId_Session"); 
 %>    
@@ -117,10 +117,14 @@ MemberBean mBean = mMgr.modifyMember(uId_Session);
     							<td>성별</td>
     							<td>
     								<label>
-    									남 <input type="radio" name="gender" value="1">
+    									남 <input type="radio" name="gender" value="1"
+    									<c:if test="${userData.gender == 1}"> checked </c:if>
+    									>
     								</label>
     								<label>
-    									여 <input type="radio" name="gender" value="2">
+    									여 <input type="radio" name="gender" value="2"
+    									<c:if test="${userData.gender == 2}"> checked </c:if>
+    									>
     								</label>
     							</td>
     							<td>&nbsp;</td>
@@ -138,7 +142,7 @@ MemberBean mBean = mMgr.modifyMember(uId_Session);
     							<td>우편번호</td>
     							<td>    								
     								<input type="text" name="uZipcode" id="uZipcode"
-    								maxlength="7" size="7" readonly>
+    								maxlength="7" size="7" value="${userData.uZipcode }" readonly>
     								<button type="button" id="findZipBtn" class="frmBtn">우편번호찾기</button>
     							</td>
     							<td>
@@ -149,7 +153,7 @@ MemberBean mBean = mMgr.modifyMember(uId_Session);
     							<td>주소</td>
     							<td>    								
     								<input type="text" name="uAddr" id="uAddr"
-    								maxlength="100" size="50">
+    								maxlength="100" size="50" value="${userData.uAddr }">
     							</td>
     							<td>&nbsp;</td>
     						</tr>
@@ -157,19 +161,29 @@ MemberBean mBean = mMgr.modifyMember(uId_Session);
     							<td>취미</td>
     							<td>    							
     								<label> 인터넷
-    									 <input type="checkbox" name="uHobby" value="인터넷">
+    									 <input type="checkbox" name="uHobby" value="인터넷" 
+    									 <c:if test="${hobby_1 == '인터넷'}"> checked </c:if>
+    									 >
     								</label>						
     								<label> 여행
-    									 <input type="checkbox" name="uHobby" value="여행">
+    									 <input type="checkbox" name="uHobby" value="여행"
+    									 <c:if test="${hobby_2 == '여행'}"> checked </c:if>
+    									 >
     								</label>						
     								<label> 게임
-    									 <input type="checkbox" name="uHobby" value="게임">
+    									 <input type="checkbox" name="uHobby" value="게임"
+    									 <c:if test="${hobby_3 == '게임'}"> checked </c:if>
+    									 >
     								</label>						
     								<label> 영화
-    									 <input type="checkbox" name="uHobby" value="영화">
+    									 <input type="checkbox" name="uHobby" value="영화"
+    									 <c:if test="${hobby_4 == '영화'}"> checked </c:if>
+    									 >
     								</label>						
     								<label> 운동
-    									 <input type="checkbox" name="uHobby" value="운동">
+    									 <input type="checkbox" name="uHobby" value="운동"
+    									 <c:if test="${hobby_5 == '운동'}"> checked </c:if>
+    									 >
     								</label>
     							</td>
     							<td></td>
@@ -179,14 +193,30 @@ MemberBean mBean = mMgr.modifyMember(uId_Session);
     							<td>    								
     								<select name="uJob" id="uJob" class="frmDropMenu">
     									<option value=""> - 선택 - </option>
-    									<option>교수</option>
-    									<option>학생</option>
-    									<option>회사원</option>
-    									<option>공무원</option>
-    									<option>자영업</option>
-    									<option>전문직</option>
-    									<option>주부</option>
-    									<option>무직</option>
+    									<option
+    									 <c:if test="${userData.uJob == '교수'}">selected</c:if> 
+    									>교수</option>
+    									<option 
+    									 <c:if test="${userData.uJob == '학생'}">selected</c:if>
+    									>학생</option>
+    									<option
+    									 <c:if test="${userData.uJob == '회사원'}">selected</c:if>
+    									>회사원</option>
+    									<option
+    									 <c:if test="${userData.uJob == '공무원'}">selected</c:if>
+    									>공무원</option>
+    									<option
+    									 <c:if test="${userData.uJob == '자영업'}">selected</c:if>
+    									>자영업</option>
+    									<option
+    									 <c:if test="${userData.uJob == '전문직'}">selected</c:if>
+    									>전문직</option>
+    									<option
+    									 <c:if test="${userData.uJob == '주부'}">selected</c:if>
+    									>주부</option>
+    									<option
+    									 <c:if test="${userData.uJob == '무직'}">selected="selected"</c:if>
+    									>무직</option>
     								</select>
     							</td>
     							<td></td>
@@ -201,6 +231,9 @@ MemberBean mBean = mMgr.modifyMember(uId_Session);
     					</tbody>
     				</table>
     					<input type="hidden" id="memEdit" value="수정">
+    					<input type="hidden" id="checkuId" value="${userData.uId }">
+    					<input type="hidden" id="yn" value="Y">
+    					
     			</form>
     			<!-- form[name=regFrm] -->
     			

@@ -99,6 +99,13 @@ public class BoardController {
 			totalRecord = boardService.select_countAll(map);
 		}
 
+		for (int i = 0; i < list.size(); i++) {
+			Map<String, Object> userMap = list.get(i);
+			String regTM = userMap.get("regTM").toString();
+			regTM = regTM.substring(0,10)+" "+regTM.substring(11);
+			map.put("regTM", regTM);
+		}
+		
 		/*
 		 * select * from tblBoard order by num desc limit 10, 10; 데이터가 100개 => num : 100
 		 * 99 98 97 ... 91 | 90 .... 2 1 start, end : 0 1 2 3.... 9 10 페이지당 출력할 데이터 수
@@ -118,10 +125,10 @@ public class BoardController {
 
 		PageVO pageVo = new PageVO(totalRecord, nowPage, totalPage, numPerPage, nowBlock, pagePerBlock, totalBlock, listSize, pageStart, pageEnd);
 
-		System.out.println(list.toString());
-		System.out.println(map.toString());
-		System.out.println(pageVo.toString());
-	
+		System.out.println("list : " +list.toString());
+		System.out.println("map : "+map.toString());
+		System.out.println("pagaVo : "+pageVo.toString());
+		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("sessionuId" , sessionuId);
 		mav.addObject("pageVo", pageVo);
@@ -250,9 +257,13 @@ public class BoardController {
 		
 		System.out.println("/read 유저 맵 : "+userMap.toString());
 		
+		String regTM = userMap.get("regTM").toString();
+		regTM = regTM.substring(0,10)+" "+regTM.substring(11);
+		userMap.put("regTM", regTM);
+		
 		int fileSize = 0;
 		String mapFileSize = (String) map.get("fileSize");
-
+		
 		if (mapFileSize != null) {
 			fileSize = Integer.parseInt(mapFileSize);
 		}
@@ -346,6 +357,8 @@ public class BoardController {
 
 	@RequestMapping(value = "/reply", method = RequestMethod.GET)
 	public ModelAndView reply(@RequestParam Map<String, Object> map, HttpSession session) {
+		
+		System.out.println("/reply - map :"+map.toString());
 		String uId = (String) session.getAttribute("uId"); // 로그인 사용자 아이디
 		map.put("uId", uId);
 
@@ -359,6 +372,7 @@ public class BoardController {
 		System.out.println("reply new map = " + newMap.toString());
 
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("map",map);
 		mav.addObject("data", newMap);
 		mav.setViewName("/bbs/reply");
 
@@ -367,9 +381,10 @@ public class BoardController {
 
 	@RequestMapping(value = "/replyProc", method = RequestMethod.GET)
 	public ModelAndView replyProc(@RequestParam Map<String, Object> map) {
-
+		
+		System.out.println("/replyProc - map :"+map.toString());
 		int repUpCnt = 0;
-
+		
 		if (boardService.replyUpBoard(map) != 0) {
 			repUpCnt = boardService.replyUpBoard(map);
 		}
@@ -386,7 +401,11 @@ public class BoardController {
 		map.put("repUpCnt", repUpCnt);
 		map.put("repInsCnt", repInsCnt);
 
-		String url = "/list";
+		String nowPage= map.get("nowPage").toString();
+		String keyField= map.get("keyField").toString();
+		String keyWord= map.get("keyWord").toString();
+		
+		String url = "/list?nowPage="+nowPage+"&keyField="+keyField+"&keyWord="+keyWord;
 		String msg = "";
 
 		msg = "답변글 등록중 오류가 발생했습니다.\n";
@@ -398,6 +417,7 @@ public class BoardController {
 		mav.addObject("url", url);
 		mav.addObject("msg", msg);
 		mav.addObject("data", map);
+		System.out.println();
 		mav.setViewName("/bbs/replyProc");
 
 		return mav;
