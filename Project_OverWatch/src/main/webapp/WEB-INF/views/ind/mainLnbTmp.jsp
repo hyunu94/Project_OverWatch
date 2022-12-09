@@ -24,17 +24,29 @@ if (request.getParameter("gnbParam") != null) {
 
 	<nav id="mainLNB">
 		<ul id="lnbMainMenu">
-		
-	<%-- 	<% if (uId_Session_MLTmp == null) { 	%> --%>
+			<!-- 
+			when1 : 게시판 클릭
+			when2 : 로그인 하지 않았을때
+			when3 : 마이페이지 클릭
+			when4 : 관리자 페이지 클릭
+			otherwise : 로그인 했을때 
+			-->
     			
     		<c:choose>
+    				<c:when test='${map.gnbParam.equals("bbs")}'>
+   					<li class="lnbMainLi"><a href="/">공지 게시판</a></li>
+					<li class="lnbMainLi"><a href="/list?gnbParam=bbs">자유 게시판</a></li>
+					<li class="lnbMainLi"><a href="#">menu3</a></li>
+					<li class="lnbMainLi"><a href="#">menu4</a></li>
+					<li class="lnbMainLi"><a href="#">menu5</a></li>
+    			</c:when>
+    			
     			<c:when test="${sessionScope.uId == null }">
 		    		<li class="lnbMainLi"><a href="#">menu1</a></li>
 					<li class="lnbMainLi"><a href="#">menu2</a></li>
 					<li class="lnbMainLi"><a href="#">menu3</a></li>
 					<li class="lnbMainLi"><a href="#">menu4</a></li>
 					<li class="lnbMainLi"><a href="#">menu5</a></li>
-    			
     			</c:when>
    				<c:when test='${gnbParam.equals("myPage")}'>
    					<li class="lnbMainLi"><a href="/memberMod">회원정보수정</a></li>
@@ -43,8 +55,16 @@ if (request.getParameter("gnbParam") != null) {
 					<li class="lnbMainLi"><a href="#">menu4</a></li>
 					<li class="lnbMainLi"><a href="#">menu5</a></li>
     			</c:when>
+   				<c:when test='${gnbParam.equals("adminPage")}'>
+   					<li class="lnbMainLi"><a href="/">회원 목록</a></li>
+					<li class="lnbMainLi"><a href="#">menu2</a></li>
+					<li class="lnbMainLi"><a href="#">menu3</a></li>
+					<li class="lnbMainLi"><a href="#">menu4</a></li>
+					<li class="lnbMainLi"><a href="#">menu5</a></li>
+    			</c:when>
+   		
     			<c:otherwise>
-		    		<li class="lnbMainLi"><a href="#">menu1</a></li>
+		    		<li class="lnbMainLi"><a href="#">main1</a></li>
 					<li class="lnbMainLi"><a href="#">menu2</a></li>
 					<li class="lnbMainLi"><a href="#">menu3</a></li>
 					<li class="lnbMainLi"><a href="#">menu4</a></li>
@@ -52,15 +72,6 @@ if (request.getParameter("gnbParam") != null) {
 	    			</c:otherwise>
     		</c:choose>
     		
- <%--    				
-    	<% } else { %>
-    		 
-    		 <% if (gnbParam.equals("myPage")) { %>
-	    		
-			<% } else { %>    		     		 
-    		 <% } %>
-    		 
-    	<% } %> --%>
     			
 		</ul>
 	</nav>

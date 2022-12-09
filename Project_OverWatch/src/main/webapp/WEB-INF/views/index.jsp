@@ -39,7 +39,6 @@
     
     		
     			<h2 id="indexGuideMsg">
-    			<%-- <% if (uId_Session == null) { 	%> --%>
     			<c:choose>
     				<c:when test="${sessionScope.uId == null }">
 	    				작업 중(회원인증, BBS 등)<br> 
@@ -49,11 +48,7 @@
     					${sessionScope.uId } 님 환영합니다.
     				</c:otherwise>
     			</c:choose>
-    	<%-- 		<% } else { 
-    				
-    				out.print(uId_Session + "님이 로그인했습니다.");
-    				
-    			} %> --%>
+
     			</h2>
     		
     		</div>

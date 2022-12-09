@@ -30,7 +30,16 @@
 	    				<li>|</li>
 	    				<li class="mainLi"><a href=" /joinAgreement">회원가입</a></li>
 	    				<li>|</li>
-	    				<li class="mainLi"><a href="<c:url value='/list'/>">게시판</a></li>
+	    				<li class="mainLi"><a href="<c:url value='/list?gnbParam=bbs'/>">게시판</a></li>
+    				</c:when>
+    				<c:when test="${sessionScope.uId eq 'admin' || sessionScope.uId eq 'adminSub'}">
+	    				<li class="mainLi"><a href="<c:url value='/'/>">HOME</a></li>
+	    				<li>|</li>
+	    				<li class="mainLi"><a href="<c:url value='/logout'/>">로그아웃</a></li>
+	    				<li>|</li>
+	    				<li class="mainLi"><a href="<c:url value='/adminPage?gnbParam=adminPage'/>" style="font-size:16px;">관리자 페이지</a></li>
+	    				<li>|</li>
+	    				<li class="mainLi"><a href="<c:url value='/list?gnbParam=bbs'/>">게시판</a></li>
     				</c:when>
     				<c:otherwise>
 	    				<li class="mainLi"><a href="<c:url value='/'/>">HOME</a></li>
@@ -39,7 +48,7 @@
 	    				<li>|</li>
 	    				<li class="mainLi"><a href="<c:url value='/myPage?gnbParam=myPage'/>">마이페이지</a></li>
 	    				<li>|</li>
-	    				<li class="mainLi"><a href="<c:url value='/list'/>">게시판</a></li>
+	    				<li class="mainLi"><a href="<c:url value='/list?gnbParam=bbs'/>">게시판</a></li>
     				</c:otherwise>
     				
     			</c:choose>

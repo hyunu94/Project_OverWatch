@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import pack.spring.project.admin.AdminDAO;
+import pack.spring.project.admin.AdminService;
+
 @Controller
 public class MemberController {
 
@@ -130,16 +133,29 @@ public class MemberController {
 	/////////////// 로그인 페이지 시작 //////////////////
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView login() {
-
 		return new ModelAndView("/member/login");
 	}
 	/////////////// 로그인 페이지 끝 //////////////////
 
+	@Autowired
+	AdminService adminService;
+	
 	/////////////// 로그인 처리 시작 //////////////////
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView login_post(@RequestParam Map<String, Object> map, HttpSession session) {
-		Map<String, Object> loginMap =  memberService.login(map);
-
+		
+		System.out.println("/login - map : "+map.toString());
+		
+		Map<String, Object> loginMap = null;
+		
+		System.out.println("/login - 관리자 유무(1뜨면 관리자) :  "+adminService.loginCheck(map));
+		//관리자 구분
+		if(adminService.loginCheck(map)>0) {
+			loginMap = adminService.login(map);
+		}else {
+			loginMap =  memberService.login(map);			
+		}
+		
 		String msg="아이디와 비밀번호를 확인하세요.", url="/login";
 
 		ModelAndView mav = new ModelAndView();
@@ -150,8 +166,6 @@ public class MemberController {
 
 			msg=  loginMap.get("uName").toString()+"님 환영합니다.";
 			url="/";
-		}else {
-
 		}
 
 		mav.addObject("msg", msg);

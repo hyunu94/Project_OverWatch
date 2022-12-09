@@ -5,7 +5,7 @@
 	
 	<select id="select_keyWord" parameterType="hashMap" resultType="hashMap">
 		<![CDATA[
-				 select * from tblBoard where ${keyField }  like CONCAT('%','${keyWord}','%') order by ref desc, pos asc , num desc;
+				 select * from tblBoard where ${keyField }  like CONCAT('%','${keyWord}','%') order by ref desc, pos asc , num desc limit  #{start}, #{end};
 		 ]]>
 	</select>
 
@@ -56,9 +56,13 @@
 	
 	<update id="delete_bbs" parameterType="hashMap">
 		<![CDATA[
-			update , delCheck = 'Y' from tblBoard where num=${num} and delCheck= 'N'
+			update  tblBoard
+			set delCheck = 'Y' , subject= '삭제된 글 입니다.'
+			where num=${num} and delCheck= 'N'
 		 ]]>
 	</update>
+	
+	
 	
 	<!-- 끼어들기 -->
 	<update id="replyUpBoard" parameterType="hashMap">

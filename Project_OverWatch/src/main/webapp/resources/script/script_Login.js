@@ -1,9 +1,10 @@
-/**
+ /**
  * 
  */
 
 $(function(){
-	
+	/*아이디 포커스*/
+	$("#uId").focus();
 	
 	/* 로그인 버튼 전송 실행 */	
 	$("#loginBtn").click(function(){		
