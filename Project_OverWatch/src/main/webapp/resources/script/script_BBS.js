@@ -254,12 +254,14 @@ function moveBlock(p1, p2, param3) {
 		 param = "/list?nowPage="+(moveBlock*pagePerBlock);
 	                                                          // moveBlock : nowBlock - 1 
 	     param += "&keyField="+p3;
-	     param += "&keyWord="+p4 ;
+	     param += "&keyWord="+p4;
+	     param += "&gnbParam=bbs";
 	} else if (param3 == 'nb' ) {		
 		 param = "/list?nowPage="+(pagePerBlock*(moveBlock-1)+1);   
 	                                                          // moveBlock : nowBlock + 1 
 	     param += "&keyField="+p3;
-	     param += "&keyWord="+p4 ;
+	     param += "&keyWord="+p4;
+	     param += "&gnbParam=bbs";
 	}
 
 	location.href=param;

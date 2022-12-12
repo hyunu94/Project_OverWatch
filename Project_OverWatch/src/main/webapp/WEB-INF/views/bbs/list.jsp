@@ -205,7 +205,7 @@
 										<c:choose>
 											<c:when test="${pageVo.totalBlock > pageVo.nowBlock }">
 												<span class="moveBlockArea" 
-													onclick="moveBlock('${pageVo.nowBlock+1}', '${pageVO.pagePerBlock}', 'nb')">
+													onclick="moveBlock('${pageVo.nowBlock+1}', '${pageVo.pagePerBlock}', 'nb')">
 												&gt; 
 												</span>
 											</c:when>
