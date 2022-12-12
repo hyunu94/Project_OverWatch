@@ -4,13 +4,13 @@
 	
 	<select id="select_keyWord" parameterType="hashMap" resultType="hashMap">
 		<![CDATA[
-				 select * from NoticeBoard where ${keyField }  like CONCAT('%','${keyWord}','%') num desc limit  #{start}, #{end};
+				 select * from NoticeBoard where ${keyField }  like CONCAT('%','${keyWord}','%') order by num desc limit  #{start}, #{end};
 		 ]]>
 	</select>
 
 	<select id="select_All" parameterType="hashMap" resultType="hashMap">
 		<![CDATA[
-				 select * from NoticeBoard  limit  #{start}, #{end};
+				 select * from NoticeBoard order by num desc limit  #{start}, #{end};
 		 ]]>
 	</select> 
 	
@@ -27,9 +27,9 @@
 	</select>
 	 
 	<!--  글쓰기 -->
-	<insert id="insert_NoticeBoard " parameterType="hashMap" useGeneratedKeys="true" keyProperty="num">
+	<insert id="insert_NoticeBoard" parameterType="hashMap" useGeneratedKeys="true" keyProperty="num">
 		<![CDATA[
-				insert into NoticeBoard  (uId, uName, subject, content, regTM, readCnt, fileName, fileSize)
+				insert into NoticeBoard(uId, uName, subject, content, regTM, readCnt, fileName, fileSize)
 				values(#{uId}, #{uName}, #{subject}, #{content}, now(), 0, #{fileName}, #{fileSize});
 		 ]]>
 	</insert>
@@ -46,7 +46,7 @@
 		 ]]>
 	</select>
 	
-	<update id="update_NoticeBoard " parameterType="hashMap">
+	<update id="update_NoticeBoard" parameterType="hashMap">
 		<![CDATA[
 			update NoticeBoard set subject=#{subject}, content=#{content} where num=#{num}
 		 ]]>
@@ -55,7 +55,7 @@
 	<!-- 조회수 -->
 	<update id="upCount" parameterType="hashMap">
 		<![CDATA[
-			update tblBoard set readCnt = readCnt + 1  where num = #{num}
+			update NoticeBoard set readCnt = readCnt + 1  where num = #{num}
 		 ]]>
 	</update>
 	

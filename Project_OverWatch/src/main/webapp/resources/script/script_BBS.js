@@ -216,7 +216,9 @@ function read(p1, p2, p5) {
 	let param = "/read?num="+p1;
 	     param += "&nowPage="+p2;
 	     param += "&keyField="+p3;
-	     param += "&keyWord="+p4 ; 
+	     param += "&keyWord="+p4; 
+	     param += "&param=bbs"; 
+	     
 	location.href=param;
 }		
 /* 상세내용 보기 페이지 이동 끝 /bbs/list.jsp => read.jsp  */

@@ -105,7 +105,6 @@
 						<td colspan="2">
 							<c:choose>
 								<c:when test="${empty sessionuId }">
-									<button type="button" id="loginAlertBtn" class="listBtnStyle">글쓰기</button>
 								</c:when>
 								<c:when test="${sessionScope.uId eq 'admin' || sessionScope.uId eq 'adminSub'}">
 									<button type="button" id="writeBtn" class="listBtnStyle">글쓰기</button>								
@@ -189,7 +188,7 @@
 										<c:choose>
 											<c:when test="${pageVo.totalBlock > pageVo.nowBlock }">
 												<span class="moveBlockArea" 
-													onclick="moveBlock('${pageVo.nowBlock+1}', '${pageVO.pagePerBlock}', 'nb')">
+													onclick="moveBlock('${pageVo.nowBlock+1}', '${pageVo.pagePerBlock}', 'nb')">
 												&gt; 
 												</span>
 											</c:when>

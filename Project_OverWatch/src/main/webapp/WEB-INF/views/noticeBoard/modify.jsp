@@ -29,7 +29,7 @@ String content = bean.getContent();
 	<link rel="stylesheet" href="/resources/style/style_Template.css">
 	<link rel="stylesheet" href="/resources/style/style_BBS.css">
 	<script src="/resources/source/jquery-3.6.0.min.js"></script>
-	<script src="/resources/script/script_BBS.js"></script>
+	<script src="/resources/script/script_noticeBoard.js"></script>
 </head>
 
 <body>
@@ -55,7 +55,7 @@ String content = bean.getContent();
 				
 				<!--  뷰페이지 내용 출력 시작 -->			
 				
-				<form name="modifyFrm" action="/modifyProc"
+				<form name="modifyFrm" action="/noticemodifyProc"
 						method="get" id="modifyFrm">
 			
 					<h2>${data.subject }</h2>

@@ -20,6 +20,11 @@ public class AdminServiceImp implements AdminService {
 	public int loginCheck(Map<String, Object> map) {
 		return this.adminDAO.loginCheck(map);
 	}
+
+	@Override
+	public Map<String, Object> selectByUId(Map<String, Object> map) {
+		return this.adminDAO.selectByUId(map);
+	}
 	
 	
 

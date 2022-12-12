@@ -25,13 +25,14 @@ import org.springframework.web.servlet.ModelAndView;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import pack.spring.project.admin.AdminService;
 import pack.spring.project.board.UtilMgr;
 import pack.spring.project.common.PageVO;
 import pack.spring.project.member.MemberService;
 
 @Controller
 public class NoticeBoardController {
-	private static final String SAVEFOLER = "C:/Users/EZEN202/git/Project_OverWatch/Project_OverWatch/src/main/webapp/resources/fileUpload";
+	private static final String SAVEFOLER = "C:/Users/EZEN202/git/Project_OverWatch/Project_OverWatch/src/main/webapp/resources/NoticeFileUpload";
 	// private static final String SAVEFOLER =
 	// "C:/Users/User/git/Project_OverWatch/Project_OverWatch/src/main/webapp/resources/fileUpload";
 	private static String encType = "UTF-8";
@@ -143,6 +144,9 @@ public class NoticeBoardController {
 	@Autowired
 	MemberService memberService;
 
+	@Autowired
+	AdminService adminService;
+	
 	// 글쓰기 페이지 보여주기
 	@RequestMapping(value = "/noticeWrite", method = RequestMethod.GET)
 	public ModelAndView bbsWrite(HttpServletRequest request, HttpSession session) {
@@ -161,14 +165,14 @@ public class NoticeBoardController {
 		map.put("nowPage", nowPage);
 		map.put("keyField", keyField);
 		map.put("keyWord", keyWord);
-
-		Map<String, Object> userMap = memberService.selectByUId(map);
-
-		System.out.println("/noticeWrite - map : " + map.toString());
-		System.out.println("/noticeWrite - userMap : " + userMap.toString());
+		
+		Map<String, Object> userMap = adminService.selectByUId(map);
+		
+		System.out.println("/noticeWrite - userMap : "+userMap.toString());
+		
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("data", userMap);
 		mav.addObject("map", map);
+		mav.addObject("data", userMap);
 		mav.setViewName("/noticeBoard/write");
 
 		return mav;
@@ -176,7 +180,7 @@ public class NoticeBoardController {
 	} // 글쓰기 페이지 보여주기 끝
 
 	// 글 쓰기 처리
-	@RequestMapping(value = "/noticeWrite                 ", method = RequestMethod.POST)
+	@RequestMapping(value = "/noticeWrite", method = RequestMethod.POST)
 	public ModelAndView bbsWrite_post(@RequestParam Map<String, Object> map, HttpSession session,
 			HttpServletRequest request) throws IOException {
 
@@ -218,7 +222,6 @@ public class NoticeBoardController {
 		String uName = multi.getParameter("uName");
 		String subject = multi.getParameter("subject");
 		String content = multi.getParameter("content");
-		String ip = multi.getParameter("ip");
 
 		if (multi.getParameter("contentType").equalsIgnoreCase("TEXT")) {
 			content = UtilMgr.replace(content, "<", "&lt;");

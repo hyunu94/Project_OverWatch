@@ -34,7 +34,7 @@ if (request.getParameter("gnbParam") != null) {
     			
     		<c:choose>
     				<c:when test='${map.gnbParam.equals("bbs")}'>
-   					<li class="lnbMainLi"><a href="/">공지 게시판</a></li>
+   					<li class="lnbMainLi"><a href="/noticelist?gnbParam=bbs">공지 게시판</a></li>
 					<li class="lnbMainLi"><a href="/list?gnbParam=bbs">자유 게시판</a></li>
 					<li class="lnbMainLi"><a href="#">menu3</a></li>
 					<li class="lnbMainLi"><a href="#">menu4</a></li>
