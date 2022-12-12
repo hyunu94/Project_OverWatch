@@ -82,7 +82,7 @@
 									<c:set var="doneLoop" value="true"></c:set>
 								</c:when>
 								<c:otherwise>
-									<tr class="prnTr" onclick="read('${list.num }', '${pageVo.nowPage }')">
+									<tr class="prnTr" onclick="read('${list.num }', '${pageVo.nowPage }', '${list.delCheck }')">
 		
 									<td>
 										<c:if test="${list.depth == 0 }">
@@ -106,7 +106,7 @@
 									
 									</td>
 									<td>${list.uName }</td>
-									<td>${map.regTM}</td>
+									<td>${list.regTM}</td>
 									<td>${list.readCnt }</td>
 								</tr>
 						</c:otherwise>
@@ -121,6 +121,9 @@
 							<c:choose>
 								<c:when test="${empty sessionuId }">
 									<button type="button" id="loginAlertBtn" class="listBtnStyle">글쓰기</button>
+								</c:when>
+								<c:when test="${sessionScope.uId eq 'admin' || sessionScope.uId eq 'adminSub'}">
+								
 								</c:when>
 								<c:otherwise>
 									<button type="button" id="writeBtn" class="listBtnStyle">글쓰기</button>
@@ -166,6 +169,7 @@
 							
 							<input type="hidden" id="pKeyField" value="${map.keyField }">
 							<input type="hidden" id="pKeyWord" value="${map.keyWord }">
+							<input type="text" id="nowPage" value="${pageVo.nowPage }">
 						
 						</td>
 					</tr> 
@@ -200,7 +204,8 @@
 										</c:forEach>
 										<c:choose>
 											<c:when test="${pageVo.totalBlock > pageVo.nowBlock }">
-												<span class="moveBlockArea" onclick="moveBlock('${pageVo.nowBlock+1}', '${pageVO.pagePerBlock}', 'nb')">
+												<span class="moveBlockArea" 
+													onclick="moveBlock('${pageVo.nowBlock+1}', '${pageVO.pagePerBlock}', 'nb')">
 												&gt; 
 												</span>
 											</c:when>

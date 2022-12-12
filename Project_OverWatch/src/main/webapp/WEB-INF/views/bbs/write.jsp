@@ -98,7 +98,7 @@
 							</tr>
 						</tfoot>
 					</table>
-					<input type="text" name="ip" value="${data.ip } ">
+					<input type="hidden" name="ip" value="${data.ip } ">
 				    <!--  
 				    IP주소를 IPv4 형식으로 설정함.(IPv6 형식이 기본으로 설정되어 있음)
 				    프로젝트 => Run Configuration => Tomcat 클릭
@@ -107,7 +107,9 @@
 				     -->
 								
 				</form>
-
+				<input type="text" name="nowPage" value="${map.nowPage }" id="nowPage">
+				<input type="text" name="keyField" id="pKeyField" value="${map.keyField }">
+				<input type="text" name="keyWord" id="pKeyWord" value="${map.keyWord }">
     		</div>
     		<!-- 실제 작업 영역 끝 -->
     		    	

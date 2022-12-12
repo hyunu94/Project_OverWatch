@@ -20,8 +20,19 @@ $(function(){
 	$("#loginAlertBtn").click(function(){		
 		alert("로그인 후 게시글을 작성하실 수 있습니다.");
 	});	
+	
 	$("#writeBtn").click(function(){		
-		location.href="/bbsWrite";
+		let p3 = $("#pKeyField").val().trim();  // p3 : keyField
+	    let p4 = $("#pKeyWord").val().trim();  // p4 : keyWord
+		let param = $("#nowPage").val();
+	     
+		let url = "/bbsWrite?nowPage=" + param;		    
+		    url += "&keyField="+p3;
+	     	url += "&keyWord="+p4 ; 
+		location.href=url;
+		
+		
+		
 	});
 	/* 리스트 페이지 글쓰기 버튼 끝 /bbs/list.jsp */
 	
@@ -51,6 +62,7 @@ $(function(){
 		if (chkTF) {
 			let nowPage = $("input#nowPage").val().trim();
 			let num = $("input#num").val().trim();
+			
 					
 			let p3 = $("#pKeyField").val().trim();  // p3 : keyField
 		    let p4 = $("#pKeyWord").val().trim();  // p4 : keyWord
@@ -173,9 +185,9 @@ $(function(){
 	
 	/* 검색 결과를 유지한 리스트페이지 이동 시작 /bbs/read.jsp */
 	$("#listBtn").click(function(){
-		let param = $("#nowPage").val().trim();
-		let p3 = $("#pKeyField").val().trim();  // p3 : keyField
-	    let p4 = $("#pKeyWord").val().trim();  // p4 : keyWord
+		let param = $("#nowPage").val();
+		let p3 = $("#pKeyField").val();  // p3 : keyField
+	    let p4 = $("#pKeyWord").val();  // p4 : keyWord
 	     
 		let url = "/list?nowPage=" + param;		    
 		    url += "&keyField="+p3;
@@ -189,9 +201,16 @@ $(function(){
 	
 	
 /* 상세내용 보기 페이지 이동 시작 /bbs/list.jsp => read.jsp */
-function read(p1, p2) {
+function read(p1, p2, p5) {
+
 	// p1 : num (게시글의 고유번호, 고유값, 키값 : Key Value)
 	// p2 : nowPage (현재페이지)
+	// p5 : delCheck (삭제여부)
+	
+	if(p5 == 'Y'){
+		return;
+	}
+	
     let p3 = $("#pKeyField").val().trim();  // p3 : keyField
     let p4 = $("#pKeyWord").val().trim();  // p4 : keyWord
 	let param = "/read?num="+p1;
@@ -212,7 +231,8 @@ function movePage(p1) {    // 페이지 이동
 
 	let param = "/list?nowPage="+p1;	    
 	     param += "&keyField="+p3;
-	     param += "&keyWord="+p4 ; 
+	     param += "&keyWord="+p4; 
+	     param += "&gnbParam=bbs"; 
 	location.href= param;
 
 }

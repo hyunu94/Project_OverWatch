@@ -44,6 +44,7 @@ public class BoardController {
 	@RequestMapping(value = "/list") // session 유지 ,
 	public ModelAndView list(@RequestParam Map<String, Object> map, HttpSession session) {
 		String sessionuId = (String) session.getAttribute("uId");
+		System.out.println("/list - 시작 시 map : "+map.toString());
 		/////////////////////// 페이징 관련 속성 값 시작///////////////////////////
 		// 페이징(Paging) = 페이지 나누기를 의미함
 		int totalRecord = 0; // 전체 데이터 수(DB에 저장된 row 개수)
@@ -84,7 +85,7 @@ public class BoardController {
 		map.put("start", start);
 		map.put("end", end);
 
-		System.out.println("map : " + map.toString());
+		System.out.println("/list - db 연결 전map : " + map.toString());
 
 		if (map.get("keyWord") != null && !map.get("keyWord").toString().equals("")) { // 검색 keyWord가 있을 경우
 			keyField = map.get("keyField").toString();
@@ -103,7 +104,7 @@ public class BoardController {
 			Map<String, Object> userMap = list.get(i);
 			String regTM = userMap.get("regTM").toString();
 			regTM = regTM.substring(0,10)+" "+regTM.substring(11);
-			map.put("regTM", regTM);
+			userMap.put("regTM", regTM);
 		}
 		
 		/*
@@ -125,9 +126,9 @@ public class BoardController {
 
 		PageVO pageVo = new PageVO(totalRecord, nowPage, totalPage, numPerPage, nowBlock, pagePerBlock, totalBlock, listSize, pageStart, pageEnd);
 
-		System.out.println("list : " +list.toString());
-		System.out.println("map : "+map.toString());
-		System.out.println("pagaVo : "+pageVo.toString());
+		System.out.println("/list - db 연결 후 list : " +list.toString());
+		System.out.println("/list - db 연결 후 map : "+map.toString());
+		System.out.println("/list - db 연결 후 pagaVo : "+pageVo.toString());
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("sessionuId" , sessionuId);
@@ -146,14 +147,30 @@ public class BoardController {
 	public ModelAndView bbsWrite(HttpServletRequest request, HttpSession session) {
 		String uId = (String) session.getAttribute("uId");
 		String ip = request.getRemoteAddr();
-
+		
+		System.out.println("/bbsWrite - request : "+ request.getParameter("nowPage").toString());
+		System.out.println("/bbsWrite - request : "+ request.getParameter("keyField").toString());
+		System.out.println("/bbsWrite - request : "+ request.getParameter("keyWord").toString());
+		
+		String nowPage = request.getParameter("nowPage").toString();
+		String keyField =request.getParameter("keyField").toString();
+		String keyWord =request.getParameter("keyWord").toString();
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("uId", uId);
-
+		map.put("nowPage", nowPage);
+		map.put("keyField", keyField);
+		map.put("keyWord", keyWord);
+		
+		
 		Map<String, Object> userMap = memberService.selectByUId(map);
 		userMap.put("ip", ip);
+		
+		System.out.println("/bbsWrite - map : "+map.toString());
+		System.out.println("/bbsWrite - userMap : "+userMap.toString());
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("data", userMap);
+		mav.addObject("map", map);
 		mav.setViewName("/bbs/write");
 
 		return mav;
