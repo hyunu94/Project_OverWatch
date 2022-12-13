@@ -136,6 +136,7 @@ public class BoardController {
 		mav.addObject("list", list);
 		mav.addObject("map", map);
 		mav.setViewName("bbs/list");
+		
 		return mav;
 	} // 게시글 목록 보기 끝
 
@@ -342,12 +343,12 @@ public class BoardController {
 			System.out.println("수정 성공");
 			System.out.println(map.get("num").toString());
 			
-			mav.setViewName("redirect:/read?num="+num+"&nowPage="+nowPage+"&keyField="+keyField+"&keyWord="+keyWord);
+			mav.setViewName("redirect:/read?num="+num+"&nowPage="+nowPage+"&keyField="+keyField+"&keyWord="+keyWord+"&gnbParam=bbs");
 		} else {
 			System.out.println(map.get("num").toString());
 			System.out.println("수정 실패");
 
-			mav.setViewName("redirect:/modify?num="+num+"&nowPage="+nowPage+"&keyField="+keyField+"&keyWord="+keyWord);
+			mav.setViewName("redirect:/modify?num="+num+"&nowPage="+nowPage+"&keyField="+keyField+"&keyWord="+keyWord+"&gnbParam=bbs");
 		}
 
 		return mav;
@@ -422,7 +423,7 @@ public class BoardController {
 		String keyField= map.get("keyField").toString();
 		String keyWord= map.get("keyWord").toString();
 		
-		String url = "/list?nowPage="+nowPage+"&keyField="+keyField+"&keyWord="+keyWord;
+		String url = "/list?nowPage="+nowPage+"&keyField="+keyField+"&keyWord="+keyWord+"&gnbParam=bbs";
 		String msg = "";
 
 		msg = "답변글 등록중 오류가 발생했습니다.\n";

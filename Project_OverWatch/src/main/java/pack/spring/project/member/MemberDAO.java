@@ -1,5 +1,6 @@
 package pack.spring.project.member;
 
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -47,5 +48,28 @@ public class MemberDAO {
 			 return this.sqlSessionTemplate.delete("member.delete_uId", uId);
 		 }
 		
+		 //회원 리스트 전체조회
+		 public List<Map<String, Object>> select_All(Map<String, Object> map){
+			return this.sqlSessionTemplate.selectList("member.select_All",map);
+		}
+	
+		 // 회원 리스트 검색 조회
+		public List<Map<String, Object>> select_keyWord(Map<String, Object> map) {
+			return this.sqlSessionTemplate.selectList("member.select_keyWord", map);
+		}
 		
+		// 회원 목록 리스트 전체 개수
+		public int select_countAll(Map<String, Object> map) {
+			return this.sqlSessionTemplate.selectOne("member.select_countAll", map);
+		}
+		
+		// 회원 목록 리스트 keyWord 검색으로 개수 구하기
+		public int select_countKey(Map<String, Object> map) {
+			return this.sqlSessionTemplate.selectOne("member.select_countKey", map);
+		}
+		
+		//회원 번호로
+		public Map<String, Object> selectByNum(Map<String, Object> map) {
+			return this.sqlSessionTemplate.selectOne("member.selectByNum", map);
+		}
 }

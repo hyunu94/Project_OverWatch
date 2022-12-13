@@ -216,11 +216,11 @@ function read(p1, p2, p5) {
 	
     let p3 = $("#pKeyField").val().trim();  // p3 : keyField
     let p4 = $("#pKeyWord").val().trim();  // p4 : keyWord
-	let param = "/read?num="+p1;
+	let param = "/memRead?num="+p1;
 	     param += "&nowPage="+p2;
 	     param += "&keyField="+p3;
 	     param += "&keyWord="+p4; 
-	     param += "&gnbParam=bbs"; 
+	     param += "&gnbParam=adminPage"; 
 	     
 	location.href=param;
 }		
@@ -234,10 +234,10 @@ function movePage(p1) {    // 페이지 이동
     let p3 = $("#pKeyField").val().trim();  // p3 : keyField
     let p4 = $("#pKeyWord").val().trim();  // p4 : keyWord
 
-	let param = "/list?nowPage="+p1;	    
+	let param = "/memList?nowPage="+p1;	    
 	     param += "&keyField="+p3;
 	     param += "&keyWord="+p4; 
-	     param += "&gnbParam=bbs"; 
+	     param += "&gnbParam=adminPage"; 
 	location.href= param;
 
 }
@@ -256,17 +256,17 @@ function moveBlock(p1, p2, param3) {
     let p4 = $("#pKeyWord").val().trim();  // p4 : keyWord
 	
 	if (param3 == 'pb') {
-		 param = "/list?nowPage="+(moveBlock*pagePerBlock);
+		 param = "/memList?nowPage="+(moveBlock*pagePerBlock);
 	                                                          // moveBlock : nowBlock - 1 
 	     param += "&keyField="+p3;
 	     param += "&keyWord="+p4;
-	     param += "&gnbParam=bbs";
+	     param += "&gnbParam=adminPage";
 	} else if (param3 == 'nb' ) {		
-		 param = "/list?nowPage="+(pagePerBlock*(moveBlock-1)+1);   
+		 param = "/memList?nowPage="+(pagePerBlock*(moveBlock-1)+1);   
 	                                                          // moveBlock : nowBlock + 1 
 	     param += "&keyField="+p3;
 	     param += "&keyWord="+p4;
-	     param += "&gnbParam=bbs";
+	     param += "&gnbParam=adminPage";
 	}
 
 	location.href=param;

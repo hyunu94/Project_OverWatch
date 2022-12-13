@@ -100,9 +100,9 @@
 										test="${data.sessionuId.equals(data.uId) || data.sessionuId.equals('admin') ||data.sessionuId.equals('adminSub') }">
 										<button type="button" id="delBtn">삭 제</button>
 										<button type="button" id="modBtn">수 정</button>
+									</c:if>
 										<input type="hidden" id="sessionuId"
 											value="${data.sessionuId }" />
-									</c:if>
 								</c:if>
 
 

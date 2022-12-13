@@ -1,5 +1,6 @@
 package pack.spring.project.member;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,31 @@ public class MemberServiceImp implements MemberService{
 	@Override
 	public int delete_uId(String uId) {
 		return this.memberDao.delete_uId(uId);
+	}
+
+	@Override
+	public List<Map<String, Object>> select_All(Map<String, Object> map) {
+		return this.memberDao.select_All(map);
+	}
+
+	@Override
+	public List<Map<String, Object>> select_keyWord(Map<String, Object> map) {
+		return this.memberDao.select_keyWord(map);
+	}
+
+	@Override
+	public int select_countAll(Map<String, Object> map) {
+		return this.memberDao.select_countAll(map);
+	}
+
+	@Override
+	public int select_countKey(Map<String, Object> map) {
+		return this.memberDao.select_countKey(map);
+	}
+
+	@Override
+	public Map<String, Object> selectByNum(Map<String, Object> map) {
+		return this.memberDao.selectByNum(map);
 	}
 
 	

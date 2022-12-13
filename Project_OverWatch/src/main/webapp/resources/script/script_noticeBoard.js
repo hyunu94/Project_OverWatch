@@ -118,7 +118,8 @@ $(function(){
 	     
 		let url = "/noticelist?nowPage=" + param;		    
 		    url += "&keyField="+p3;
-	     	url += "&keyWord="+p4 ; 
+	     	url += "&keyWord="+p4; 
+	     	url += "&gnbParam=bbs"; 
 		location.href=url;
 	});
 	/* 검색 결과를 유지한 리스트페이지 이동 끝 /noticeBoard/read.jsp */
@@ -143,7 +144,8 @@ function read(p1, p2, p5) {
 	let param = "/noticeread?num="+p1;
 	     param += "&nowPage="+p2;
 	     param += "&keyField="+p3;
-	     param += "&keyWord="+p4 ; 
+	     param += "&keyWord="+p4; 
+	     param += "&gnbParam=bbs"; 
 	location.href=param;
 }		
 /* 상세내용 보기 페이지 이동 끝 /noticeBoard/list.jsp => read.jsp  */

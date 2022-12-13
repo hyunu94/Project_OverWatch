@@ -106,6 +106,7 @@ String content = bean.getContent();
 					<input type="hidden" name="keyWord" id="keyWord" value="${map.keyWord }">
 					<!-- 검색어전송 끝 -->
 			
+					<input type="hidden" name="gnbParam" id="gnbParam" value="bbs">
 				</form>
 				<!--  뷰페이지 내용 출력 끝 -->
 

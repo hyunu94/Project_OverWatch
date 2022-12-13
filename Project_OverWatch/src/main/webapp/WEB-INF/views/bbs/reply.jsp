@@ -91,7 +91,7 @@
 						 
 					</table>
 					<input type="hidden" name="num" value="${data.num }" id="num">				
-					<input type="hidden" name="uId" value="${data.uId }">	
+					<input type="hidden" name="uId" value="${sessionScope.uId }">	
 					<input type="hidden" name="uName" value="${data.replyName }">
 					<input type="hidden" name="ref" value="${data.ref }">				
 					<input type="hidden" name="depth" value="${data.depth }">				

@@ -47,7 +47,7 @@ if (request.getParameter("gnbParam") != null) {
 					<li class="lnbMainLi"><a href="#">menu3</a></li>
 					<li class="lnbMainLi"><a href="#">menu4</a></li>
 					<li class="lnbMainLi"><a href="#">menu5</a></li>
-    			</c:when>
+    			</c:when>                                                      
    				<c:when test='${gnbParam.equals("myPage")}'>
    					<li class="lnbMainLi"><a href="/memberMod">회원정보수정</a></li>
 					<li class="lnbMainLi"><a href="/memberQuit">회원탈퇴</a></li>
@@ -56,7 +56,7 @@ if (request.getParameter("gnbParam") != null) {
 					<li class="lnbMainLi"><a href="#">menu5</a></li>
     			</c:when>
    				<c:when test='${gnbParam.equals("adminPage")}'>
-   					<li class="lnbMainLi"><a href="/">회원 목록</a></li>
+   					<li class="lnbMainLi"><a href="/memList?gnbParam=adminPage">회원 목록</a></li>
 					<li class="lnbMainLi"><a href="#">menu2</a></li>
 					<li class="lnbMainLi"><a href="#">menu3</a></li>
 					<li class="lnbMainLi"><a href="#">menu4</a></li>

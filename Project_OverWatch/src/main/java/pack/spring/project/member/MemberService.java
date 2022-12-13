@@ -1,5 +1,6 @@
 package pack.spring.project.member;
 
+import java.util.List;
 import java.util.Map;
 
 public interface MemberService {
@@ -25,5 +26,18 @@ public interface MemberService {
 	//회원 탈퇴
 	int delete_uId(String uId);
 	
+	 //회원 리스트 전체조회
+	 List<Map<String, Object>> select_All(Map<String, Object> map);
+
+	 // 회원 리스트 검색 조회
+	List<Map<String, Object>> select_keyWord(Map<String, Object> map);
 	
+	// 회원 목록 리스트 전체 개수
+	int select_countAll(Map<String, Object> map);
+	
+	// 회원 목록 리스트 keyWord 검색으로 개수 구하기
+	int select_countKey(Map<String, Object> map);
+	
+	//회원 번호로 정보 가져오기
+	Map<String, Object> selectByNum(Map<String, Object> map);
 }

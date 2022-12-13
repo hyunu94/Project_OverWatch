@@ -15,7 +15,7 @@
 	<link rel="stylesheet" href="/resources/style/style_Template.css">
 	<link rel="stylesheet" href="/resources/style/style_BBS.css">
 	<script src="/resources/source/jquery-3.6.0.min.js"></script>
-	<script src="/resources/script/script_BBS.js"></script>
+	<script src="/resources/script/script_Admin.js"></script>
 </head>
 
 <body>
@@ -39,7 +39,7 @@
 				<c:set var="prnType" value=""/>
 				<c:choose>
 					<c:when test="${empty map.keyWord }">
-						<c:set var="prnType" value="전체 게시글"/>
+						<c:set var="prnType" value="전체 회원 수"/>
 					</c:when>
 					<c:otherwise>
 						<c:set var="prnType" value="검색 결과"/>
@@ -54,11 +54,10 @@
 				<table id="boardList">
 					<thead>
 						<tr>
-							<th>번호</th>
-							<th>제목</th>
+							<th>회원번호</th>
+							<th>ID</th>
 							<th>이름</th>
-							<th>날짜</th>
-							<th>조회수</th>
+							<th>회원 등록일</th>
 						</tr>		
 						<tr>
 							<td colspan="5" class="spaceTd"></td>
@@ -70,7 +69,7 @@
 					<c:when test="${empty list }">
 						<tr>
 							<td colspan="5">
-									게시물이 없습니다.
+									등록된 회원이 없습니다.
 							</td>
 						</tr>	
 					</c:when>
@@ -85,29 +84,13 @@
 									<tr class="prnTr" onclick="read('${list.num }', '${pageVo.nowPage }', '${list.delCheck }')">
 		
 									<td>
-										<c:if test="${list.depth == 0 }">
-											<c:out value="${list.num }"/>
-										</c:if>
+											${list.num }
 									</td> 
 									<td class="subjectTd">
-									
-									<c:choose>
-											<c:when test="${list.depth >0 }">
-												<c:forEach begin="0" end="${list.depth-1 }">
-														&nbsp;&nbsp;
-												</c:forEach>
-														<img src='/resources/images/replyImg.png' alt='reply'>&nbsp;
-														${list.subject }
-											</c:when>
-											<c:otherwise>
-														${list.subject }
-											</c:otherwise>																				
-									</c:choose>
-									
+										${list.uId }
 									</td>
 									<td>${list.uName }</td>
-									<td>${list.regTM}</td>
-									<td>${list.readCnt }</td>
+									<td>${list.joinTM}</td>
 								</tr>
 						</c:otherwise>
 					</c:choose>
@@ -138,22 +121,16 @@
 							
 								<div>
 									<select name="keyField" id="keyField">
-										<option value="subject" 
-											<c:if test="${map.keyField == 'subject' }"> 
+										<option value="uId" 
+											<c:if test="${map.keyField == 'uId' }"> 
 											selected="selected" 
-											</c:if>>제  목
+											</c:if>>ID
 										</option>
 											
 										<option value="uName"
 											<c:if test="${map.keyField == 'uName' }"> 
 											selected="selected" 
 											</c:if>>이 름
-										</option>
-										
-										<option value="content" 
-											<c:if test="${map.keyField == 'content' }"> 
-											selected="selected" 
-											</c:if>>내  용
 										</option>
 									</select>
 								</div>

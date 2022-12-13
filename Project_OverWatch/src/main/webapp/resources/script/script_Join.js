@@ -300,6 +300,13 @@ $(function(){
 		let uBirthday = $("#uBirthday").val().trim();
 		let checkuId = $("#checkuId").val().trim();
 		let yn = $("#yn").val().trim();
+		let gender = $("input[type=radio]:checked").val();
+		
+		if(gender == null){
+			gender = "";
+		}else{
+			gender = $("input[type=radio]:checked").val();
+		}
 		
 		if (uId == "") {
 			alert("아이디를 입력해주세요.");
@@ -356,7 +363,7 @@ $(function(){
 						$("#uId").focus();
 						return;
 					}else{
-						$("#regFrm").attr("action", "/member");
+						$("#regFrm").attr("action", "/member?gender="+gender);
 						$("#regFrm").submit();
 					}
 				}//if	
