@@ -12,7 +12,7 @@
 	<link rel="stylesheet" href="/resources/style/style_Template.css">
 	<link rel="stylesheet" href="/resources/style/style_BBS.css">
 	<script src="/resources/source/jquery-3.6.0.min.js"></script>
-	<script src="/resources/script/script_BBS.js"></script>
+	<script src="/resources/script/script_noticeBoard.js"></script>
 </head>
 
 <body>
@@ -43,7 +43,7 @@
 					<table>
 						<tbody>
 							<tr>
-								<td class="req">성명</td>  <!-- td.req 필수입력 -->
+								<td class="req">관리자</td>  <!-- td.req 필수입력 -->
 								<td>
 									${data.uName}
 									<input type="hidden" name="uName" id="uName" value="${data.uName}">
@@ -98,18 +98,11 @@
 							</tr>
 						</tfoot>
 					</table>
-					<input type="hidden" name="ip" value="${data.ip } ">
-				    <!--  
-				    IP주소를 IPv4 형식으로 설정함.(IPv6 형식이 기본으로 설정되어 있음)
-				    프로젝트 => Run Configuration => Tomcat 클릭
-				    => (x)Argument => VM arguments 입력란 =>
-				    -Djava.net.preferIPv4Stack=true  
-				     -->
 								
 				</form>
-				<input type="text" name="nowPage" value="${map.nowPage }" id="nowPage">
-				<input type="text" name="keyField" id="pKeyField" value="${map.keyField }">
-				<input type="text" name="keyWord" id="pKeyWord" value="${map.keyWord }">
+				<input type="hidden" name="nowPage" value="${map.nowPage }" id="nowPage">
+				<input type="hidden" name="keyField" id="pKeyField" value="${map.keyField }">
+				<input type="hidden" name="keyWord" id="pKeyWord" value="${map.keyWord }">
     		</div>
     		<!-- 실제 작업 영역 끝 -->
     		    	

@@ -21,4 +21,9 @@ public class AdminDAO {
 	public int loginCheck(Map<String, Object> map) {
 		return this.sqlSessionTemplate.selectOne("admin.loginCheck", map);
 	}
+	
+	//세션 아디로 정보 가져오기
+	public Map<String, Object> selectByUId(Map<String, Object> map){
+		return this.sqlSessionTemplate.selectOne("admin.selectBy_uId", map);
+	}
 }

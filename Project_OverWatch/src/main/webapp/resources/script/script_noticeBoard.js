@@ -94,33 +94,6 @@ $(function(){
 	/* 게시글 수정페이지에서 수정내용 전송 끝 /noticeBoard/modify.jsp */
 	
 	
-			
-	/* 게시글 내용보기페이지에서 답변버튼 시작 /noticeBoard/read.jsp */
-	$("td.read>button#replyBtn").click(function(){
-		
-		let sessionuId = $("input#sessionuId").val();
-	
-		if (sessionuId == null || sessionuId == "") {
-			alert("로그인 후 이용해주세요");
-			return;
-		}
-	
-		let nowPage = $("input#nowPage").val().trim();
-		let num = $("input#num").val().trim();
-				
-		let p3 = $("#pKeyField").val().trim();  // p3 : keyField
-	    let p4 = $("#pKeyWord").val().trim();  // p4 : keyWord
-	
-		let url = "/noticereply?";
-			url += "num="+num;
-			url += "&nowPage="+nowPage;
-			url += "&keyField="+p3;
-	     	url += "&keyWord="+p4; 
-		location.href=url;
-	
-	});
-	/* 게시글 내용보기페이지에서 답변버튼 끝 /noticeBoard/read.jsp */
-	
 	/* 리스트페이지 검색 시작 /noticeBoard/list.jsp */	
 	$("button#searchBtn").click(function(){
 		let keyWord = $("#keyWord").val();    // 검색어에서는 .trim()을 지양하는 추세
