@@ -37,7 +37,7 @@
 
 
             <!-- 실제 작업 영역 시작 -->
-            <div id="contents" class="joinInsert">
+            <div id="contents" class="bbsList">
 
                <form name="regFrm" id="regFrm">
 

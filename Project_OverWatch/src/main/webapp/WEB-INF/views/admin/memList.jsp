@@ -13,7 +13,7 @@
 	<title>Document</title>
 	<link rel="stylesheet" href="/resources/style/style_Common.css">
 	<link rel="stylesheet" href="/resources/style/style_Template.css">
-	<link rel="stylesheet" href="/resources/style/style_BBS.css">
+	<link rel="stylesheet" href="/resources/style/style_memRead.css">
 	<script src="/resources/source/jquery-3.6.0.min.js"></script>
 	<script src="/resources/script/script_Admin.js"></script>
 </head>
