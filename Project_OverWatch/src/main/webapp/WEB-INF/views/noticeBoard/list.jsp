@@ -87,8 +87,7 @@
 									<td>
 											<c:out value="${list.num }"/>
 									</td> 
-									<td class="subjectTd">
-														${list.subject }
+									<td class="subjectTd">(공지) ${list.subject }
 									</td>
 									<td>${list.uName }</td>
 									<td>${list.regTM}</td>

@@ -81,8 +81,8 @@ $(function(){
 	
 	
 	
-	/* 게시글 내용보기페이지에서 수정버튼 시작 /bbs/read.jsp */
-	$("td.read>button#modBtn").click(function(){
+	/* 회원 상세 정보 페이지에서 수정버튼 시작 /admin/memRead.jsp */
+	$("#modBtn").click(function(){
 	
 		let nowPage = $("input#nowPage").val().trim();
 		let num = $("input#num").val().trim();
@@ -90,19 +90,19 @@ $(function(){
 		let p3 = $("#pKeyField").val().trim();  // p3 : keyField
 	    let p4 = $("#pKeyWord").val().trim();  // p4 : keyWord
 	
-		let url = "/modify?";
+		let url = "/memMod?";
 			url += "num="+num;
 			url += "&nowPage="+nowPage;
 			url += "&keyField="+p3;
 	     	url += "&keyWord="+p4; 
-	     	url += "&gnbParam=bbs";
+	     	url += "&gnbParam=adminPage";
 		location.href=url;
 	});
 	
-	/* 게시글 내용보기페이지에서 수정버튼 끝 /bbs/read.jsp */
+	/* 회원 상세 정보 페이지에서 수정버튼 끝 /admin/memRead.jsp */
 	
 	
-	/* 게시글 수정페이지에서 수정내용 전송 시작 /bbs/modify.jsp */
+	/* 회원 수정 페이지에서 수정내용 전송 시작 /admin/memMod.jsp */
 	$("td.update>button#modProcBtn").click(function(){
 		let subject = $("#subject").val().trim();
 		
@@ -120,7 +120,7 @@ $(function(){
 		}
 	
 	});	
-	/* 게시글 수정페이지에서 수정내용 전송 끝 /bbs/modify.jsp */
+	/* 회원 수정 페이지에서 수정내용 전송 끝 /admin/memMod.jsp */
 	
 	
 			
@@ -145,7 +145,7 @@ $(function(){
 			url += "&nowPage="+nowPage;
 			url += "&keyField="+p3;
 	     	url += "&keyWord="+p4; 
-	     	url += "&gnbParam=bbs";
+	     	url += "&gnbParam=adminPage";
 		location.href=url;
 	
 	});
@@ -169,7 +169,7 @@ $(function(){
 	
 	
 	
-	/* 리스트페이지 검색 시작 /bbs/list.jsp */	
+	/* 리스트페이지 검색 시작 /admin/memList.jsp */	
 	$("button#searchBtn").click(function(){
 		let keyWord = $("#keyWord").val();    // 검색어에서는 .trim()을 지양하는 추세
 		                                                      // 단, 로그인, 회원가입, 회원정보 수정에서 사용하는
@@ -182,28 +182,124 @@ $(function(){
 			$("#searchFrm").submit();
 		}
 	});	
-	/* 리스트페이지 검색 끝 /bbs/list.jsp */	
+	/* 리스트페이지 검색 끝  /admin/memList.jsp  */	
 	
 	
-	/* 검색 결과를 유지한 리스트페이지 이동 시작 /bbs/read.jsp */
+	/* 검색 결과를 유지한 리스트페이지 이동 시작 /admin/memList.jsp */
 	$("#listBtn").click(function(){
 		let param = $("#nowPage").val();
 		let p3 = $("#pKeyField").val();  // p3 : keyField
 	    let p4 = $("#pKeyWord").val();  // p4 : keyWord
 	     
-		let url = "/list?nowPage=" + param;		    
+		let url = "/memList?nowPage=" + param;		    
 		    url += "&keyField="+p3;
 	     	url += "&keyWord="+p4; 
-	     	url += "&gnbParam=bbs"; 
+	     	url += "&gnbParam=adminPage"; 
 		location.href=url;
 	});
-	/* 검색 결과를 유지한 리스트페이지 이동 끝 /bbs/read.jsp */
+	/* 검색 결과를 유지한 리스트페이지 이동 끝 /admin/memList.jsp */
+	
+	/* 회원가입 및 회원수정 버튼 전송 실행 */	
+	$("#joinSbmBtn").click(function(){		
+		fnJoinSbm();		
+	});
+	
+	/* 폼실행 엔터키 이벤트 처리 */
+	$(window).keydown(function(){
+		let code = event.keyCode;
+		if (code == 13) return false;
+	});
+	
+	/* 폼실행 엔터키 이벤트 처리 */
+	$(window).keyup(function(){		
+		let code = event.keyCode;
+		//alert("code : " + code);
+		if (code == 13) fnJoinSbm();
+    });
+
+	function fnJoinSbm() {
+		
+		let uId = $("#uId").val();
+		$("#uId").val(uId);
+		let uName = $("#uName").val();
+		$("#uName").val(uName);
+		let uEmail_01 = $("#uEmail_01").val();
+		let uEmail_02 = $("#uEmail_02").val().trim();
+		$("#uEmail").val(uEmail_01+"@"+uEmail_02);
+		let uBirthday = $("#uBirthday").val().trim();
+		let checkuId = $("#checkuId").val().trim();
+		let yn = $("#yn").val().trim();
+		let gender = $("input[type=radio]:checked").val();
+		
+		if(gender == null){
+			gender = "";
+		}else{
+			gender = $("input[type=radio]:checked").val();
+		}
+		
+		if (uId == "") {
+			alert("아이디를 입력해주세요.");
+			$("#uId").focus();
+			return;
+		}else if (uName == "") {
+			alert("이름을 입력해주세요.");
+			$("#uName").focus();
+			return;
+		} else if (uEmail_01 == "") {
+			alert("이메일 주소를 입력해주세요.");
+			$("#uEmail_01").focus();
+			return;
+		} else if (uEmail_02 == "") {
+			alert("이메일 주소를 입력해주세요.");
+			$("#uEmail_02").focus();
+			return;
+		} else if (uBirthday != "" && isNaN(uBirthday)) {
+			// 생년월일 숫자유효성 검사
+			alert("생년월일은 숫자만 입력할 수 있습니다.");
+			$("#uBirthday").val("").focus();
+			return;
+		} else {
+		
+			if($("#memEdit").val() == '수정'){
+				let chkSbmTF = confirm("회원수정하시겠습니까?");
+				
+				if (chkSbmTF) {
+					if(uId != checkuId){
+						checkuId = uId;
+					}
+					
+					$("#regFrm").attr("action", "/memMod");
+					$("#regFrm").submit();
+				}
+			}else{
+				let chkSbmTF = confirm("회원가입하시겠습니까?");
+				
+				if (chkSbmTF) {
+					 if(uId != checkuId ){ 
+						alert("아이디 중복체크를 해주세요.");
+						$("#uId").focus();
+						return;
+					}else if(yn == 'N'){
+						alert("이미 가입된 아이디입니다.");
+						$("#uId").focus();
+						return;
+					}else{
+						$("#regFrm").attr("action", "/member?gender="+gender);
+						$("#regFrm").submit();
+					}
+				}//if	
+			}//else
+			
+		}//else
+		 
+	}//function
+	
 	
 	
 });
 	
 	
-/* 상세내용 보기 페이지 이동 시작 /bbs/list.jsp => read.jsp */
+/* 상세내용 보기 페이지 이동 시작 /admin/memList.jsp => memRead.jsp */
 function read(p1, p2, p5) {
 
 	// p1 : num (게시글의 고유번호, 고유값, 키값 : Key Value)

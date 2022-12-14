@@ -139,7 +139,7 @@
 								</div>
 								<div>
 									<button type="button" id="searchBtn" class="listBtnStyle">검색</button>
-									<input type="hidden" name="gnbParam" id="gnbParam" value="bbs">
+									<input type="hidden" name="gnbParam" id="gnbParam" value="adminPage">
 								</div>
 															
 							</form>

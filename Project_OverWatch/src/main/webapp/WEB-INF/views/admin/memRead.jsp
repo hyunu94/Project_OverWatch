@@ -8,7 +8,8 @@
 <link rel="stylesheet" href="/resources/style/style_Common.css">
 <link rel="stylesheet" href="/resources/style/style_Template.css">
 <link rel="stylesheet" href="/resources/style/style_BBS.css">
-<script src="/source/jquery-3.6.0.min.js"></script>
+<script src="/resources/source/jquery-3.6.0.min.js"></script>
+<script src="/resources/script/script_Admin.js"></script>
 <style type="text/css">
    table#regFrmTbl tr td:first-child {
       font-weight: bold;
@@ -83,7 +84,7 @@
                         <tr>
                            <td colspan="2">
                            		<button type="button" id="listBtn" class="frmBtn">리스트</button>
-                              <button type="button" id="joinSbmBtn" class="frmBtn">수정</button>
+                              <button type="button" id="modBtn" class="frmBtn">수 정</button>
                               <button type="button" class="frmBtn">회원 탈퇴</button>
                            </td>
                         </tr>
@@ -95,6 +96,17 @@
 
             </div>
          </div>
+         
+         
+				<input type="hidden" name="nowPage" value="${map.nowPage }"
+					id="nowPage">
+				<input type="hidden" name="num" value="${data.num }"
+					id="num">
+				<!-- 검색어전송 시작 -->
+				<input type="hidden" id="pKeyField" value="${map.keyField }">
+				<input type="hidden" id="pKeyWord" value="${map.keyWord }">
+				<!-- 검색어전송 끝 -->
+         
          <!-- 실제 작업 영역 끝 -->
 
       </main>

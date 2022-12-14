@@ -67,6 +67,7 @@ $(function(){
 			url += "&nowPage="+nowPage;
 			url += "&keyField="+p3;
 	     	url += "&keyWord="+p4; 
+	     	url += "&gnbParam=bbs"; 
 		location.href=url;
 	});
 	

@@ -338,12 +338,12 @@ public class NoticeBoardController {
 				System.out.println("수정 성공");
 				System.out.println(map.get("num").toString());
 				
-				mav.setViewName("redirect:/noticeread?num="+num+"&nowPage="+nowPage+"&keyField="+keyField+"&keyWord="+keyWord);
+				mav.setViewName("redirect:/noticeread?num="+num+"&nowPage="+nowPage+"&keyField="+keyField+"&keyWord="+keyWord+"&gnbParam=bbs");
 			} else {
 				System.out.println(map.get("num").toString());
 				System.out.println("수정 실패");
 
-				mav.setViewName("redirect:/noticemodify?num="+num+"&nowPage="+nowPage+"&keyField="+keyField+"&keyWord="+keyWord);
+				mav.setViewName("redirect:/noticemodify?num="+num+"&nowPage="+nowPage+"&keyField="+keyField+"&keyWord="+keyWord+"&gnbParam=bbs");
 			}
 
 			return mav;

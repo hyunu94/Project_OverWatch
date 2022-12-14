@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import pack.spring.project.board.BoardService;
 import pack.spring.project.common.PageVO;
 import pack.spring.project.member.MemberService;
 
@@ -137,6 +136,7 @@ public class AdminController {
 		public ModelAndView read(@RequestParam Map<String, Object> map, HttpSession session) {
 			String sessionuId = (String) session.getAttribute("uId");
 			
+			String gnbParam = map.get("gnbParam").toString();
 			//조회수 증가
 			
 			System.out.println("/memRead  맵 : "+map.toString());
@@ -199,9 +199,6 @@ public class AdminController {
 			if(hobbyArr[4] == '1') {
 				hobby_5 = "운동";
 			}
-			
-			
-			
 //			System.out.println(hobby_1 + " " + hobby_2 + " " + hobby_3 + " " + hobby_4 + " " + hobby_5);
 			
 			hobby = hobby_1+" "+hobby_2+" "+hobby_3+" "+hobby_4+" "+hobby_5;
@@ -210,9 +207,128 @@ public class AdminController {
 			mav.addObject("gender", gender);
 			mav.addObject("map", map);
 			mav.addObject("data", userMap);
+			mav.addObject("gnbParam", gnbParam);
 			mav.setViewName("/admin/memRead");
+			
+			return mav;
+		}// 회원 정보 상세보기 끝
+		
+		
+		///////////////// 관리자페이지에서 회원 수정 화면 시작 //////////////////
+		@RequestMapping(value = "/memMod", method = RequestMethod.GET)
+		public ModelAndView memEdit(@RequestParam Map<String, Object> map) {
+			
+			System.out.println("관리자페이지에서 /memMod_get - map: "+map.toString());
+			Map<String, Object> userMap = memberService.selectByNum(map);
+			System.out.println("회원 수정 화면 시작 (/memberMod) : "+userMap.toString());
+
+			String uEmail = (String)userMap.get("uEmail");
+
+			String[] emailArr =  uEmail.split("@");
+			String uEmail_01 = emailArr[0];
+			String uEmail_02 = emailArr[1];
+
+			String hobby = userMap.get("uHobby").toString(); //10010
+			System.out.println("uHobby : "+userMap.get("uHobby"));
+			String hobby_1 = "";
+			String hobby_2 = "";
+			String hobby_3 = "";
+			String hobby_4 = "";
+			String hobby_5 = "";
+			char[] hobbyArr = new char[5];
+			if(hobby != null ) {
+				for (int i=0;i<hobby.length(); i++) { 
+					hobbyArr[i] = hobby.charAt(i);
+					System.out.println(hobbyArr[i]);
+				}
+			}
+
+
+			ModelAndView mav = new ModelAndView();
+
+			if(hobbyArr[0] == '1') {
+				hobby_1 = "인터넷";
+				mav.addObject("hobby_1",hobby_1);
+			}
+
+			if(hobbyArr[1] == '1') {
+				hobby_2 = "여행";
+				mav.addObject("hobby_2",hobby_2);
+			}
+
+			if(hobbyArr[2] == '1') {
+				hobby_3 = "게임";
+				mav.addObject("hobby_3",hobby_3);
+			}
+
+			if(hobbyArr[3] == '1') {
+				hobby_4 = "영화";
+				mav.addObject("hobby_4",hobby_4);
+			}
+
+			if(hobbyArr[4] == '1') {
+				hobby_5 = "운동";
+				mav.addObject("hobby_5",hobby_5);
+			}
+
+			userMap.put("uEmail_01", uEmail_01);
+			userMap.put("uEmail_02", uEmail_02);
+			
+			mav.addObject("map", map);
+			mav.addObject("userData", userMap);
+			mav.addObject("hobbyArr", hobbyArr);
+			mav.setViewName("/admin/memMod");
 
 			return mav;
+		}
+		///////////////// 관리자페이지에서 회원 수정 화면 끝 //////////////////
+		
+		
+		///////////////// 관리자페이지에서 회원 수정 처리 시작 //////////////////
+		@RequestMapping(value = "/memMod", method = RequestMethod.POST)
+		public ModelAndView memEditing(@RequestParam Map<String, Object> map, 
+				@RequestParam(value="uHobby",required = false)String[] hobby) {
 
-		}// 회원 정보 상세보기 끝
+			System.out.println("관리자페이지에서 /memMod_post - map : "+map.toString());
+			
+			String num = map.get("num").toString();
+			String nowPage = map.get("nowPage").toString();
+			String keyField = map.get("keyField").toString();
+			String keyWord = map.get("keyWord").toString();
+			
+			String[] hobbyName = {"인터넷", "여행", "게임", "영화", "운동"};
+			char[] hobbyCode = {'0', '0', '0', '0', '0'};
+
+			if(hobby != null ) {
+				for (int i=0;i<hobby.length; i++) { 
+					for(int j=0; j<hobbyName.length; j++) { 
+						if (hobby[i].equals(hobbyName[j])) {
+							hobbyCode[j] = '1'; } 
+					} 
+				}
+
+			}
+
+
+			String hobbyNum = new String(hobbyCode);
+			map.put("uHobby", hobbyNum);
+
+			int cnt =  memberService.updateMem(map); 
+
+			String msg = "회원정보 수정 실패", url = "/memMod?num="+num+"&nowPage="+nowPage+"&keyField="+keyField+"&keyWord="+keyWord+"&gnbParam=adminPage";
+			if (cnt>0) {
+				msg="회원정보 수정 성공!";
+				url="/memRead?num="+num+"&nowPage="+nowPage+"&keyField="+keyField+"&keyWord="+keyWord+"&gnbParam=adminPage";
+			}
+			
+//			/read?num="+num+"&nowPage="+nowPage+"&keyField="+keyField+"&keyWord="+keyWord+"&gnbParam=bbs");
+			
+			ModelAndView mav = new ModelAndView();
+			mav.addObject("msg", msg);
+			mav.addObject("url", url);
+			mav.setViewName("/common/message");
+
+			return mav;
+		}
+		///////////////// 관리자페이지에서 회원 수정 처리 끝 //////////////////
 }

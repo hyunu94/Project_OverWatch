@@ -1,22 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
 
-<%-- <%
-request.setCharacterEncoding("UTF-8");
-
-int num = Integer.parseInt(request.getParameter("num"));
-String nowPage = request.getParameter("nowPage");
-
-//검색어 수신 시작
-String keyField = request.getParameter("keyField");
-String keyWord = request.getParameter("keyWord");
-//검색어 수신 끝
-
-BoardBean bean = (BoardBean)session.getAttribute("bean");
-String subject = bean.getSubject();
-String uName = bean.getuName();
-String content = bean.getContent();
-%>    --%>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -105,7 +89,8 @@ String content = bean.getContent();
 					<input type="hidden" name="keyField" id="keyField" value="${map.keyField }">
 					<input type="hidden" name="keyWord" id="keyWord" value="${map.keyWord }">
 					<!-- 검색어전송 끝 -->
-			
+				
+				<input type="hidden" name="gnbParam" id="gnbParam" value="bbs">
 				</form>
 				<!--  뷰페이지 내용 출력 끝 -->
 
