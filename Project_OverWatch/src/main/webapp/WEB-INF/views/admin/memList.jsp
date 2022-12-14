@@ -135,7 +135,7 @@
 									</select>
 								</div>
 								<div>
-									<input type="text" name="keyWord" id="keyWord" size="20" maxlength="30" value="${map.keyWord }">
+									<input type="text" name="keyWord" id="keyWord" size="15" maxlength="30" value="${map.keyWord }">
 								</div>
 								<div>
 									<button type="button" id="searchBtn" class="listBtnStyle">검색</button>

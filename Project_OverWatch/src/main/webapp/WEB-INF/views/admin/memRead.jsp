@@ -82,9 +82,9 @@
                         </tr>
                         <tr>
                            <td colspan="2">
-                              <button type="button" id="joinSbmBtn" class="frmBtn">회원정보
-                                 수정</button>
-                              <button type="reset" class="frmBtn">회원 탈퇴</button>
+                           		<button type="button" id="listBtn" class="frmBtn">리스트</button>
+                              <button type="button" id="joinSbmBtn" class="frmBtn">수정</button>
+                              <button type="button" class="frmBtn">회원 탈퇴</button>
                            </td>
                         </tr>
                      </tbody>
