@@ -85,7 +85,7 @@
                            <td colspan="2">
                            		<button type="button" id="listBtn" class="frmBtn">리스트</button>
                               <button type="button" id="modBtn" class="frmBtn">수 정</button>
-                              <button type="button" class="frmBtn">회원 탈퇴</button>
+                              <button type="button" id="quitBtn" class="frmBtn">회원 탈퇴</button>
                            </td>
                         </tr>
                      </tbody>
@@ -100,12 +100,14 @@
          
 				<input type="hidden" name="nowPage" value="${map.nowPage }"
 					id="nowPage">
-				<input type="hidden" name="num" value="${data.num }"
-					id="num">
+				<input type="hidden" name="num" value="${data.num }" id="num">
 				<!-- 검색어전송 시작 -->
 				<input type="hidden" id="pKeyField" value="${map.keyField }">
 				<input type="hidden" id="pKeyWord" value="${map.keyWord }">
 				<!-- 검색어전송 끝 -->
+				
+				<!-- 탈퇴할 회원의 아이디 -->
+				<input type="hidden" name="uId" value="${data.uId }" id="uId">
          
          <!-- 실제 작업 영역 끝 -->
 

@@ -295,6 +295,29 @@ $(function(){
 	}//function
 	
 	
+	/*//////////   관리자계정으로 회원탈퇴 페이지로 이동  /////////*/
+	$("#quitBtn").click(function(){
+		let uId = $("#uId").val();
+	
+		location.href="/memQuit?uId="+uId;
+	});
+	
+	/*//////////   관리자계정으로 회원탈퇴 버튼 전송 실행  /////////*/
+	
+	$("#memQuitBtn").click(function(){		
+		fnQuitSbm();		
+	});
+	
+	function fnQuitSbm(){
+		let chkSbmQu = confirm("관리자 권한으로 회원 탈퇴하시겠습니까?");
+		
+		if(chkSbmQu){
+			$("#memQuitFrm").attr("action","/memQuitProc");
+			$("#memQuitFrm").submit();
+		}
+	
+	};
+	
 	
 });
 	

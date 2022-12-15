@@ -93,9 +93,9 @@
 
 
 							<td colspan="4" id="btnAreaTd" class="read">
-								<button type="button" id="listBtn">${listBtnLabel }</button> <c:if
-									test="${!empty data.uId }">
-									<c:if test="${data.sessionuId.equals(data.uId) }">
+								<button type="button" id="listBtn">${listBtnLabel }</button>
+								 <c:if test="${!empty data.uId }">
+									<c:if test="${data.sessionuId.equals('admin') || data.sessionuId.equals('adminSub')}">
 										<button type="button" id="modBtn">수 정</button>
 										<input type="hidden" id="sessionuId"
 											value="${data.sessionuId }" />

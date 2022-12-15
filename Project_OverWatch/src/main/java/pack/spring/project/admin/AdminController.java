@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -331,4 +332,41 @@ public class AdminController {
 			return mav;
 		}
 		///////////////// 관리자페이지에서 회원 수정 처리 끝 //////////////////
+		
+		///////////////// 관리자계정으로 회원 탈퇴 화면 보여주기 시작 //////////////////
+		@RequestMapping(value = "/memQuit", method = RequestMethod.GET)
+		public ModelAndView delete_uId(@RequestParam Map<String, Object> map) {
+			
+			System.out.println("/memQuit - map "+map.toString());
+			ModelAndView mav = new ModelAndView();
+			mav.addObject("map", map);
+			mav.setViewName("/admin/memQuit");
+			return mav;
+		}
+		///////////////// 관리자계정으로 회원 탈퇴 화면 보여주기 끝 //////////////////
+		
+		///////////////// 관리자계정으로 회원 탈퇴 처리 시작 //////////////////
+		@RequestMapping(value = "/memQuitProc", method = RequestMethod.GET)
+		public ModelAndView delete_ok(@RequestParam Map<String, Object> map) {
+			
+			String uId = map.get("uId").toString();
+			System.out.println(map.toString());
+			
+			String msg="관리자 권한으로 회원탈퇴 실패", url="/memQuit?uId="+uId;
+			int cnt = memberService.delete_uId(uId);
+			
+			if(cnt > 0) {
+				msg="관리자 권한으로 회원탈퇴 성공";
+				url="/memList?gnbParam=adminPage";
+			}
+			
+			ModelAndView mav = new ModelAndView();
+			mav.addObject("msg", msg);
+			mav.addObject("url", url);
+			mav.setViewName("common/message");
+			
+			return mav;
+		}
+		///////////////// 관리자계정으로 회원 탈퇴 처리 끝 //////////////////
+		
 }

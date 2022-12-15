@@ -151,7 +151,7 @@
 							
 							<input type="hidden" id="pKeyField" value="${map.keyField }">
 							<input type="hidden" id="pKeyWord" value="${map.keyWord }">
-							<input type="text" id="nowPage" value="${pageVo.nowPage }">
+							<input type="hidden" id="nowPage" value="${pageVo.nowPage }">
 						
 						</td>
 					</tr> 

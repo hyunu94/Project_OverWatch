@@ -121,8 +121,8 @@
 								<td><input type="button" id="delete" value="X"></td>
 							</tr>
 							<tr>
-								<td>현재 댓글 작성자</td>
-								<td><textarea rows="5" cols="80"></textarea></td>
+								<td>${sessionScope.uId }</td>
+								<td><textarea  maxlength="50" style="width: 650px; height: 65px;"></textarea></td>
 								<td colspan="2"><input type="button" id="Cbtn"
 									value="댓글 등록"></td>
 							</tr>

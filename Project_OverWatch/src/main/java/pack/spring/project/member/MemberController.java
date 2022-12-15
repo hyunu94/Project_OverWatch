@@ -313,11 +313,14 @@ public class MemberController {
 	}
 	///////////////// 회원 수정 처리 끝 //////////////////
 
+	///////////////// 회원 탈퇴 화면 시작 //////////////////
 	@RequestMapping(value="/memberQuit" , method = RequestMethod.GET )
 	public ModelAndView delete_uId() {
 		return new ModelAndView("/member/memberQuit");
 	}
+	///////////////// 회원 탈퇴 화면 끝 //////////////////
 	
+	///////////////// 회원 탈퇴 처리 시작 //////////////////
 	@RequestMapping(value="/memberQuitProc" , method = RequestMethod.GET)
 	public ModelAndView delete_Ok(HttpSession httpSession) {
 		
@@ -340,7 +343,7 @@ public class MemberController {
 		return mav;
 
 	}
-
+///////////////// 회원 탈퇴 처리 끝 //////////////////
 
 
 
