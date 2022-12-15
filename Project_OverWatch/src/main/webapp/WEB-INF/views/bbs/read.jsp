@@ -129,7 +129,7 @@
 						</table>
 					</form>
 				</div>
-
+ 
 				<input type="hidden" name="nowPage" value="${map.nowPage }"
 					id="nowPage"> <input type="hidden" name="num"
 					value="${data.num }" id="num">
