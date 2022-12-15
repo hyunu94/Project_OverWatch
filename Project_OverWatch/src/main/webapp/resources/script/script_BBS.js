@@ -200,6 +200,12 @@ $(function(){
 	/* 검색 결과를 유지한 리스트페이지 이동 끝 /bbs/read.jsp */
 	
 	
+	/*수정페이지에서 뒤로가기 이동 시작 */
+	$("#backBtn").click(function(){
+		 history.back();
+	});
+	/*수정페이지에서 뒤로가기 이동 끝 */
+	
 });
 	
 	

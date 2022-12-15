@@ -121,7 +121,7 @@
 								<td><input type="button" id="delete" value="X"></td>
 							</tr>
 							<tr>
-								<td>${sessionScope.uId }</td>
+								<td>${sessionScope.uName }</td>
 								<td><textarea  maxlength="50" style="width: 650px; height: 65px;"></textarea></td>
 								<td colspan="2"><input type="button" id="Cbtn"
 									value="댓글 등록"></td>

@@ -216,6 +216,12 @@ $(function(){
 		//alert("code : " + code);
 		if (code == 13) fnJoinSbm();
     });
+    
+   		/*수정페이지에서 뒤로가기 이동 시작 */
+	$("#backBtn").click(function(){
+		 history.back();
+	});
+	/*수정페이지에서 뒤로가기 이동 끝 */
 
 	function fnJoinSbm() {
 		

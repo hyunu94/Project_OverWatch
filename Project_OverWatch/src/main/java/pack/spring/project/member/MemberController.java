@@ -162,7 +162,8 @@ public class MemberController {
 
 		if(loginMap!=null && !loginMap.isEmpty()) {
 			System.out.println("디버깅 로그인한 ID : "+loginMap.get("uId").toString());
-			session.setAttribute("uId", loginMap.get("uId").toString()); //세션 저장
+			session.setAttribute("uId", loginMap.get("uId").toString()); // id 세션 저장
+			session.setAttribute("uName", loginMap.get("uName").toString()); // name세션 저장
 
 			msg=  loginMap.get("uName").toString()+"님 환영합니다.";
 			url="/";

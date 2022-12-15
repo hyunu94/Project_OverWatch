@@ -187,7 +187,7 @@
     							<td colspan="3">
     								<button type="button" id="joinSbmBtn" class="frmBtn">회원 수정</button>
     								<button type="reset" class="frmBtn">다시쓰기</button>
-    							<!-- 	<button id="loginBtn" class="frmBtn">로그인</button> -->
+    								<button type="button" id="backBtn" class="frmBtn">뒤 로</button>
     							</td>
     						</tr>
     					</tbody>
