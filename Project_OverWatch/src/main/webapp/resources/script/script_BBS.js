@@ -206,7 +206,29 @@ $(function(){
 	});
 	/*수정페이지에서 뒤로가기 이동 끝 */
 	
-});
+	/* 글 상세 목록에서 댓글등록 버튼 클릭 */
+	$("#Cbtn").click(function(){
+		let comment =  $("#comment").val();
+		
+		let memberNo = $("#memberNo").val();
+		
+		if (memberNo == null || memberNo == "" ) {
+			alert("로그인 후에 이용해주세요");
+			return;
+		} else if(comment == null || comment==""){
+			alert("내용을 입력하세요.");
+			$("#comment").focus();
+			return;
+		}else{
+			$("#CommentFrm").attr("action", "/comments");
+			$("#CommentFrm").submit();
+			
+		};
+	
+	});
+	
+	
+}); /* $(function() 끝 */
 	
 	
 /* 상세내용 보기 페이지 이동 시작 /bbs/list.jsp => read.jsp */

@@ -101,8 +101,8 @@
 										<button type="button" id="delBtn">삭 제</button>
 										<button type="button" id="modBtn">수 정</button>
 									</c:if>
-										<input type="hidden" id="sessionuId"
-											value="${data.sessionuId }" />
+									<input type="hidden" id="sessionuId"
+										value="${data.sessionuId }" />
 								</c:if>
 
 
@@ -112,24 +112,34 @@
 				</table>
 
 				<div id="CommentDiv">
-					<form name="CommentFrm" method="post" action="#">
+					<form id="CommentFrm" name="CommentFrm" method="post">
 						<table id="table">
 							<tr>
-								<td>댓글 작성자</td>
-								<td>댓글 내용</td>
-								<td><small>댓글 작성 날짜</small></td>
-								<td><input type="button" id="delete" value="X"></td>
+								<td>${sessionScope.uName }</td>
 							</tr>
 							<tr>
-								<td>${sessionScope.uName }</td>
-								<td><textarea  maxlength="50" style="width: 650px; height: 65px;"></textarea></td>
-								<td colspan="2"><input type="button" id="Cbtn"
-									value="댓글 등록"></td>
+								<td><textarea name="comment" id="comment" maxlength="50"></textarea></td>
+							</tr>
+							<tr>
+								<td><input type="button" id="Cbtn" value="댓글 등록"></td>
 							</tr>
 						</table>
+						<!-- 현재 로그인중인 회원 정보 -->
+						<input type="text" id="" name="" value="${sessionScope.uId }">
+						<input type="text" id="boardNo" name="boardNo" value="${data.num }">
+						
+						
 					</form>
+
+					<ul>
+						<li>댓글 작성자</li>
+						<li>댓글 내용</li>
+						<li><small>작성일</small> <input type="button" id="Ccbtn"
+							value="답글쓰기"></li>
+						<li><input type="button" id="delete" value="X"></li>
+					</ul>
 				</div>
- 
+
 				<input type="hidden" name="nowPage" value="${map.nowPage }"
 					id="nowPage"> <input type="hidden" name="num"
 					value="${data.num }" id="num">

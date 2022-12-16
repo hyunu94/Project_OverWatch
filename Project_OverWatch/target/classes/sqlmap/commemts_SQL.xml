@@ -5,5 +5,5 @@
 <mapper namespace="comments">
 	<insert id="insert_comments" parameterType="hashMap" useGeneratedKeys="true" keyProperty="num">
 	</insert>
-
+		
 </mapper>
