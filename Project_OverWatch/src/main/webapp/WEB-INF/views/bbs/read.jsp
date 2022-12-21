@@ -94,15 +94,12 @@
 
 							<td colspan="4" id="btnAreaTd" class="read">
 								<button type="button" id="listBtn">${listBtnLabel }</button>
-								<button type="button" id="replyBtn">답 변</button> <c:if
-									test="${!empty data.uId }">
-									<c:if
-										test="${data.sessionuId.equals(data.uId) || data.sessionuId.equals('admin') ||data.sessionuId.equals('adminSub') }">
+								<button type="button" id="replyBtn">답 변</button> 
+								<c:if test="${!empty data.uId }">
+									<c:if test="${data.sessionuId.equals(data.uId) || data.sessionuId.equals('admin') ||data.sessionuId.equals('adminSub') }">
 										<button type="button" id="delBtn">삭 제</button>
 										<button type="button" id="modBtn">수 정</button>
 									</c:if>
-									<input type="hidden" id="sessionuId"
-										value="${data.sessionuId }" />
 								</c:if>
 
 
@@ -111,24 +108,25 @@
 					</tfoot>
 				</table>
 
+				<!--  댓글 시작 -->
 				<div id="CommentDiv">
 					<form id="CommentFrm" name="CommentFrm" method="post">
 						<table id="table">
 							<tr>
 								<td>${sessionScope.uName }</td>
-							</tr>
-							<tr>
-								<td><textarea name="comment" id="comment" maxlength="50"></textarea></td>
-							</tr>
-							<tr>
 								<td><input type="button" id="Cbtn" value="댓글 등록"></td>
+							</tr>
+							<tr>
+								<td colspan="2"><textarea name="comment" id="comment"
+										maxlength="50"></textarea></td>
 							</tr>
 						</table>
 						<!-- 현재 로그인중인 회원 정보 -->
-						<input type="text" id="" name="" value="${sessionScope.uId }">
-						<input type="text" id="boardNo" name="boardNo" value="${data.num }">
-						
-						
+						<input type="text" id="sessionuId" value="${sessionScope.uId }" />
+						<input type="hidden" id="boardNo" name="boardNo"
+							value="${data.num }">
+
+
 					</form>
 
 					<ul>
@@ -136,9 +134,9 @@
 						<li>댓글 내용</li>
 						<li><small>작성일</small> <input type="button" id="Ccbtn"
 							value="답글쓰기"></li>
-						<li><input type="button" id="delete" value="X"></li>
 					</ul>
 				</div>
+				<!--  댓글 끝 -->
 
 				<input type="hidden" name="nowPage" value="${map.nowPage }"
 					id="nowPage"> <input type="hidden" name="num"

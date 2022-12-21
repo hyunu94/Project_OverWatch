@@ -190,10 +190,77 @@ public class MemberController {
 
 	///////////////// 마이 페이지 시작 //////////////////
 	@RequestMapping(value = "/myPage", method = RequestMethod.GET)
-	public ModelAndView myPage(@RequestParam String gnbParam) {
-
+	public ModelAndView myPage(@RequestParam String gnbParam, HttpSession session) {
+		String uId = (String) session.getAttribute("uId");
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("uId", uId);
+		Map<String, Object> userMap =  memberService.selectByUId(map);
+		
+		String hobby = userMap.get("uHobby").toString(); //10010
+		System.out.println("uHobby : "+userMap.get("uHobby"));
+		String hobby_1 = "";
+		String hobby_2 = "";
+		String hobby_3 = "";
+		String hobby_4 = "";
+		String hobby_5 = "";
+		char[] hobbyArr = new char[5];
+		if(hobby != null ) {
+			for (int i=0;i<hobby.length(); i++) { 
+					hobbyArr[i] = hobby.charAt(i);
+					System.out.println(hobbyArr[i]);
+			}
+		}
+		
+		String joinTM = userMap.get("joinTM").toString();
+		joinTM = joinTM.substring(0,10)+" "+joinTM.substring(11);
+		userMap.put("joinTM", joinTM);
+		
+		String gender = "";
+		
+		if(userMap.get("gender").toString() == null) {
+			gender="";
+		}else {
+			gender = userMap.get("gender").toString();
+		}
+		
+		if(gender.equals("1")) {
+			gender="남자";
+		}else if(gender.equals("2")) {
+			gender="여자";
+		}
+		
+		System.out.println(userMap.get("gender").toString());
 		ModelAndView mav = new ModelAndView();
+		
+		if(hobbyArr[0] == '1') {
+			hobby_1 = "인터넷";
+		}
+		
+		if(hobbyArr[1] == '1') {
+			hobby_2 = "여행";
+		}
+		
+		if(hobbyArr[2] == '1') {
+			hobby_3 = "게임";
+		}
+		
+		if(hobbyArr[3] == '1') {
+			hobby_4 = "영화";
+		}
+		
+		if(hobbyArr[4] == '1') {
+			hobby_5 = "운동";
+		}
+//		System.out.println(hobby_1 + " " + hobby_2 + " " + hobby_3 + " " + hobby_4 + " " + hobby_5);
+		
+		hobby = hobby_1+" "+hobby_2+" "+hobby_3+" "+hobby_4+" "+hobby_5;
+		System.out.println(hobby);
+		mav.addObject("hobby", hobby);
+		mav.addObject("gender", gender);
+		
 		mav.addObject("gnbParam", gnbParam);
+		mav.addObject("data", userMap);
 		mav.setViewName("/member/myPage");
 		return mav;
 	}

@@ -138,7 +138,6 @@ public class AdminController {
 			String sessionuId = (String) session.getAttribute("uId");
 			
 			String gnbParam = map.get("gnbParam").toString();
-			//조회수 증가
 			
 			System.out.println("/memRead  맵 : "+map.toString());
 			Map<String, Object> userMap = memberService.selectByNum(map);

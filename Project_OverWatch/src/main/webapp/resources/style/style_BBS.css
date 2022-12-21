@@ -499,18 +499,15 @@ main#main>div.reply h2 {
 /*////////////////////////////////////////////////////////////////////*/
 /*///////////// BBS 게시글 댓글 페이지 끝 /bbs/read.jsp ///////////// */
 /*////////////////////////////////////////////////////////////////////*/
+
 #CommentDiv {
-   width: 100%
+   width: 100%;
+   margin: 15px 0 15px 0;
 }
 
 #table {
    border-collapse: collapse;
-   border-bottom: 2px solid #ddd;
-   border-top: 2px solid #ddd;
    width: -webkit-fill-available;
-}
-
-#table {
 }
 
 #CommentDiv li {
@@ -525,7 +522,12 @@ main#main>div.reply h2 {
 }
 
 #table tr td:nth-child(2) {
-   text-align: center;
+   text-align: right;
+}
+
+#CommentDiv ul {
+	border-top: 1px dashed #ddd;
+	border-bottom: 1px dashed #ddd;
 }
 
 #CommentDiv li:nth-child(1) {

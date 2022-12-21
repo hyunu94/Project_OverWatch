@@ -30,16 +30,62 @@
 	    		<!--  메인 LNB 템플릿 끝 -->    	
     		</div>
     		
-    		
-	    	<!-- 실제 작업 영역 시작 -->
-    		<div id="contents">
+            <!-- 실제 작업 영역 시작 -->
+            <div id="contents" class="bbsList">
 
-				<h1>MY Page</h1>
-				<h1>LNB 메뉴에서 작업을 선택하세요</h1>
-				<h1>${userdata.uName }</h1>
-		
-    		</div>
-    		<!-- 실제 작업 영역 끝 -->
+               <form name="regFrm" id="regFrm">
+
+                  <table id="regFrmTbl">
+                     <caption>상세 회원 정보</caption>
+                     <tbody>
+                        <tr>
+                           <td>아이디</td>
+                           <td>${data.uId }</td>
+                        </tr>
+                        <tr>
+                           <td>이름</td>
+                           <td>${data.uName }</td>
+                        </tr>
+                        <tr>
+                           <td>Email</td>
+                           <td>${data.uEmail }</td>
+                        </tr>
+                        <tr>
+                           <td>성별</td>
+                           <td>${gender }</td>
+                        </tr>
+                        <tr>
+                           <td>생년월일</td>
+                           <td>${data.uBirthday }</td>
+                        </tr>
+                        <tr>
+                           <td>우편번호</td>
+                           <td>${data.uZipcode}</td>
+                        </tr>
+                        <tr>
+                           <td>주소</td>
+                           <td>${data.uAddr }</td>
+                        </tr>
+                        <tr>
+                           <td>취미</td>
+                           <td>${hobby }</td>
+                        </tr>
+                        <tr>
+                           <td>직업</td>
+                           <td>${data.uJob }</td>
+                        </tr>
+                        <tr>
+                           <td colspan="2">
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+
+               </form>
+               <!-- form[name=regFrm] -->
+
+            </div>
+         <!-- 실제 작업 영역 끝 -->
     		    	
     	</main>
     	<!--  main#main  -->

@@ -127,7 +127,7 @@ $(function(){
 	/* 게시글 내용보기페이지에서 답변버튼 시작 /bbs/read.jsp */
 	$("td.read>button#replyBtn").click(function(){
 		
-		let sessionuId = $("input#sessionuId").val();
+		let sessionuId = $("#sessionuId").val();
 	
 		if (sessionuId == null || sessionuId == "") {
 			alert("로그인 후 이용해주세요");
@@ -210,9 +210,9 @@ $(function(){
 	$("#Cbtn").click(function(){
 		let comment =  $("#comment").val();
 		
-		let memberNo = $("#memberNo").val();
+		let sessionuId = $("#sessionuId").val();
 		
-		if (memberNo == null || memberNo == "" ) {
+		if (sessionuId == null || sessionuId == "" ) {
 			alert("로그인 후에 이용해주세요");
 			return;
 		} else if(comment == null || comment==""){
