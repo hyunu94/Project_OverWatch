@@ -25,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import pack.spring.project.comments.CommentsService;
 import pack.spring.project.common.PageVO;
 import pack.spring.project.member.MemberService;
 
@@ -260,7 +261,11 @@ public class BoardController {
 		mav.setViewName("/common/message");
 		return mav;
 	}// 글 쓰기 처리 끝
-
+	
+	
+	@Autowired
+	CommentsService commentsService;
+	
 	// 글 목록 상세보기
 	@RequestMapping(value = "/read", method = RequestMethod.GET)
 	public ModelAndView read(@RequestParam Map<String, Object> map, HttpSession session) {
@@ -293,8 +298,28 @@ public class BoardController {
 			fileSize /= 1024;
 			fUnit = "KBytes";
 		}
-
+		
+		//////////////////////////////
+		
+		String boardNo =  map.get("num").toString();
+		int kind = 0;
+		
+		map.put("boardNo", boardNo);
+		map.put("kind", kind);
+		
+		List<Map<String, Object>> commentMapList =  commentsService.select_comments(map);
+		
+		System.out.println("commentMap : " +commentMapList.toString());
+		
+		//////////////////////////////////
+		
+		
+		
 		ModelAndView mav = new ModelAndView();
+		if(commentMapList != null) {
+			mav.addObject("commentMapList", commentMapList);
+		}
+		
 		mav.addObject("fUnit", fUnit);
 		mav.addObject("map", map);
 		mav.addObject("data", userMap);

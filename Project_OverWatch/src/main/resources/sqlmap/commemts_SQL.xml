@@ -16,4 +16,12 @@
 			select max(num) from comments
 		 ]]>
 	</select>
+	<!--해당 게시글 댓글 목록 -->
+	<select id="select_comments" parameterType="hashMap" resultType="hashMap">
+		<![CDATA[
+			select * from comments 
+			where kind=#{kind} and boardNo=#{boardNo}
+			order by ref desc, pos asc;
+		]]>
+	</select>
 </mapper>

@@ -122,7 +122,7 @@
 							</tr>
 						</table>
 						<!-- 현재 로그인중인 회원 정보 -->
-						<input type="text" id="sessionuId" name ="sessionuId"
+						<input type="hidden" id="sessionuId" name ="sessionuId"
 						 value="${sessionScope.uId }" />
 						<input type="hidden" id="boardNo" name="boardNo"
 							value="${data.num }">
@@ -130,12 +130,7 @@
 
 					</form>
 
-					<ul>
-						<li>댓글 작성자</li>
-						<li>댓글 내용</li>
-						<li><small>작성일</small> <input type="button" id="Ccbtn"
-							value="답글쓰기"></li>
-					</ul>
+					<%@ include file="../ind/comments.jsp"%>
 				</div>
 				<!--  댓글 끝 -->
 
