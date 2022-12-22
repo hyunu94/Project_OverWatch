@@ -108,25 +108,6 @@
 					</tfoot>
 				</table>
 
-				<div id="CommentDiv">
-					<form name="CommentFrm" method="post" action="#">
-						<table id="table">
-							<tr>
-								<td>댓글 작성자</td>
-								<td>댓글 내용</td>
-								<td><small>댓글 작성 날짜</small></td>
-								<td><input type="button" id="delete" value="X"></td>
-							</tr>
-							<tr>
-								<td>현재 댓글 작성자</td>
-								<td><textarea rows="5" cols="80"></textarea></td>
-								<td colspan="2"><input type="button" id="Cbtn"
-									value="댓글 등록"></td>
-							</tr>
-						</table>
-					</form>
-				</div>
-
 				<input type="hidden" name="nowPage" value="${map.nowPage }"
 					id="nowPage"> <input type="hidden" name="num"
 					value="${data.num }" id="num">

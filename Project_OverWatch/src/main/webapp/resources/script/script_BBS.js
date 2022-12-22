@@ -208,16 +208,16 @@ $(function(){
 	
 	/* 글 상세 목록에서 댓글등록 버튼 클릭 */
 	$("#Cbtn").click(function(){
-		let comment =  $("#comment").val();
+		let content =  $("#content").val();
 		
 		let sessionuId = $("#sessionuId").val();
 		
 		if (sessionuId == null || sessionuId == "" ) {
 			alert("로그인 후에 이용해주세요");
 			return;
-		} else if(comment == null || comment==""){
+		} else if(content == null || content==""){
 			alert("내용을 입력하세요.");
-			$("#comment").focus();
+			$("#content").focus();
 			return;
 		}else{
 			$("#CommentFrm").attr("action", "/comments");

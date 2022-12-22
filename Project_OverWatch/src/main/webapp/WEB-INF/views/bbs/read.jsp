@@ -117,12 +117,13 @@
 								<td><input type="button" id="Cbtn" value="댓글 등록"></td>
 							</tr>
 							<tr>
-								<td colspan="2"><textarea name="comment" id="comment"
+								<td colspan="2"><textarea name="content" id="content"
 										maxlength="50"></textarea></td>
 							</tr>
 						</table>
 						<!-- 현재 로그인중인 회원 정보 -->
-						<input type="text" id="sessionuId" value="${sessionScope.uId }" />
+						<input type="text" id="sessionuId" name ="sessionuId"
+						 value="${sessionScope.uId }" />
 						<input type="hidden" id="boardNo" name="boardNo"
 							value="${data.num }">
 
