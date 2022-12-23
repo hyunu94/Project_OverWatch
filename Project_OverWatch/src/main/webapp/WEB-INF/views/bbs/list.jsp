@@ -101,6 +101,9 @@
 											</c:when>
 											<c:otherwise>
 														${list.subject }
+														<c:if test="${!empty list.fileName }">
+														<img src='/resources/images/fileImg.png' alt='file'>
+														</c:if>
 											</c:otherwise>																				
 									</c:choose>
 									

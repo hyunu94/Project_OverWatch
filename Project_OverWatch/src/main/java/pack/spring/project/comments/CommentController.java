@@ -2,11 +2,13 @@ package pack.spring.project.comments;
 
 import java.util.Map;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -17,7 +19,8 @@ public class CommentController {
 
 	//댓글 등록 처리 시작
 	@RequestMapping(value = "/comments", method = RequestMethod.POST)
-	public ModelAndView comments_post(@RequestParam Map<String, Object> map) {
+	@ResponseBody
+	public String insert_comments(@RequestParam Map<String, Object> map) {
 		System.out.println("/comments_post map : "+map.toString());
 
 		String uId = (String) map.get("sessionuId");
@@ -35,18 +38,10 @@ public class CommentController {
 
 		map.put("ref", ref);
 		int cmNum = commentsService.insert_comments(map);
-
-		String msg = "댓글 등록 실패", url = "/list";
-		if (cmNum > 0) {
-			msg = "등록 성공";
-			url = "/list";
-		}
-
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("msg", msg);
-		mav.addObject("url", url);
-		mav.setViewName("/common/message");
-		return mav;
+		
+		JSONObject jsonObject = new JSONObject();
+		
+		return jsonObject.toString();
 	}
 	//댓글 등록 처리 끝
 

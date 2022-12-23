@@ -206,26 +206,7 @@ $(function(){
 	});
 	/*수정페이지에서 뒤로가기 이동 끝 */
 	
-	/* 글 상세 목록에서 댓글등록 버튼 클릭 */
-	$("#Cbtn").click(function(){
-		let content =  $("#content").val();
-		
-		let sessionuId = $("#sessionuId").val();
-		
-		if (sessionuId == null || sessionuId == "" ) {
-			alert("로그인 후에 이용해주세요");
-			return;
-		} else if(content == null || content==""){
-			alert("내용을 입력하세요.");
-			$("#content").focus();
-			return;
-		}else{
-			$("#CommentFrm").attr("action", "/comments");
-			$("#CommentFrm").submit();
-			
-		};
 	
-	});
 	
 	
 }); /* $(function() 끝 */
