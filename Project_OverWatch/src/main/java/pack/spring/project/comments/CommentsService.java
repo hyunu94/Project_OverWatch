@@ -10,4 +10,6 @@ public interface CommentsService {
 	 Map<String, Object> select_maxNum();
 	 
 	 List<Map<String, Object>> select_comments(Map<String, Object> map);
+	 
+	 int delete_comments(Map<String, Object> map);
 }

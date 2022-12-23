@@ -562,6 +562,7 @@ input#Cbtn:nth-child(1) {
    background: white;
    font-size: 1em;
    font-weight: bold;
+   cursor: pointer; 
 }
 
 #comments #delBtn:hover {

@@ -27,4 +27,9 @@ public class CommentsDAO {
 	public List<Map<String, Object>> select_comments(Map<String, Object> map) {
 		return this.sqlSessionTemplate.selectList("comments.select_comments", map);
 	}
+	
+	//해당 게시글 댓글 삭제
+	public int delete_comments(Map<String, Object> map) {
+		return this.sqlSessionTemplate.update("comments.delete_comments", map);
+	}
 }

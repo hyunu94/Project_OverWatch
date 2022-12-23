@@ -43,6 +43,24 @@ public class CommentController {
 		return jsonObject.toString();
 	}
 	//댓글 등록 처리 끝
-
+	
+	
+	//댓글 삭제 처리 시작
+	@RequestMapping(value = "/deleteCProc", method = RequestMethod.GET)
+	@ResponseBody
+	public String delete_comments(@RequestParam Map<String, Object> map) {
+		System.out.println("/deleteCProc map :  "+map.toString());
+		
+		String num = map.get("commentNo").toString();
+		map.put("num", num);
+		
+		int cnt = commentsService.delete_comments(map);
+		
+		JSONObject jsonObject = new JSONObject();
+		
+		return jsonObject.toString();
+	}
+	
+	//댓글 삭제 처리 끝
 
 }
