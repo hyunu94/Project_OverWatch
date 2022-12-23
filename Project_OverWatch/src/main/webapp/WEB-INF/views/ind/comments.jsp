@@ -21,7 +21,7 @@
 			<form id="CommentFrm" name="CommentFrm">
 				<table id="table">
 					<tr>
-						<td>${sessionScope.uName }</td>
+						<td><b>${sessionScope.uName }</b></td>
 						<td><input type="button" id="Cbtn" value="댓글 등록"></td>
 					</tr>
 					<tr>
@@ -37,15 +37,20 @@
 			</form>
 
 			<c:forEach var="list" items="${commentMapList }" begin="0">
-				<ul>
-					<li>${list.uId }</li>
-					<li>${list.content }</li>
-					<li>
-						<small>${list.regdate }</small>
-						<input type="button" id="Ccbtn" value="답글쓰기">
-					</li>
-				</ul>
-			</c:forEach>
+		      <table id="comments">
+		         <tr>
+		            <th id="writer">${list.uId }</th>
+		         </tr>
+		         <tr>
+		            <td id="content">${list.content }</td>
+		            <td><input type="button" id="delBtn" value="X"></td>
+		         </tr>
+		         <tr>
+		            <td colspan="2"><small>${list.regdate }</small> 
+		            <input type="button" id="Ccbtn" value="답글쓰기"></td>
+		         </tr>
+		      </table>
+ 	 	 </c:forEach>
 		</div>
 		<!--  댓글 끝 -->
 

@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class CommentController {
@@ -45,8 +44,5 @@ public class CommentController {
 	}
 	//댓글 등록 처리 끝
 
-	//해당 게시글 댓글 목록 시작
-	
-	//해당 게시글 댓글 목록 끝
 
 }
