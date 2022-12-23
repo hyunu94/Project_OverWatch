@@ -107,9 +107,9 @@
 				     -->
 								
 				</form>
-				<input type="text" name="nowPage" value="${map.nowPage }" id="nowPage">
-				<input type="text" name="keyField" id="pKeyField" value="${map.keyField }">
-				<input type="text" name="keyWord" id="pKeyWord" value="${map.keyWord }">
+				<input type="hidden" name="nowPage" value="${map.nowPage }" id="nowPage">
+				<input type="hidden" name="keyField" id="pKeyField" value="${map.keyField }">
+				<input type="hidden" name="keyWord" id="pKeyWord" value="${map.keyWord }">
     		</div>
     		<!-- 실제 작업 영역 끝 -->
     		    	

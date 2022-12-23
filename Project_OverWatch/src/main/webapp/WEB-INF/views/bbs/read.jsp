@@ -73,8 +73,7 @@
 							<td colspan="4" id="footTopSpace"></td>
 						</tr>
 						<tr>
-							<td colspan="4" id="articleInfoTd"><span>조회수 :
-									${data.readCnt }</span> <span>(IP : ${data.ip })</span></td>
+							<td colspan="4" id="articleInfoTd"><span>조회수 :	${data.readCnt }</span> </td>
 						</tr>
 						<tr>
 							<td colspan="4" id="hrTd"><hr></td>
@@ -108,35 +107,11 @@
 					</tfoot>
 				</table>
 
-				<!--  댓글 시작 -->
-				<div id="CommentDiv">
-					<form id="CommentFrm" name="CommentFrm" method="post">
-						<table id="table">
-							<tr>
-								<td>${sessionScope.uName }</td>
-								<td><input type="button" id="Cbtn" value="댓글 등록"></td>
-							</tr>
-							<tr>
-								<td colspan="2"><textarea name="content" id="content"
-										maxlength="50"></textarea></td>
-							</tr>
-						</table>
-						<!-- 현재 로그인중인 회원 정보 -->
-						<input type="hidden" id="sessionuId" name ="sessionuId"
-						 value="${sessionScope.uId }" />
-						<input type="hidden" id="boardNo" name="boardNo"
-							value="${data.num }">
-
-
-					</form>
-
+				
 					<%@ include file="../ind/comments.jsp"%>
-				</div>
-				<!--  댓글 끝 -->
 
-				<input type="hidden" name="nowPage" value="${map.nowPage }"
-					id="nowPage"> <input type="hidden" name="num"
-					value="${data.num }" id="num">
+				<input type="hidden" name="nowPage" value="${map.nowPage }" id="nowPage"> 
+				<input type="hidden" name="num" value="${data.num }" id="num">
 
 				<!-- 검색어전송 시작 -->
 				<input type="hidden" id="pKeyField" value="${map.keyField }">

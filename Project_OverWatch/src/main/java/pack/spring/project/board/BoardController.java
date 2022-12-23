@@ -131,6 +131,8 @@ public class BoardController {
 		System.out.println("/list - db 연결 후 map : "+map.toString());
 		System.out.println("/list - db 연결 후 pagaVo : "+pageVo.toString());
 		
+		
+		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("sessionuId" , sessionuId);
 		mav.addObject("pageVo", pageVo);

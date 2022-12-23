@@ -2,12 +2,13 @@ package pack.spring.project.comments;
 
 import java.util.Map;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class CommentController {
@@ -17,7 +18,8 @@ public class CommentController {
 
 	//댓글 등록 처리 시작
 	@RequestMapping(value = "/comments", method = RequestMethod.POST)
-	public ModelAndView comments_post(@RequestParam Map<String, Object> map) {
+	@ResponseBody
+	public String insert_comments(@RequestParam Map<String, Object> map) {
 		System.out.println("/comments_post map : "+map.toString());
 
 		String uId = (String) map.get("sessionuId");
@@ -35,23 +37,30 @@ public class CommentController {
 
 		map.put("ref", ref);
 		int cmNum = commentsService.insert_comments(map);
-
-		String msg = "댓글 등록 실패", url = "/list";
-		if (cmNum > 0) {
-			msg = "등록 성공";
-			url = "/list";
-		}
-
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("msg", msg);
-		mav.addObject("url", url);
-		mav.setViewName("/common/message");
-		return mav;
+		
+		JSONObject jsonObject = new JSONObject();
+		
+		return jsonObject.toString();
 	}
 	//댓글 등록 처리 끝
-
-	//해당 게시글 댓글 목록 시작
 	
-	//해당 게시글 댓글 목록 끝
+	
+	//댓글 삭제 처리 시작
+	@RequestMapping(value = "/deleteCProc", method = RequestMethod.GET)
+	@ResponseBody
+	public String delete_comments(@RequestParam Map<String, Object> map) {
+		System.out.println("/deleteCProc map :  "+map.toString());
+		
+		String num = map.get("commentNo").toString();
+		map.put("num", num);
+		
+		int cnt = commentsService.delete_comments(map);
+		
+		JSONObject jsonObject = new JSONObject();
+		
+		return jsonObject.toString();
+	}
+	
+	//댓글 삭제 처리 끝
 
 }

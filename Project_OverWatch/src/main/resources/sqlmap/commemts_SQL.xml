@@ -24,4 +24,13 @@
 			order by ref desc, pos asc;
 		]]>
 	</select>
+	
+	<!-- 댓글 삭제 -->
+	<update id="delete_comments" parameterType="hashMap">
+		<![CDATA[
+			update  comments
+			set delCheck = 'Y' , content= '삭제된 댓글입니다.'
+			where num=${num} and delCheck= 'N'
+		 ]]>
+	</update>
 </mapper>

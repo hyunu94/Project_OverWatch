@@ -521,26 +521,51 @@ main#main>div.reply h2 {
    resize: none;
 }
 
+input#Cbtn {
+   width: 65px;
+   font-size: 12px;
+   font-weight: bold;
+   padding: 2px 2px;
+   cursor: pointer;
+}
+
+input#Cbtn:nth-child(1) {
+    margin-bottom: 10px;
+}
+
 #table tr td:nth-child(2) {
    text-align: right;
 }
 
-#CommentDiv ul {
-	border-top: 1px dashed #ddd;
-	border-bottom: 1px dashed #ddd;
+#CommentDiv table#comments {
+   border-top: 1px dashed #ddd;
+   border-bottom: 1px dashed #ddd;
+   width: -webkit-fill-available;
 }
 
-#CommentDiv li:nth-child(1) {
-   font-weight: bold;
+#comments tr:nth-child(1) {
+   text-align: left;
 }
 
-#delete {
+#comments tr td:nth-child(1) {
+   width: 80%;
+   text-align: left;
+}
+
+#comments tr td:nth-child(2) {
+   width: 20%;
+   text-align: right;   
+}
+
+#comments #delBtn {
    border: none;
-   background: none;
+   background: white;
+   font-size: 1em;
+   font-weight: bold;
+   cursor: pointer; 
 }
 
-#delete:hover {
-   font-weight: bolder;
+#comments #delBtn:hover {
    color: red;
 }
 
