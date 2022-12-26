@@ -3,6 +3,12 @@
  */
  $(function(){
  	
+ 	$(".reply").hide();
+ 	
+ 	$(".replyBtn").click(function(){
+ 		 	$(this).parent().next(".reply").slideToggle(".reply");
+ 	});
+ 	
  	/* 글 상세 목록에서 댓글등록 버튼 클릭 시작 */
 	$("#Cbtn").click(function(){
 		let content =  $("#content").val();
@@ -76,10 +82,6 @@ function del(param){
 	/* 글 상세 목록에서 댓글삭제 버튼 끝 */	
 	
 	/* 글 상세 목록에서 답변등록 버튼 시작 */	
-	function reply(){
-		
-		
-	}
 	
 	/* 글 상세 목록에서 답변등록 버튼 끝 */	
 	

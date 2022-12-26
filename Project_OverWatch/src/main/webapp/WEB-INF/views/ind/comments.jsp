@@ -38,10 +38,47 @@
 		</form>
 
 		<c:forEach var="list" items="${commentMapList }" begin="0">
-		
+		<div class="comments">
 			<c:choose>
 				<c:when test="${list.delcheck eq 'Y' }">
-				<table id="comments">
+					
+						<ul>
+							<li  style="color: #ccc">
+								${list.content }
+							</li>
+					</ul>	
+				</c:when>
+				<c:otherwise>
+						<ul>
+						<li>
+							<b>${list.uId }</b>
+						</li>
+						<li>
+							${list.content }
+						</li>
+						<c:if test="${sessionScope.uId == list.uId }">
+							<li>
+								<button class="delBtn" onclick="del('${list.num}')" style="float:right;">X</button>
+							</li>
+						</c:if>
+						<li>
+							<small>${list.regdate }</small> 
+								<button class="replyBtn" >답글쓰기</button>
+						</li>
+						<li class="reply">
+							<ul class="replyTable">
+								<li><textarea name="content" id="content" maxlength="50" placeholder="내용을 입력하세요."></textarea></li>
+								<li><button>대댓글 쓰기</button></li>
+							</ul>
+						</li>
+					</ul>
+				
+				</c:otherwise>
+			</c:choose>
+			</div>
+			</c:forEach>
+		</div>	
+				<%-- <table id="comments">
 						<tr>
 							<td id="content" style="color: #ccc">${list.content }</td>
 						</tr>
@@ -56,22 +93,24 @@
 							<td id="content">${list.content }</td>
 							<td>
 							<c:if test="${sessionScope.uId == list.uId }">
-								<input type="button" id="delBtn" value="X" onclick="del('${list.num }')">
+								<input type="button" id="delBtn" value="X" onclick="del('${list.num }')" style="text-align: right;">
 							</c:if>
 							</td>
 						</tr>
 						<tr>
 							<td colspan="2">
 								<small>${list.regdate }</small> 
-								<input type="button" id="replyBtn" value="답글쓰기" onclick="reply()">
+								<input type="button" class="replyBtn" value="답글쓰기" >
+								<div class="replyTable">123</div>
 							</td>
 						</tr>
+						
 					</table>
 				</c:otherwise>
-			</c:choose>
+			</c:choose> --%>
 
-		</c:forEach>
-	</div>
+	
+	
 	<!--  댓글 끝 -->
 
 </body>
