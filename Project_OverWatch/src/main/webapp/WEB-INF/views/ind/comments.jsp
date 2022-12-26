@@ -63,7 +63,7 @@
 						<tr>
 							<td colspan="2">
 								<small>${list.regdate }</small> 
-								<input type="button" id="Cbtn" value="답글쓰기">
+								<input type="button" id="replyBtn" value="답글쓰기" onclick="reply()">
 							</td>
 						</tr>
 					</table>
