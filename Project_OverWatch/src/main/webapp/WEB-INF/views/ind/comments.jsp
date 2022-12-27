@@ -82,7 +82,7 @@
 								<ul class="replyTable">
 									<li><textarea name="commentReply" class="commentReply${list.num}"  maxlength="50" placeholder="내용을 입력하세요."></textarea></li>
 									<li>
-										<button class="ComReplyBtn" onclick="Commentreply('${list.num}','${list.pos}','${list.ref}','${list.depth}','${list.uId}')">답글등록</button>
+										<button class="ComReplyBtn" onclick="Commentreply('${list.num}','${list.pos}','${list.ref}','${list.depth}','${sessionScope.uId}')">답글등록</button>
 									</li>
 								</ul>
 							</li>
