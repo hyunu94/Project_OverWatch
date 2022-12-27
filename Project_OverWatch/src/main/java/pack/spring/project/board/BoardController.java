@@ -318,10 +318,16 @@ public class BoardController {
 		
 		//////////////////////////////////
 		
-		
-		
 		ModelAndView mav = new ModelAndView();
 		if(commentMapList != null) {
+			
+			for (int i = 0; i < commentMapList.size(); i++) {
+				Map<String, Object> commentsMap = commentMapList.get(i);
+				String regdate = commentsMap.get("regdate").toString();
+				regdate = regdate.substring(0,10)+" "+regdate.substring(11);
+				commentsMap.put("regdate", regdate);
+			}
+			
 			mav.addObject("commentMapList", commentMapList);
 		}
 		

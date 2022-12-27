@@ -26,14 +26,13 @@
 					<td><input type="button" id="Cbtn" value="댓글 등록"></td>
 				</tr>
 				<tr>
-					<td colspan="2"><textarea name="content" id="content"
-							maxlength="50"></textarea></td>
+					<td colspan="2">
+					<textarea name="content" id="content" maxlength="50" placeholder="내용을 입력하세요."></textarea></td>
 				</tr>
 			</table>
 			<!-- 현재 로그인중인 회원 정보 -->
-			<input type="hidden" id="sessionuId" name="sessionuId"
-				value="${sessionScope.uId }" /> <input type="hidden" id="boardNo"
-				name="boardNo" value="${data.num }">
+			<input type="hidden" id="sessionuId" name="sessionuId" value="${sessionScope.uId }" /> 
+			<input type="hidden" id="boardNo" name="boardNo" value="${data.num }">
 
 		</form>
 
@@ -53,23 +52,27 @@
 						<li>
 							<b>${list.uId }</b>
 						</li>
-						<li>
-							${list.content }
-						</li>
 						<c:if test="${sessionScope.uId == list.uId }">
 							<li>
 								<button class="delBtn" onclick="del('${list.num}')" style="float:right;">X</button>
 							</li>
 						</c:if>
 						<li>
+							${list.content }
+						</li>
+						<li>
 							<small>${list.regdate }</small> 
 								<button class="replyBtn" >답글쓰기</button>
 						</li>
 						<li class="reply">
+						<form id="CommentReplyFrm" name="CommentReplyFrm">
 							<ul class="replyTable">
-								<li><textarea name="content" id="content" maxlength="50" placeholder="내용을 입력하세요."></textarea></li>
-								<li><button>대댓글 쓰기</button></li>
+								<li><textarea name="commentReply" id="commentReply"  maxlength="50" placeholder="내용을 입력하세요."></textarea></li>
+								<li>
+									<button class="ComReplyBtn" onclick="Commentreply('${list.num}','${list.pos}','${list.ref}','${list.depth}','${list.uId}')">답글등록</button>
+								</li>
 							</ul>
+						</form>
 						</li>
 					</ul>
 				
@@ -78,39 +81,6 @@
 			</div>
 			</c:forEach>
 		</div>	
-				<%-- <table id="comments">
-						<tr>
-							<td id="content" style="color: #ccc">${list.content }</td>
-						</tr>
-					</table>
-				</c:when>
-				<c:otherwise>
-					<table id="comments">
-						<tr>
-							<th id="writer">${list.uId }</th>
-						</tr>
-						<tr>
-							<td id="content">${list.content }</td>
-							<td>
-							<c:if test="${sessionScope.uId == list.uId }">
-								<input type="button" id="delBtn" value="X" onclick="del('${list.num }')" style="text-align: right;">
-							</c:if>
-							</td>
-						</tr>
-						<tr>
-							<td colspan="2">
-								<small>${list.regdate }</small> 
-								<input type="button" class="replyBtn" value="답글쓰기" >
-								<div class="replyTable">123</div>
-							</td>
-						</tr>
-						
-					</table>
-				</c:otherwise>
-			</c:choose> --%>
-
-	
-	
 	<!--  댓글 끝 -->
 
 </body>

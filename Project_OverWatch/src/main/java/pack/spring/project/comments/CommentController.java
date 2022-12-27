@@ -63,4 +63,18 @@ public class CommentController {
 	
 	//댓글 삭제 처리 끝
 
+	// 대댓글 등록 시작
+	@RequestMapping(value = "/CommentReplyProc", method = RequestMethod.POST)
+	@ResponseBody
+	public String reply_commnets(@RequestParam Map<String, Object> map) {
+		System.out.println("/CommentReplyProc map : "+map.toString());
+		
+		JSONObject jsonObject = new JSONObject();
+		
+		return jsonObject.toString();
+	}
+	
+	
+	// 대댓글 등록 끝
+		
 }

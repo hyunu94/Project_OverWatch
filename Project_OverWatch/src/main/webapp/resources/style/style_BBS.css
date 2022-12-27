@@ -499,7 +499,6 @@ main#main>div.reply h2 {
 /*////////////////////////////////////////////////////////////////////*/
 /*///////////// BBS 게시글 댓글 페이지 끝 /bbs/read.jsp ///////////// */
 /*////////////////////////////////////////////////////////////////////*/
-
 #CommentDiv {
    width: 100%;
    margin: 15px 0 15px 0;
@@ -508,6 +507,10 @@ main#main>div.reply h2 {
 #table {
    border-collapse: collapse;
    width: -webkit-fill-available;
+}
+
+table#table td:nth-child(2) {
+    text-align: right;
 }
 
 #CommentDiv li {
@@ -521,7 +524,7 @@ main#main>div.reply h2 {
    resize: none;
 }
 
-input#Cbtn {
+input#Cbtn, button.replyBtn, button.ComReplyBtn {
    width: 65px;
    font-size: 12px;
    font-weight: bold;
@@ -533,49 +536,23 @@ input#Cbtn:nth-child(1) {
     margin-bottom: 10px;
 }
 
-#table tr td:nth-child(2) {
-   text-align: right;
+.comments ul:not(.replyTable) {
+    border-bottom: 1px dashed #aaa;
 }
 
-#CommentDiv table#comments {
-   border-top: 1px dashed #ddd;
-   border-bottom: 1px dashed #ddd;
-   width: -webkit-fill-available;
+button.delBtn {
+    border: none;
+    background: none;
+    font-weight: bold;
 }
 
-#comments tr:nth-child(1) {
-   text-align: left;
-}
-
-#comments tr td:nth-child(1) {
-   width: 80%;
-   text-align: left;
-}
-
-#comments tr td:nth-child(2) {
-   width: 20%;
-   text-align: right;   
-}
-
-#comments #delBtn {
-   border: none;
-   background: white;
-   font-size: 1em;
-   font-weight: bold;
-   cursor: pointer; 
-}
-
-#comments #delBtn:hover {
-   color: red;
+button.delBtn:hover {
+    color: red;
+    cursor: pointer;
 }
 
 small {
    color: gray;
-}
-
-table#replyTable {
-    width: -webkit-fill-available;
-    padding: 20px;
 }
 
 /*////////////////////////////////////////////////////////////////////*/

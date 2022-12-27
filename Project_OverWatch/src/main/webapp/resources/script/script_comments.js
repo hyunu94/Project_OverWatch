@@ -48,6 +48,13 @@
 	
 	});
 	/* 글 상세 목록에서 댓글등록 버튼 클릭 끝 */
+	
+		
+			
+		
+	
+	
+		
 		
  }); // $(function() 끝
  
@@ -81,7 +88,55 @@ function del(param){
 }
 	/* 글 상세 목록에서 댓글삭제 버튼 끝 */	
 	
+	
 	/* 글 상세 목록에서 답변등록 버튼 시작 */	
+	function Commentreply(p1, p2, p3, p4, p5){
 	
+		let content = $('#commentReply').val();
+		let sessionuId = $("#sessionuId").val();
+		
+		 if (sessionuId == null || sessionuId == "" ) {
+			alert("로그인 후에 이용해주세요");
+			event.preventDefault();
+		} else if(content == null || content==""){
+			alert("내용을 입력하세요.");
+			$("#commentReply").focus();
+			event.preventDefault();
+		}else{
+			$.ajax({
+		          
+		             type:"POST",
+		             url:"/CommentReplyProc",
+		             data:{
+		                "content":$('#commentReply').val().trim(),
+		                 "boardNo":$("#boardNo").val().trim(),
+		                 "num":p1,
+		                 "pos":p2,
+		                 "ref":p3,
+		                 "depth":p4,
+		                 "uId":p5
+		             },
+		             dataType:"JSON",
+		             
+		             success:function(data) {
+		                     location.reload();
+		              },
+		                error:function(request,status,error){
+		                 alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		                }
+		                
+	          }); //ajax 끝
+	          alert('대댓글 기능 구현 중입니다');
+		} //else
+}
 	/* 글 상세 목록에서 답변등록 버튼 끝 */	
-	
+
+
+
+
+
+
+
+
+
+
