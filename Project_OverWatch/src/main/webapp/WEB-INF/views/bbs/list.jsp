@@ -98,11 +98,17 @@
 												</c:forEach>
 														<img src='/resources/images/replyImg.png' alt='reply'>&nbsp;
 														${list.subject }
+														<c:if test="${!empty list.comCount }">
+															[${list.comCount }]
+														</c:if>
 											</c:when>
 											<c:otherwise>
 														${list.subject }
 														<c:if test="${!empty list.fileName }">
 														<img src='/resources/images/fileImg.png' alt='file'>
+														</c:if>
+														<c:if test="${!empty list.comCount }">
+															[${list.comCount }]
 														</c:if>
 											</c:otherwise>																				
 									</c:choose>

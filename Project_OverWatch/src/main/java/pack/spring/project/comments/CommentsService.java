@@ -16,4 +16,6 @@ public interface CommentsService {
 	 int update_replyUpComments(Map<String, Object> map);
 	 
 	 int insert_relpyComments(Map<String, Object> map);
+	 
+	 int select_comCountAll(Map<String, Object> map);
 }

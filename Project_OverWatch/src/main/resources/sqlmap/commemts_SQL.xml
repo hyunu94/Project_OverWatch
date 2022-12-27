@@ -49,4 +49,11 @@
 		]]>
 	</insert>
 	
+	<!-- 해당 개시글 댓글 총 개수 -->
+	<select id="select_comCountAll" parameterType="hashMap" resultType="int">
+		<![CDATA[
+			select count(*) from comments where boardNo=#{boardNo};
+		]]>
+	</select>
+	
 </mapper>
