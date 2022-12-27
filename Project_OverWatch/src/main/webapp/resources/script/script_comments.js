@@ -49,9 +49,7 @@
 	});
 	/* 글 상세 목록에서 댓글등록 버튼 클릭 끝 */
 	
-		
-			
-		
+	
 	
 	
 		
@@ -91,8 +89,11 @@ function del(param){
 	
 	/* 글 상세 목록에서 답변등록 버튼 시작 */	
 	function Commentreply(p1, p2, p3, p4, p5){
-	
-		let content = $('#commentReply').val();
+		
+		let a = $('.commentReply'+p1).val();
+		alert(a);
+		
+		let content = $('.commentReply'+p1).val();
 		let sessionuId = $("#sessionuId").val();
 		
 		 if (sessionuId == null || sessionuId == "" ) {
@@ -100,7 +101,7 @@ function del(param){
 			event.preventDefault();
 		} else if(content == null || content==""){
 			alert("내용을 입력하세요.");
-			$("#commentReply").focus();
+			$('.commentReply'+p1).focus();
 			event.preventDefault();
 		}else{
 			$.ajax({
@@ -108,7 +109,7 @@ function del(param){
 		             type:"POST",
 		             url:"/CommentReplyProc",
 		             data:{
-		                "content":$('#commentReply').val().trim(),
+		                "content":$('.commentReply'+p1).val().trim(),
 		                 "boardNo":$("#boardNo").val().trim(),
 		                 "num":p1,
 		                 "pos":p2,
@@ -126,9 +127,8 @@ function del(param){
 		                }
 		                
 	          }); //ajax 끝
-	          alert('대댓글 기능 구현 중입니다');
 		} //else
-}
+	}
 	/* 글 상세 목록에서 답변등록 버튼 끝 */	
 
 

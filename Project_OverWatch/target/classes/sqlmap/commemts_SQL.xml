@@ -33,4 +33,20 @@
 			where num=${num} and delCheck= 'N'
 		 ]]>
 	</update>
+	
+	<!-- 끼어들기 -->
+	<update id="replyUpComments" parameterType="hashMap">
+		<![CDATA[
+			update comments set pos = pos + 1 where ref = #{ref} and pos > #{pos}
+		 ]]>
+	</update>
+	
+	<!-- 대댓글 등록 -->
+	<insert id="insert_relpyComments" parameterType="hashMap" useGeneratedKeys="true" keyProperty="num">
+		<![CDATA[
+			insert into comments(content, regdate, pos, ref, depth, boardNo, uId, kind)
+			values(#{content},now(), #{pos} +1, #{ref}, #{depth} +1, #{boardNo}, #{uId}, 0);
+		]]>
+	</insert>
+	
 </mapper>
