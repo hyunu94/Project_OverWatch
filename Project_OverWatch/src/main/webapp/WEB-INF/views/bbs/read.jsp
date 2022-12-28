@@ -93,7 +93,9 @@
 
 							<td colspan="4" id="btnAreaTd" class="read">
 								<button type="button" id="listBtn">${listBtnLabel }</button>
-								<button type="button" id="replyBtn">답 변</button> 
+								<c:if test="${sessionScope.uId!='admin' && sessionScope.uId!='adminSub' }">
+									<button type="button" id="replyBtn">답 변</button> 
+								</c:if>
 								<c:if test="${!empty data.uId }">
 									<c:if test="${data.sessionuId.equals(data.uId) || data.sessionuId.equals('admin') ||data.sessionuId.equals('adminSub') }">
 										<button type="button" id="delBtn">삭 제</button>

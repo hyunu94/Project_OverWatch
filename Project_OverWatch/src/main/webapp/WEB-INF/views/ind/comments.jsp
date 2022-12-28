@@ -19,11 +19,15 @@
 <body>
 	<!--  댓글 시작 -->
 	<div id="CommentDiv">
+	<c:choose>
+		<c:when test="${sessionScope.uId!='admin' && sessionScope.uId!='adminSub' }">
 		<form id="CommentFrm" name="CommentFrm">
 			<table id="table">
 				<tr>
 					<td><b>${sessionScope.uName }</b></td>
-					<td><input type="button" id="Cbtn" value="댓글 등록"></td>
+					<td>
+							<input type="button" id="Cbtn" value="댓글 등록">
+					</td>
 				</tr>
 				<tr>
 					<td colspan="2">
@@ -35,20 +39,13 @@
 			<input type="hidden" id="boardNo" name="boardNo" value="${data.num }">
 
 		</form>
+		</c:when>
+		<c:otherwise>
+		</c:otherwise>
+	</c:choose>
 
 		<c:forEach var="list" items="${commentMapList }" begin="0">
 		
-			<%--  <c:choose>
-				<c:when test="${list.depth >0 }">
-					<c:forEach begin="0" end="${list.depth-1 }">
-							&nbsp;&nbsp;
-					</c:forEach>
-							<img src='/resources/images/replyImg.png' alt='reply'>&nbsp;
-				</c:when>
-				<c:otherwise>
-				
-				</c:otherwise>																				
-			</c:choose>  --%>
 			<!-- comments Div 시작 -->
 			<div class="comments">
 				<c:choose>
@@ -72,7 +69,7 @@
 								${list.uId }
 								</b>
 							</li>
-							<c:if test="${sessionScope.uId == list.uId }">
+							<c:if test="${sessionScope.uId == list.uId || sessionScope.uId == 'admin' || sessionScope.uId == 'adminSub' }">
 								<li>
 									<button class="delBtn" onclick="del('${list.num}')" style="float:right;">X</button>
 								</li>
@@ -93,7 +90,15 @@
 								</c:if>	
 							
 								<small>${list.regdate }</small> 
+								<c:choose>
+							<c:when test="${sessionScope.uId == 'admin' ||  sessionScope.uId == 'adminSub'}">
+							
+							</c:when>
+							<c:otherwise>
 									<button class="replyBtn" >답글쓰기</button>
+							</c:otherwise>
+						</c:choose>
+								
 							</li>
 							<li class="reply">
 								<ul class="replyTable">

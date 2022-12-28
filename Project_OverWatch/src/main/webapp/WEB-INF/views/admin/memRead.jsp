@@ -84,8 +84,14 @@
                         <tr>
                            <td colspan="2">
                            		<button type="button" id="listBtn" class="frmBtn">리스트</button>
-                              <button type="button" id="modBtn" class="frmBtn">수 정</button>
-                              <button type="button" id="quitBtn" class="frmBtn">회원 탈퇴</button>
+                              <c:choose>
+                              	<c:when test="${sessionScope.uId != 'admin'}">
+                              	</c:when>
+                              	<c:otherwise>
+	                              <button type="button" id="modBtn" class="frmBtn">수 정</button>
+	                              <button type="button" id="quitBtn" class="frmBtn">회원 탈퇴</button>
+                              	</c:otherwise>
+                              </c:choose>
                            </td>
                         </tr>
                      </tbody>

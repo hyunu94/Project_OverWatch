@@ -99,7 +99,7 @@
 														<img src='/resources/images/replyImg.png' alt='reply'>&nbsp;
 														${list.subject }
 														<c:if test="${!empty list.comCount }">
-															[${list.comCount }]
+															<small>[${list.comCount }]</small>
 														</c:if>
 											</c:when>
 											<c:otherwise>
@@ -108,7 +108,7 @@
 														<img src='/resources/images/fileImg.png' alt='file'>
 														</c:if>
 														<c:if test="${!empty list.comCount }">
-															[${list.comCount }]
+															<small>[${list.comCount }]</small>
 														</c:if>
 											</c:otherwise>																				
 									</c:choose>
