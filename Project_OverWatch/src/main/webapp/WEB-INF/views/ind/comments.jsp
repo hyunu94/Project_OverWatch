@@ -37,48 +37,62 @@
 		</form>
 
 		<c:forEach var="list" items="${commentMapList }" begin="0">
-		<div class="comments">
+		
 			<c:choose>
-				<c:when test="${list.delcheck eq 'Y' }">
-					
-						<ul>
-							<li  style="color: #ccc">
-								${list.content }
-							</li>
-					</ul>	
+				<c:when test="${list.depth >0 }">
+					<c:forEach begin="0" end="${list.depth-1 }">
+							&nbsp;&nbsp;
+					</c:forEach>
+							<img src='/resources/images/replyImg.png' alt='reply'>&nbsp;
 				</c:when>
 				<c:otherwise>
-						<ul>
-						<li>
-							<b>${list.uId }</b>
-						</li>
-						<c:if test="${sessionScope.uId == list.uId }">
-							<li>
-								<button class="delBtn" onclick="del('${list.num}')" style="float:right;">X</button>
-							</li>
-						</c:if>
-						<li>
-							${list.content }
-						</li>
-						<li>
-							<small>${list.regdate }</small> 
-								<button class="replyBtn" >답글쓰기</button>
-						</li>
-						<li class="reply">
-						<form id="CommentReplyFrm" name="CommentReplyFrm">
-							<ul class="replyTable">
-								<li><textarea name="commentReply" id="commentReply"  maxlength="50" placeholder="내용을 입력하세요."></textarea></li>
-								<li>
-									<button class="ComReplyBtn" onclick="Commentreply('${list.num}','${list.pos}','${list.ref}','${list.depth}','${list.uId}')">답글등록</button>
-								</li>
-							</ul>
-						</form>
-						</li>
-					</ul>
 				
-				</c:otherwise>
+				</c:otherwise>																				
 			</c:choose>
-			</div>
+			<!-- comments Div 시작 -->
+			<div class="comments">
+				<c:choose>
+					<c:when test="${list.delcheck eq 'Y' }">
+						
+							<ul>
+								<li  style="color: #ccc">
+									${list.content }
+								</li>
+						</ul>	
+					</c:when>
+					<c:otherwise>
+					
+							<ul>
+							<li>
+								<b>${list.uId }</b>
+							</li>
+							<c:if test="${sessionScope.uId == list.uId }">
+								<li>
+									<button class="delBtn" onclick="del('${list.num}')" style="float:right;">X</button>
+								</li>
+							</c:if>
+							<li>
+								${list.content }
+							</li>
+							<li>
+								<small>${list.regdate }</small> 
+									<button class="replyBtn" >답글쓰기</button>
+							</li>
+							<li class="reply">
+								<ul class="replyTable">
+									<li><textarea name="commentReply" class="commentReply${list.num}"  maxlength="50" placeholder="내용을 입력하세요."></textarea></li>
+									<li>
+										<button class="ComReplyBtn" onclick="Commentreply('${list.num}','${list.pos}','${list.ref}','${list.depth}','${sessionScope.uId}')">답글등록</button>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					
+					</c:otherwise>
+				</c:choose>
+				</div>
+				<!-- comments Div 끝 -->
+			
 			</c:forEach>
 		</div>	
 	<!--  댓글 끝 -->

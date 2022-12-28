@@ -40,7 +40,8 @@ public class BoardController {
 	
 	@Autowired
 	BoardService boardService;
-
+	
+	
 	// 게시글 목록 보기
 	@RequestMapping(value = "/list") // session 유지 ,
 	public ModelAndView list(@RequestParam Map<String, Object> map, HttpSession session) {
@@ -106,7 +107,18 @@ public class BoardController {
 			String regTM = userMap.get("regTM").toString();
 			regTM = regTM.substring(0,10)+" "+regTM.substring(11);
 			userMap.put("regTM", regTM);
+			
+			int boardNo = (int) userMap.get("num");
+			userMap.put("boardNo", boardNo);
+			
+			
+			if(commentsService.select_comCountAll(userMap) > 0) {
+				int comCount = commentsService.select_comCountAll(userMap);
+				userMap.put("comCount", comCount);
+			}
 		}
+		
+		
 		
 		/*
 		 * select * from tblBoard order by num desc limit 10, 10; 데이터가 100개 => num : 100

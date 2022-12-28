@@ -31,5 +31,20 @@ public class CommentsSeriviceImp implements CommentsService {
 	public int delete_comments(Map<String, Object> map) {
 		return this.commentsDAO.delete_comments(map);
 	}
+
+	@Override
+	public int update_replyUpComments(Map<String, Object> map) {
+		return this.commentsDAO.update_replyUpComments(map);
+	}
+
+	@Override
+	public int insert_relpyComments(Map<String, Object> map) {
+		return this.commentsDAO.insert_relpyComments(map);
+	}
+
+	@Override
+	public int select_comCountAll(Map<String, Object> map) {
+		return this.commentsDAO.select_comCountAll(map);
+	}
 	
 }

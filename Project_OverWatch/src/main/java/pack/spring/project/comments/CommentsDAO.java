@@ -32,4 +32,19 @@ public class CommentsDAO {
 	public int delete_comments(Map<String, Object> map) {
 		return this.sqlSessionTemplate.update("comments.delete_comments", map);
 	}
+	
+	//끼어들기
+	public int update_replyUpComments(Map<String, Object> map) {
+		return this.sqlSessionTemplate.update("comments.replyUpComments", map);
+	}
+	
+	//대댓글 등록
+	public int insert_relpyComments(Map<String, Object> map) {
+		return this.sqlSessionTemplate.insert("comments.insert_relpyComments", map);
+	}
+	
+	//게시글 댓글 총 개수
+	public int select_comCountAll(Map<String, Object> map) {
+		return this.sqlSessionTemplate.selectOne("comments.select_comCountAll", map);
+	}
 }

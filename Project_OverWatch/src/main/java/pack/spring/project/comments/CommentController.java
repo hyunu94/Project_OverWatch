@@ -69,6 +69,15 @@ public class CommentController {
 	public String reply_commnets(@RequestParam Map<String, Object> map) {
 		System.out.println("/CommentReplyProc map : "+map.toString());
 		
+		  int repUpCnt = 0;
+		  
+		  if(commentsService.update_replyUpComments(map) !=0) {
+			  repUpCnt = commentsService.update_replyUpComments(map); 
+			  }   //끼어들기
+		 
+		  int cnt =commentsService.insert_relpyComments(map);
+		  
+		  
 		JSONObject jsonObject = new JSONObject();
 		
 		return jsonObject.toString();

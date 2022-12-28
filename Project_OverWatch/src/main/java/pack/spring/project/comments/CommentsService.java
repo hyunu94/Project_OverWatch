@@ -12,4 +12,10 @@ public interface CommentsService {
 	 List<Map<String, Object>> select_comments(Map<String, Object> map);
 	 
 	 int delete_comments(Map<String, Object> map);
+	 
+	 int update_replyUpComments(Map<String, Object> map);
+	 
+	 int insert_relpyComments(Map<String, Object> map);
+	 
+	 int select_comCountAll(Map<String, Object> map);
 }
