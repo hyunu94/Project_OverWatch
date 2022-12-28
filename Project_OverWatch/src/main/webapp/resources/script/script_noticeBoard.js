@@ -28,7 +28,8 @@ $(function(){
 	     
 		let url = "/noticeWrite?nowPage=" + param;		    
 		    url += "&keyField="+p3;
-	     	url += "&keyWord="+p4 ; 
+	     	url += "&keyWord="+p4; 
+	     	url += "&gnbParam=bbs"; 
 		location.href=url;
 		
 		

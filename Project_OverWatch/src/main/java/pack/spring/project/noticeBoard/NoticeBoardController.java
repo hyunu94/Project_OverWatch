@@ -155,16 +155,19 @@ public class NoticeBoardController {
 		System.out.println("/noticeWrite - request : " + request.getParameter("nowPage").toString());
 		System.out.println("/noticeWrite - request : " + request.getParameter("keyField").toString());
 		System.out.println("/noticeWrite - request : " + request.getParameter("keyWord").toString());
+		System.out.println("/noticeWrite - request : " + request.getParameter("gnbParam").toString());
 
 		String nowPage = request.getParameter("nowPage").toString();
 		String keyField = request.getParameter("keyField").toString();
 		String keyWord = request.getParameter("keyWord").toString();
-
+		String gnbParam =  request.getParameter("gnbParam").toString();
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("uId", uId);
 		map.put("nowPage", nowPage);
 		map.put("keyField", keyField);
 		map.put("keyWord", keyWord);
+		map.put("gnbParam", gnbParam);
 		
 		Map<String, Object> userMap = adminService.selectByUId(map);
 		
