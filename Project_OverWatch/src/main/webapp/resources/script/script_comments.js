@@ -90,8 +90,6 @@ function del(param){
 	/* 글 상세 목록에서 답변등록 버튼 시작 */	
 	function Commentreply(p1, p2, p3, p4, p5){
 		
-		let a = $('.commentReply'+p1).val();
-		alert(a);
 		
 		let content = $('.commentReply'+p1).val();
 		let sessionuId = $("#sessionuId").val();

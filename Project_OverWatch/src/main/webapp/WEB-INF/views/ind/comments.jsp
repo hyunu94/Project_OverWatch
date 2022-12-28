@@ -38,7 +38,7 @@
 
 		<c:forEach var="list" items="${commentMapList }" begin="0">
 		
-			<c:choose>
+			<%--  <c:choose>
 				<c:when test="${list.depth >0 }">
 					<c:forEach begin="0" end="${list.depth-1 }">
 							&nbsp;&nbsp;
@@ -48,12 +48,11 @@
 				<c:otherwise>
 				
 				</c:otherwise>																				
-			</c:choose>
+			</c:choose>  --%>
 			<!-- comments Div 시작 -->
 			<div class="comments">
 				<c:choose>
 					<c:when test="${list.delcheck eq 'Y' }">
-						
 							<ul>
 								<li  style="color: #ccc">
 									${list.content }
@@ -61,10 +60,17 @@
 						</ul>	
 					</c:when>
 					<c:otherwise>
-					
 							<ul>
 							<li>
-								<b>${list.uId }</b>
+								<b>
+								<c:if test="${list.depth >0 }">
+									<c:forEach begin="0" end="${list.depth-1 }">
+									&nbsp;&nbsp;
+									</c:forEach>
+									<img src='/resources/images/replyImg.png' alt='reply'>&nbsp;
+								</c:if> 
+								${list.uId }
+								</b>
 							</li>
 							<c:if test="${sessionScope.uId == list.uId }">
 								<li>
@@ -72,9 +78,20 @@
 								</li>
 							</c:if>
 							<li>
+								<c:if test="${list.depth >0 }">
+									<c:forEach begin="0" end="${list.depth-1 }">
+									&nbsp;&nbsp;
+									</c:forEach>
+								</c:if>
 								${list.content }
 							</li>
 							<li>
+								<c:if test="${list.depth >0 }">
+										<c:forEach begin="0" end="${list.depth-1 }">
+										&nbsp;&nbsp;
+										</c:forEach>
+								</c:if>	
+							
 								<small>${list.regdate }</small> 
 									<button class="replyBtn" >답글쓰기</button>
 							</li>
